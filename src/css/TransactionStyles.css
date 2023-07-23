@@ -1,0 +1,35 @@
+/* Common styles for both buttons */
+.view-more-btn,
+.edit-delete-btn p {
+  font-size: 12px;
+  text-decoration: none;
+  transition: font-size 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
+
+/* View More button */
+.view-more-btn:hover {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Edit and Delete button container */
+.edit-delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem;
+}
+
+/* Hover effect on paragraph inside Edit and Delete button container */
+.edit-delete-btn p:hover {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.flex-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+  padding-bottom: 0.5rem;
+}

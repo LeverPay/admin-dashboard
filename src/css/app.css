@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #202020;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.active {
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  color: #7791CD !important;
+  font-weight: 600 !important;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: auto;
+}
+
+/* OVERLAY */
+
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0 0 0 / 50%);
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+
+.overlay.overlay-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0s;
+}
+
+.right {
+  transform: translateX(120%);
+  transition: transform 300ms ease-out;
+}
+
+.mobilenav-listview {
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mobilenav-listview::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge add Firefox */
+
+@media (min-width: 768px) and (max-width: 1114px) {
+  .left {
+    transform: translateX(60%);
+    transition: transform 300ms ease-out;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .left {
+    transform: translateX(30%);
+    transition: transform 300ms ease-out;
+  }
+}
+
+.dropdown-icon {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  width: 12px;
+  height: 12px;
+}
+
+.dropdown-icon:hover {
+  transform: translateY(-2px);
+}
