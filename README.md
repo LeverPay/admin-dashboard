@@ -3,7 +3,7 @@
  <img width=200 height=50px src="./src/assets/LeverPayGold.png" alt="Leverpay logo"></a>
 </p>
 
-# Leverpay Admin Dashboard and Transaction Page
+# Leverpay Admin Dashboard
 
 Leverpay is a responsive web application built with ReactJS and Styled-Components for displaying a dashboard and transaction page. The application is designed to help users manage their transactions and monitor their financial activities in real-time.
 
