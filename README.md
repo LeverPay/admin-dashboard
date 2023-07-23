@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://leverpay.io/" rel="noopener">
- <img width=192px height=192px src="./src/assets/LeverPayGold.png" alt="Leverpay logo"></a>
+ <img width=100px height=192px src="./src/assets/LeverPayGold.png" alt="Leverpay logo"></a>
 </p>
 
 # Leverpay Admin Dashboard and Transaction Page
