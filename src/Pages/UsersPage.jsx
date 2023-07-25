@@ -9,11 +9,16 @@ import '../css/UsersPageStyles.css';
 import {
   DashboardView,
   DashboardNavView,
-  DashboardBody,
 } from '../css/DashboardPageStyles';
-import Header from '../Components/Header/Header';
-import DashboardStat from '../Components/DashboardStat';
+
 import DataTable from '../Components/DataTable';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
+
+import {
+  faUserGroup,
+} from '@fortawesome/free-solid-svg-icons';
 
 const UsersPage = () => {
   const count = 10;
@@ -28,9 +33,27 @@ const UsersPage = () => {
                     />
                   </Link>
             </DashboardNavView>
+        
+
+
+            <div className="header-container">
+              <div className="greeting-container">
+                <div className="greeting">
+                  <MDBBtn outline className='mx-2' color='dark'>
+                     <FontAwesomeIcon icon={faUserGroup} /> <span>Add User</span>{' '}
+                  </MDBBtn>
+                </div>
+                <div className="search">
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  <input className="search-input" placeholder="Search" />
+                </div>
+              </div>
+            </div>
+
+            
             <div className='users__tab'>
               <Tabs defaultActiveKey="second">
-                <Tab eventKey="first" title={"All Users " + count}>
+                <Tab eventKey="first" title={"All Users - " + count}>
                    <div className='users__tab__padding'>
                      <DataTable />
                    </div>
