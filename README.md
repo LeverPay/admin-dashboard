@@ -1,11 +1,11 @@
 <p align="center">
   <a href="https://leverpay.io/" rel="noopener">
- <img width=192px height=192px src="./src/assets/LeverPayGold.png" alt="Leverpay logo"></a>
+ <img width=200 height=50px src="./src/assets/LeverPayGold.png" alt="Leverpay logo"></a>
 </p>
 
-# Leverpay Admin Dashboard and Transaction Page
+# Leverpay Admin Dashboard
 
-Leverpay is a responsive web application built with ReactJS and Styled-Components for displaying a dashboard and transaction page. The application is designed to help users manage their transactions and monitor their financial activities in real-time.
+Leverpay is a responsive web application built with ReactJS and Styled Components for displaying a dashboard and transaction page with various features. The application is designed to help admin manage their transactions and monitor their financial activities in real-time.
 
 ## Features
 
@@ -13,11 +13,11 @@ Leverpay is a responsive web application built with ReactJS and Styled-Component
 
 - Transaction Page: This page allows users to view their transaction history and filter transactions by date, category, and status.
 
-- Responsive Design: The application is fully responsive and adapts to different screen sizes.
+- Responsive Design: The fully responsive application adapts to different screen sizes.
 
-- Card Center: The Card Center page provides users with a comprehensive view of their registered credit and debit cards. Users can add, remove, or manage their cards from this page. Additionally, they can view card details, such as the card number, expiration date, and cardholder name, for easy reference.
+- Card Center: The Card Center page provides users a comprehensive view of their registered credit and debit cards. Users can add, remove, or manage their cards from this page. Additionally, they can view card details, such as the card number, expiration date, and cardholder name, for easy reference.
 
-- Messages: The Messages page serves as a communication hub for users. It allows them to receive important notifications, updates, and alerts related to their account, transactions, and any other relevant information. Users can mark messages as read, delete old messages, and take necessary actions based on the messages they receive.
+- Messages: The Messages page serves as a communication hub for users. It allows them to receive important notifications, updates, and alerts related to their account, transactions, and any other relevant information. Users can mark messages as read, delete old messages, and take necessary actions based on their received messages.
 
 - Contact: The Contact page provides users with access to important contact information, such as customer support phone numbers, email addresses, and physical addresses. Users can also find a list of frequently asked questions (FAQs) to quickly find answers to common inquiries. This ensures a seamless user experience by facilitating communication between the user and the support team.
 
