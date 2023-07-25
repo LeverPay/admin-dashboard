@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DashboardView } from '../css/DashboardPageStyles';
 import { TransactionTable } from '../css/TransactionStyles';
 import '../css/TransactionStyles.css';
@@ -12,6 +12,12 @@ import {
 import { Link } from 'react-router-dom';
 import { InputContainer } from '../css/BasicInformationSyles';
 const BasicInformation = () => {
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = () => setFocused(true);
+  const handleBlur = (e) => {
+    if (!e.target.value) setFocused(false);
+  };
   return (
     <DashboardView>
       <TransactionTable>
@@ -79,7 +85,7 @@ const BasicInformation = () => {
             <InputContainer>
               <label htmlFor="phone">Phone Number</label>
               <div className="input-phone">
-                <div className='code-input'>+234</div>
+                <div className="code-input">+234</div>
                 <input type="number" name="" id="" className="input" />
               </div>
             </InputContainer>

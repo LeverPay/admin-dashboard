@@ -70,8 +70,10 @@ const SideBar = () => {
             onClick={() => handleListItemClick(4)}
             className={activeIndex === 4 ? 'active' : ''}
           >
-            <FontAwesomeIcon icon={faMessage} />
-            <span>Messages</span>
+            <Link to="/messages" className="nav__link">
+              <FontAwesomeIcon icon={faMessage} />
+              <span>Messages</span>
+            </Link>
           </li>
           <li
             onClick={() => handleListItemClick(5)}

@@ -10,6 +10,8 @@ export const InputContainer = styled.div`
   label {
     margin-bottom: 5px;
     font-size: 13px;
+
+    font-weight: bold;
   }
 
   .input {

@@ -6,7 +6,8 @@ import TransactionPage from './Pages/TransactionPage';
 import LoginPage from './Pages/LoginPage';
 import BasicInformationPage from './Pages/Basic_Information_Page';
 import SettingsPage from './Pages/SettingsPage';
-import ContactPage from './Pages/ContactPage'
+import ContactPage from './Pages/ContactPage';
+import MessagesPage from './Pages/MessagesPage';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/basic_information" element={<BasicInformationPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/messages" element={<MessagesPage />} />
         </Routes>
       </Router>
     </div>
