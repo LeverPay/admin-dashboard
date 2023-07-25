@@ -64,7 +64,9 @@ const SideBar = () => {
             className={activeIndex === 3 ? 'active' : ''}
             onClick={() => handleListItemClick(3)}
           >
-            <FontAwesomeIcon icon={faUserGroup} /> <span>Users</span>{' '}
+            <Link to="/users" className="nav__link">
+               <FontAwesomeIcon icon={faUserGroup} /> <span>Users</span>{' '}
+            </Link>
           </li>
           <li
             onClick={() => handleListItemClick(4)}

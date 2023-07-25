@@ -6,7 +6,7 @@ import TableDataRow from './TableDataRow';
 import details from '../data/TransactionData';
 import { TableContainer } from '../css/TransactionStyles';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 3;
 
 function DataTable() {
   const [currentPage, setCurrentPage] = useState(1);
