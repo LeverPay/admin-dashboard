@@ -41,7 +41,7 @@ const UsersPage = () => {
               <div className="greeting-container">
                 <div className="greeting">
                   <MDBBtn outline className='mx-2' color='dark'>
-                     <FontAwesomeIcon icon={faUserGroup} /> <span>Add User</span>{' '}
+                    <Link to="/add_user"><FontAwesomeIcon icon={faUserGroup} /> <span>Add User</span>{' '}</Link>
                   </MDBBtn>
                 </div>
                 <div className="search">
@@ -54,12 +54,12 @@ const UsersPage = () => {
             
             <div className='users__tab'>
               <Tabs defaultActiveKey="first">
-                <Tab eventKey="first" title={"All Users - " + count}>
+                <Tab eventKey="first" title={"All Users"}>
                    <div className='users__tab__padding'>
                      <UserDataTable />
                    </div>
                 </Tab>
-                <Tab eventKey="second" title="Active Users">
+            <Tab eventKey="second" title={"Active Users - " + count}>
                   <div className='users__tab__padding'>
                      <UserDataTable />
                    </div>

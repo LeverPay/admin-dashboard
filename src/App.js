@@ -9,6 +9,7 @@ import SettingsPage from './Pages/SettingsPage';
 import ContactPage from './Pages/ContactPage';
 import MessagesPage from './Pages/MessagesPage';
 import UsersPage from './Pages/UsersPage';
+import AddUserPage from './Pages/AddUserPage';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/add_user" element={<AddUserPage />} />
         </Routes>
       </Router>
     </div>

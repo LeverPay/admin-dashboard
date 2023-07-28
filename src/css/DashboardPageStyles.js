@@ -464,3 +464,43 @@ export const DashboardBody = styled.div`
     width: 65%;
   }
 `;
+
+export const AddUserContainer = styled.div`
+    label{
+      position: inherit !important;
+      font-size: 16px !important;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 500;
+      line-height: 32px;
+      letter-spacing: -0.02em;
+      text-align: left;
+      opacity: 1 !important;
+    }
+
+    .add__user__container{
+      input[type=text]{
+        height: 40px;
+        margin-bottom: 10px;
+      }
+
+      input[type=password]{
+        height: 40px;
+        margin-bottom: 10px;
+      }
+
+      input[type=email]{
+        height: 40px;
+        margin-bottom: 10px;
+      }
+
+      select{
+        height: 40px;
+        margin-bottom: 10px;
+        border: 1px solid inherit !important;
+      }
+    }
+
+    .create__user__form{
+      
+    }
+`;
