@@ -15,6 +15,7 @@ import DataTable from '../Components/DataTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
+import UserDataTable from '../Components/UserDataTable';
 
 import {
   faUserGroup,
@@ -52,30 +53,30 @@ const UsersPage = () => {
 
             
             <div className='users__tab'>
-              <Tabs defaultActiveKey="second">
+              <Tabs defaultActiveKey="first">
                 <Tab eventKey="first" title={"All Users - " + count}>
                    <div className='users__tab__padding'>
-                     <DataTable />
+                     <UserDataTable />
                    </div>
                 </Tab>
                 <Tab eventKey="second" title="Active Users">
                   <div className='users__tab__padding'>
-                     <DataTable />
+                     <UserDataTable />
                    </div>
                 </Tab>
                 <Tab eventKey="third" title="Inactive Users">
                       <div className='users__tab__padding'>
-                        <DataTable />
+                       <UserDataTable />
                       </div>
                 </Tab>
                 <Tab eventKey="fourth" title="Pending">
                       <div className='users__tab__padding'>
-                        <DataTable />
+                        <UserDataTable />
                       </div>
                 </Tab>
                 <Tab eventKey="fifth" title="Suspended">
                       <div className='users__tab__padding'>
-                        <DataTable />
+                        <UserDataTable />
                       </div>
                 </Tab>
               </Tabs>
