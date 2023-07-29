@@ -1,40 +1,37 @@
 import React, { useState, useMemo } from 'react';
 import Pagination from './Pagination';
 import TableHeaderCell from './TableHeaderCell';
-import TableDataRow from './TableDataRow';
-// import '../styles/dashboard_body.scss';
+import UserTableRowData from './UserTableRowData';
 import details from '../data/TransactionData';
 import { TableContainer } from '../css/TransactionStyles';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 5;
 
-function DataTable() {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
-    const lastPageIndex = firstPageIndex + PAGE_SIZE;
-    return details.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, details]);
-
-  return (
+function UserDataTable() {
+    const [currentPage, setCurrentPage] = useState(1);
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
+        const lastPageIndex = firstPageIndex + PAGE_SIZE;
+        return details.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, details]);
+    return (
     <TableContainer className="table_container">
       <table>
         <thead>
           <tr>
             <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>LeverPay ID</TableHeaderCell>
+            <TableHeaderCell>Email</TableHeaderCell>
+            <TableHeaderCell>User ID</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>
-            <TableHeaderCell> Amount</TableHeaderCell>
-            <TableHeaderCell>Failed</TableHeaderCell>
-            <TableHeaderCell>Remark</TableHeaderCell>
-            <TableHeaderCell>-</TableHeaderCell>
+            <TableHeaderCell>Phone</TableHeaderCell>
+            <TableHeaderCell>Username</TableHeaderCell>
+            <TableHeaderCell>Card Type</TableHeaderCell>
             <TableHeaderCell>-</TableHeaderCell>
           </tr>
         </thead>
         <tbody>
           {currentTableData.map((item, index) => (
-            <TableDataRow key={item.id} item={item} index={index} />
+            <UserTableRowData key={item.id} item={item} index={index} />
           ))}
         </tbody>
       </table>
@@ -48,7 +45,7 @@ function DataTable() {
         />
       </div>
     </TableContainer>
-  );
+    )
 }
 
-export default DataTable;
+export default UserDataTable

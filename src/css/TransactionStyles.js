@@ -94,13 +94,13 @@ export const HeaderCell = styled.th`
   line-height: 24px;
   letter-spacing: -0.02em;
   text-align: left;
-  color: #5f5f5f;
+  color: #ffffff;
 `;
 
 export const TableContainer = styled.section`
+  background: #0B0230;
   overflow: scroll !important;
   border-radius: 8px;
-  border: 1px solid black;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   &::-webkit-scrollbar {
     display: none;
@@ -132,21 +132,20 @@ export const TableContainer = styled.section`
 
       tr {
         &:hover {
-          background-color: #f7f7f7;
+          background-color: #000;
           cursor: pointer;
           transition: 0.5s;
         }
 
         td {
           padding: 25px;
-          border-bottom: 1px solid #f0f0f0;
           font-family: Inter;
           font-size: 14px;
           font-weight: 400;
           line-height: 16px;
           letter-spacing: 0px;
           text-align: left;
-          color: #484848;
+          color: #ffffff;
         }
       }
     }
@@ -202,5 +201,26 @@ export const TableContainer = styled.section`
     letter-spacing: 0em;
     text-align: left;
     color: #213f7d;
+  }
+
+  .view-more-btn{
+    background: #008CFF;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+  }
+
+  .suspended-user{
+    background: red;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+  }
+
+  .active-user{
+    background: green;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ffffff;
   }
 `;

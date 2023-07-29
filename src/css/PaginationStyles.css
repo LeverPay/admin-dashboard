@@ -38,7 +38,7 @@
 
 .pagination-item.selected {
   background-color: rgba(0, 0, 0, 0.08);
-  color: #0a0a0a !important;
+  color: #ffffff !important;
 }
 
 .pagination-item.disabled {
