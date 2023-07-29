@@ -8,6 +8,7 @@ import BasicInformationPage from './Pages/Basic_Information_Page';
 import SettingsPage from './Pages/SettingsPage';
 import ContactPage from './Pages/ContactPage';
 import MessagesPage from './Pages/MessagesPage';
+import CardPage from './Pages/CardPage';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/messages" element={<MessagesPage />} />
+          <Route path="/card-center" element={<CardPage />} />
         </Routes>
       </Router>
     </div>

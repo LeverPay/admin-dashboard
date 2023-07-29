@@ -17,7 +17,7 @@
   margin-bottom: 20px;
 }
 
-label {
+/* label {
   position: absolute;
   pointer-events: none;
   left: 10px;
@@ -27,7 +27,7 @@ label {
   background: white;
   padding: 0 4px;
   z-index: 1;
-}
+} */
 
 .floating-input input,
 select {

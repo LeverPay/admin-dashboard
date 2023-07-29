@@ -56,7 +56,7 @@ const SideBar = () => {
             onClick={() => handleListItemClick(2)}
             className={activeIndex === 2 ? 'active' : ''}
           >
-            <Link to="/transaction" className="nav__link">
+            <Link to="/card-center" className="nav__link">
               <FontAwesomeIcon icon={faCreditCard} /> <span>Card Center</span>
             </Link>
           </li>
