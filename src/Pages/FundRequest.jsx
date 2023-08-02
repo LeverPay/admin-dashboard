@@ -1,6 +1,7 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import SidebarLayout from '../Layouts/SidebarLayout';
-import { DashboardNavView, DashboardView, AddUserContainer } from '../css/DashboardPageStyles';
+import { DashboardNavView, DashboardView} from '../css/DashboardPageStyles';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -14,8 +15,9 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 function FundRequest() {
+ 
   return (
-        <SidebarLayout>
+    <SidebarLayout>
           <DashboardView>
             <DashboardNavView>
                 <Link to="/basic_information" className="profile-img flex-end">
@@ -129,7 +131,12 @@ function FundRequest() {
                                                             <td>Binance</td>
                                                             <td className='font__amount'>200USDT</td>
                                                             <td>210USDT</td>
-                                                            <td className='font__approved'>APPROVED</td>
+                                                            <td className='font__approved'>
+                                                                  <Link to={{
+                                                                        pathname: `/approve_request/1`,
+                                                                        state: { users: '' }
+                                                                    }}className="view-more-btn"> APPROVED</Link>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">2</th>
@@ -139,7 +146,12 @@ function FundRequest() {
                                                             <td>Binance</td>
                                                             <td className='font__amount'>40USDT</td>
                                                             <td>910USDT</td>
-                                                            <td className='font__pending'>PENDING</td>
+                                                            <td className='font__pending'>
+                                                                    <Link to={{
+                                                                        pathname: `/approve_request/1`,
+                                                                        state: { users: '' }
+                                                                    }}className="view-more-btn"> PENDING</Link>
+                                                            </td>
                                                           </tr>
                                                           <tr>
                                                             <th scope="row">3</th>
@@ -149,7 +161,12 @@ function FundRequest() {
                                                             <td>Binance</td>
                                                             <td className='font__amount'>540USDT</td>
                                                             <td>1110USDT</td>
-                                                            <td className='font__failed'>FAILED</td>
+                                                            <td className='font__failed'>
+                                                                    <Link to={{
+                                                                        pathname: `/approve_request/1`,
+                                                                        state: { users: '' }
+                                                                    }}className="view-more-btn"> FAILED</Link>
+                                                            </td>
                                                           </tr>
                                                           <tr>
                                                             <th scope="row">4</th>
@@ -159,7 +176,12 @@ function FundRequest() {
                                                             <td>Binance</td>
                                                             <td className='font__amount'>200USDT</td>
                                                             <td>210USDT</td>
-                                                            <td className='font__approved'>APPROVED</td>
+                                                            <td className='font__approved'>
+                                                                  <Link to={{
+                                                                        pathname: `/approve_request/1`,
+                                                                        state: { users: '' }
+                                                                    }}className="view-more-btn"> APPROVED</Link>
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -192,7 +214,7 @@ function FundRequest() {
                                                             <td className='font__approved'>APPROVED</td>
                                                         </tr>
                                                           <tr>
-                                                            <th scope="row">4</th>
+                                                            <th scope="row">2</th>
                                                             <td>02/08/2023 12:53</td>
                                                             <td>Lvphhdhd01</td>
                                                             <td>Naira</td>
@@ -222,7 +244,7 @@ function FundRequest() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <th scope="row">2</th>
+                                                            <th scope="row">1</th>
                                                             <td>02/08/2023 12:53</td>
                                                             <td>Lvphhdhd01</td>
                                                             <td>Stable Coin</td>
@@ -252,7 +274,7 @@ function FundRequest() {
                                                     </thead>
                                                     <tbody>                                                   
                                                           <tr>
-                                                            <th scope="row">3</th>
+                                                            <th scope="row">1</th>
                                                             <td>02/08/2023 12:53</td>
                                                             <td>Lvphhdhd01</td>
                                                             <td>Stable Coin</td>

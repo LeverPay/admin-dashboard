@@ -36,23 +36,56 @@ export const FundRequestStyle = styled.section`
     color: #0B0230 !important;
   }
 
-  .font__approved{
+  .font__approved a{
     color: #0C6904 !important;
     font-weight: 700 !important;
   }
 
-  .font__pending{
+  .font__pending a{
     color: #F49B09EB !important;
     font-weight: 700 !important;
   }
 
-  .font__failed{
+  .font__failed a{
     color: #FD3003 !important;
     font-weight: 700 !important;
   }
 
   .font__amount{
     color: #FD3003 !important;
+  }
+
+  .narration__text{
+    font-weight: 700;
+    color: #0B0230 !important;
+    margin-left: 10px;
+  }
+
+  .btn-approve{
+    background: #0C6904 !important;
+    color: #ffffff !important;
+  }
+
+  .btn-cancel{
+    background: #FF0505 !important;
+    color: #ffffff !important;
+  }
+
+  .approve__text{
+    color: #0C6904 !important;
+    font-weight: 700;
+  }
+
+  .success__image{
+    width: 150px;
+  }
+
+  .success__text{
+    color: #0C6904 !important;
+  }
+
+  label{
+    position: initial !important;
   }
 
   .transaction__table {
