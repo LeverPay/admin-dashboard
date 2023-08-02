@@ -10,6 +10,7 @@ import ContactPage from './Pages/ContactPage';
 import MessagesPage from './Pages/MessagesPage';
 import UsersPage from './Pages/UsersPage';
 import AddUserPage from './Pages/AddUserPage';
+import FundRequest from './Pages/FundRequest';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/add_user" element={<AddUserPage />} />
+          <Route path="/fund_request" element={<FundRequest />} />
         </Routes>
       </Router>
     </div>

@@ -119,7 +119,10 @@ const SidebarLayout = ({ children }) => {
               onClick={() => handleListItemClick(8)}
               className={activeIndex === 8 ? 'active' : ''}
             >
-              <FontAwesomeIcon icon={faChartSimple} /> <span>Fund Request</span>{' '}
+              <Link to="/fund_request" className="nav__link">
+                <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+                <span>Fund Request</span>
+              </Link>
             </li>
             <li
               onClick={() => handleListItemClick(7)}
