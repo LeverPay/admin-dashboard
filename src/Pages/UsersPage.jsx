@@ -3,8 +3,8 @@ import SidebarLayout from "../Layouts/SidebarLayout";
 import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
+import {Tabs} from 'react-bootstrap';
+import { Tab } from 'react-bootstrap';
 import '../css/UsersPageStyles.css';
 import {
   DashboardView,

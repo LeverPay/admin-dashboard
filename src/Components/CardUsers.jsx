@@ -10,22 +10,22 @@ import brown from '../assets/brown_Medium_User.svg';
 import yellow from '../assets/yellow_Medium_User.svg';
 import addVector from '../assets/add-Vector.svg';
 import { MdOutlineClose } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 import ATMCard from './ATMCard';
-import DebitCard from './modal/DebitCard';
+import DebitCard from '../Pages/DebitCard';
 import CardTable from './CardTable';
 
 const CardUsers = () => {
-  const [openDebit, setOpenDebit] = useState(false);
+  const navigate = useNavigate();
 
-  const closeModal = () => {
-    setOpenDebit(false);
+  const navigateToDebitCard = () => {
+    navigate('/edit-card');
   };
 
-  const openDebitModal = () => {
-    setOpenDebit((prevOpenDebit) => !openDebit);
+  const navigateToUpgradeCard = () => {
+    navigate('/card-upgraade');
   };
-
   return (
     <DashboardView>
       <DashboardNavView>
@@ -70,7 +70,7 @@ const CardUsers = () => {
                 src={add}
                 alt=""
                 className="absolute top-10 left-10 w-4 h-auto cursor-pointer"
-                onClick={openDebitModal}
+                onClick={navigateToDebitCard}
               />
             </div>
 
@@ -89,6 +89,7 @@ const CardUsers = () => {
                 src={addVector}
                 alt=""
                 className="absolute top-10 left-10 w-4 h-auto cursor-pointer"
+                onClick={navigateToUpgradeCard}
               />
             </div>
           </div>
@@ -97,21 +98,6 @@ const CardUsers = () => {
           <CardTable />
         </div>
       </TransactionTable>
-
-      {openDebit && (
-        <div className="relative ">
-          <div className="border absolute top-[-150px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded shadow bg-white p-10 h-[500px] no-scrollbar overflow-scroll">
-            <div className="flex items-end justify-end">
-              <MdOutlineClose
-                size={20}
-                onClick={closeModal}
-                className="cursor-pointer"
-              />
-            </div>
-            <DebitCard />
-          </div>
-        </div>
-      )}
     </DashboardView>
   );
 };

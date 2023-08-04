@@ -1,14 +1,15 @@
-import React from 'react'
+import React from 'react';
 import chart from '../assets/dashboard-chart.svg';
-
 
 const DashboardStat = () => {
   return (
     <div className="dashboard-stats">
-      <div className="dashboard-stat">
-        <div className="transaction-dashboard">
-          <h1>Total Transctions</h1>
-          <h2>00000000</h2>
+      <div className="dashboard-stat rounded shadow-sm w-[259px] h-[97px]">
+        <div className="flex flex-col">
+          <h2 className="w-full  text-slate-400 text-sm font-normal ">
+            Total Transactions
+          </h2>{' '}
+          <h2 className="text-blue-950 text-2xl font-bold ">0000000</h2>{' '}
         </div>
         <div className="svg-chart-container">
           <svg
@@ -28,7 +29,7 @@ const DashboardStat = () => {
         </div>
       </div>
 
-      <div className="dashboard-stat">
+      <div className="bg-white rounded shadow-sm w-[220px] h-[97px] flex items-center justify-between p-2">
         <div className="svg-container-user">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +37,7 @@ const DashboardStat = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            className="w-6 h-6"
           >
             <path
               stroke-linecap="round"
@@ -45,13 +46,17 @@ const DashboardStat = () => {
             />
           </svg>
         </div>
-        <div className="transaction-dashboard">
-          <h1>Total Merchants</h1>
-          <h2>319</h2>
+        <div className="transaction-dashboard ">
+          <h2 className="text-slate-400 text-base font-bold leading-7">
+            Total Merchants
+          </h2>{' '}
+          <h2 className="w-36 h-[25px] text-blue-950 text-2xl font-bold leading-[30px]">
+            319
+          </h2>{' '}
         </div>
       </div>
 
-      <div className="dashboard-stat">
+      <div className="bg-white rounded shadow-sm w-[220px] h-[97px] flex items-center justify-between p-2">
         <div className="svg-container-user2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +64,7 @@ const DashboardStat = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            className="w-6 h-6"
           >
             <path
               stroke-linecap="round"
@@ -69,23 +74,29 @@ const DashboardStat = () => {
           </svg>
         </div>
         <div className="transaction-dashboard">
-          <h1>Total Merchants</h1>
-          <h2>319</h2>
+          <h2 className="text-slate-400 text-base font-bold leading-7">
+            Total Merchants
+          </h2>
+          <h2 className="w-36 h-[25px] text-blue-950 text-2xl font-bold leading-[30px]">
+            319
+          </h2>
         </div>
       </div>
 
-      <div className="activity-container dashboard-stat">
+      <div className="activity-container dashboard-stat shadow-sm">
         <div className="activity-dashboard">
-          <h1>Activity</h1>
-          <h2>540000</h2>
+          <h2 className=" text-violet-100 text-base font-medium ">
+            Subscriptions{' '}
+          </h2>{' '}
+          <div className=" text-white text-2xl font-bold ">540000</div>{' '}
         </div>
 
         <div>
-          <img src={chart} alt="" />
+          <img src={chart} alt="" className="w-[100px] h-auto" />
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default DashboardStat
+export default DashboardStat;

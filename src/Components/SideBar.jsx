@@ -38,7 +38,7 @@ const SideBar = () => {
             onClick={() => handleListItemClick(0)}
             className={activeIndex === 0 ? 'active' : ''}
           >
-            <Link to="/" className="nav__link">
+            <Link to="/" className=" text-base nav__link">
               <FontAwesomeIcon icon={faChartPie} />
               <span>Dashboard</span>
             </Link>
@@ -47,7 +47,7 @@ const SideBar = () => {
             onClick={() => handleListItemClick(1)}
             className={activeIndex === 1 ? 'active' : ''}
           >
-            <Link to="/transaction" className="nav__link">
+            <Link to="/transaction" className="text-base nav__link">
               <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
               <span>Transactions</span>
             </Link>
@@ -56,7 +56,7 @@ const SideBar = () => {
             onClick={() => handleListItemClick(2)}
             className={activeIndex === 2 ? 'active' : ''}
           >
-            <Link to="/card-center" className="nav__link">
+            <Link to="/card-center" className="text-base nav__link">
               <FontAwesomeIcon icon={faCreditCard} /> <span>Card Center</span>
             </Link>
           </li>
@@ -64,15 +64,15 @@ const SideBar = () => {
             className={activeIndex === 3 ? 'active' : ''}
             onClick={() => handleListItemClick(3)}
           >
-            <Link to="/users" className="nav__link">
-               <FontAwesomeIcon icon={faUserGroup} /> <span>Users</span>{' '}
+            <Link to="/users" className="text-base nav__link">
+              <FontAwesomeIcon icon={faUserGroup} /> <span>Users</span>{' '}
             </Link>
           </li>
           <li
             onClick={() => handleListItemClick(4)}
             className={activeIndex === 4 ? 'active' : ''}
           >
-            <Link to="/messages" className="nav__link">
+            <Link to="/messages" className="text-base nav__link">
               <FontAwesomeIcon icon={faMessage} />
               <span>Messages</span>
             </Link>
@@ -81,7 +81,7 @@ const SideBar = () => {
             onClick={() => handleListItemClick(5)}
             className={activeIndex === 5 ? 'active' : ''}
           >
-            <Link to="/contact" className="nav__link">
+            <Link to="/contact" className="text-base nav__link">
               <FontAwesomeIcon icon={faAddressBook} /> <span>Contact</span>{' '}
             </Link>
           </li>
@@ -95,7 +95,7 @@ const SideBar = () => {
             onClick={() => handleListItemClick(7)}
             className={activeIndex === 7 ? 'active' : ''}
           >
-            <Link to="/settings" className="nav__link">
+            <Link to="/settings" className="text-base nav__link">
               <FontAwesomeIcon icon={faGear} /> <span>Settings</span>{' '}
             </Link>
           </li>

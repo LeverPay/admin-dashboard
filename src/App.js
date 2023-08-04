@@ -8,12 +8,12 @@ import BasicInformationPage from './Pages/Basic_Information_Page';
 import SettingsPage from './Pages/SettingsPage';
 import ContactPage from './Pages/ContactPage';
 import MessagesPage from './Pages/MessagesPage';
-<<<<<<< HEAD
 import CardPage from './Pages/CardPage';
-=======
 import UsersPage from './Pages/UsersPage';
 import AddUserPage from './Pages/AddUserPage';
->>>>>>> 999d85676f8844b5d3c8d7952741c6b21d86c1cd
+import EditCard from './Pages/EditCard';
+import DebitCard from './Pages/DebitCard'
+import CardUpgradePage from './Pages/CardUpgradePage'
 
 export default function App() {
   return (
@@ -27,12 +27,12 @@ export default function App() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/messages" element={<MessagesPage />} />
-<<<<<<< HEAD
           <Route path="/card-center" element={<CardPage />} />
-=======
           <Route path="/users" element={<UsersPage />} />
           <Route path="/add_user" element={<AddUserPage />} />
->>>>>>> 999d85676f8844b5d3c8d7952741c6b21d86c1cd
+          <Route path="/edit-card" element={<EditCard />} />
+          <Route path="/debit-card" element={<DebitCard />} />
+          <Route path="/card-upgraade" element={<CardUpgradePage />} />
         </Routes>
       </Router>
     </div>

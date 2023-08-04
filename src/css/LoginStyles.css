@@ -10,6 +10,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
+  overflow-y: hidden;
 }
 
 .input-container {
@@ -47,7 +48,7 @@
   gap: 1rem;
 }
 .login-content {
-  padding: 20px 0;
+  padding-top: 20px;
   height: 100%;
 }
 
@@ -144,7 +145,7 @@
 
 .login-btn {
   text-align: center;
-  background-color: #0b0230;
+  background-color: #0b0230 !important;
   border: 2px solid #0b0230;
   color: white;
   text-decoration: none;
@@ -158,8 +159,7 @@
 
 .login-btn-link {
   border: none;
-  background-color: inherit;
-  color: inherit;
+  color: white;
   cursor: pointer;
   text-decoration: none;
 }
@@ -167,6 +167,11 @@
 .login-btn:hover {
   background-color: #14054a;
   transform: scale(1.05);
+  color: white;
+}
+
+.login-btn-link:hover {
+  color: white !important;
 }
 
 .secured-container {
@@ -174,7 +179,7 @@
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  margin: 5px 0;
+  margin: 2px 0;
   font-size: 15px;
   color: white;
   cursor: pointer;

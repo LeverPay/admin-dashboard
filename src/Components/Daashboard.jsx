@@ -14,9 +14,9 @@ import Remittances from './Remittances';
 const Daashboard = () => {
   return (
     <DashboardView>
-      <DashboardNavView>
+      <div>
         <Header />
-      </DashboardNavView>
+      </div>
       <DashboardStat />
       <DashboardBody>
         <div className="dashboardBodyView flex-1">

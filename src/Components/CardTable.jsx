@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
 import { Table } from 'antd';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { MdOutlineClose } from 'react-icons/md';
-import EditCard from './modal/EditCard'
-
+import { useNavigate } from 'react-router-dom';
 
 const CardTable = () => {
-  const [openEdit, setOpenEdit] = useState(false);
+  const navigate = useNavigate();
 
-  const closeModal = () => {
-    setOpenEdit(false);
+  const navigateToEditCard = () => {
+    navigate('/edit-card');
   };
 
   const dataSource = [
@@ -24,7 +21,7 @@ const CardTable = () => {
             size={20}
             color="#0051FF"
             className="cursor-pointer"
-            onClick={() => setOpenEdit((prevOpenEdit) => !prevOpenEdit)}
+            onClick={navigateToEditCard}
           />
           <RiDeleteBin6Line
             size={20}
@@ -50,7 +47,7 @@ const CardTable = () => {
             size={20}
             color="#0051FF"
             className="cursor-pointer"
-            onClick={() => setOpenEdit((prevOpenEdit) => !prevOpenEdit)}
+            onClick={navigateToEditCard}
           />
           <RiDeleteBin6Line
             size={20}
@@ -76,7 +73,7 @@ const CardTable = () => {
             size={20}
             color="#0051FF"
             className="cursor-pointer"
-            onClick={() => setOpenEdit((prevOpenEdit) => !prevOpenEdit)}
+            onClick={navigateToEditCard}
           />
           <RiDeleteBin6Line
             size={20}
@@ -103,7 +100,7 @@ const CardTable = () => {
             size={20}
             color="#0051FF"
             className="cursor-pointer"
-            onClick={() => setOpenEdit((prevOpenEdit) => !prevOpenEdit)}
+            onClick={navigateToEditCard}
           />
           <RiDeleteBin6Line
             size={20}
@@ -130,7 +127,7 @@ const CardTable = () => {
             size={20}
             color="#0051FF"
             className="cursor-pointer"
-            onClick={() => setOpenEdit((prevOpenEdit) => !prevOpenEdit)}
+            onClick={navigateToEditCard}
           />
           <RiDeleteBin6Line
             size={20}
@@ -157,7 +154,7 @@ const CardTable = () => {
             size={20}
             color="#0051FF"
             className="cursor-pointer"
-            onClick={() => setOpenEdit((prevOpenEdit) => !prevOpenEdit)}
+            onClick={navigateToEditCard}
           />
           <RiDeleteBin6Line
             size={20}
@@ -201,20 +198,6 @@ const CardTable = () => {
   return (
     <div>
       <Table dataSource={dataSource} columns={columns} />
-      {openEdit && (
-        <div className="relative ">
-          <div className="border absolute top-[-250px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded shadow bg-white p-10 h-[500px] no-scrollbar overflow-scroll">
-            <div className="flex items-end justify-end">
-              <MdOutlineClose
-                size={20}
-                onClick={closeModal}
-                className="cursor-pointer"
-              />
-            </div>
-            <EditCard />
-          </div>
-        </div>
-      )}
     </div>
   );
 };
