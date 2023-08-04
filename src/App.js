@@ -14,6 +14,11 @@ import AddUserPage from './Pages/AddUserPage';
 import EditCard from './Pages/EditCard';
 import DebitCard from './Pages/DebitCard'
 import CardUpgradePage from './Pages/CardUpgradePage'
+import FundRequest from './Pages/FundRequest';
+import AppproveRequestPage from './Pages/ApproveRequesPage';
+import ApproveConfirmationPage from './Pages/ApproveConfirmationPage';
+import CancelFormPage from './Pages/CancelFormPage';
+import CancelConfirmationPage from './Pages/CancelConfirmationPage';
 
 export default function App() {
   return (
@@ -33,6 +38,11 @@ export default function App() {
           <Route path="/edit-card" element={<EditCard />} />
           <Route path="/debit-card" element={<DebitCard />} />
           <Route path="/card-upgraade" element={<CardUpgradePage />} />
+          <Route path="/fund_request" element={<FundRequest />} />
+          <Route path="/approve_request/:id" element={<AppproveRequestPage />} />
+          <Route path="/approve_confirmation/:id" element={<ApproveConfirmationPage />} />
+          <Route path="/cancel_form/:id" element={<CancelFormPage />} />
+          <Route path="/cancel_confirmation/:id" element={<CancelConfirmationPage />} />
         </Routes>
       </Router>
     </div>

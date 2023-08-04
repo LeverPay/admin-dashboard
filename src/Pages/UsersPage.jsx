@@ -59,7 +59,7 @@ const UsersPage = () => {
                      <UserDataTable />
                    </div>
                 </Tab>
-            <Tab eventKey="second" title={"Active Users - " + count}>
+                 <Tab eventKey="second" title={"Active Users - " + count}>
                   <div className='users__tab__padding'>
                      <UserDataTable />
                    </div>
