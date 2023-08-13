@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 
 export const TransactionTable = styled.section`
-  padding: 100px 32px 0 32px;
-
-  @media (min-width: 320px) and (max-width: 1280px) {
-    padding: 50px 32px 30px 32px;
-  }
-
   .transaction__table {
     .TransactionTitle {
       font-family: 'Open Sans', sans-serif;
@@ -98,7 +92,7 @@ export const HeaderCell = styled.th`
 `;
 
 export const TableContainer = styled.section`
-  background: #0B0230;
+  background: #0b0230;
   overflow: scroll !important;
   border-radius: 8px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
@@ -203,21 +197,21 @@ export const TableContainer = styled.section`
     color: #213f7d;
   }
 
-  .view-more-btn{
-    background: #008CFF;
+  .view-more-btn {
+    background: #008cff;
     padding: 5px;
     border-radius: 5px;
     color: #ffffff;
   }
 
-  .suspended-user{
+  .suspended-user {
     background: red;
     padding: 5px;
     border-radius: 5px;
     color: #ffffff;
   }
 
-  .active-user{
+  .active-user {
     background: green;
     padding: 5px;
     border-radius: 5px;

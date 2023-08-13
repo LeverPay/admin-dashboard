@@ -7,84 +7,90 @@ export const FundRequestStyle = styled.section`
     padding: 50px 32px 30px 32px;
   }
 
-  .bg__custom__blue{
-    background: #0B0230 !important;
+  .bg__custom__blue {
+    background: #0b0230 !important;
   }
 
-  .bg__custom__green{
-    background: #0C6904 !important;
+  .bg__blue_600 {
+    background-color: #2962f2 !important;
+  }
+  .bg__custom__green {
+    background: #0c6904 !important;
   }
 
-  .bg__custom__yellow{
-    background: #F49B09EB !important;
+  .bg__custom__yellow {
+    background: #f49b09eb !important;
   }
 
-  .bg__custom__red{
-    background: #FD3003 !important;
+  .bg__custom__red {
+    background: #fd3003 !important;
   }
 
-  .bg__custom__blue, .bg__custom__green, .bg__custom__yellow, .bg__custom__red{
+  .bg__custom__blue,
+  .bg__custom__green,
+  .bg__custom__yellow,
+  .bg__custom__red {
     color: #ffffff !important;
   }
 
   th {
-    color: #0B0230 !important;
+    color: #0b0230 !important;
     font-weight: 700 !important;
   }
 
-  tr td{
-    color: #0B0230 !important;
+  tr td {
+    color: #0b0230 !important;
   }
 
-  .font__approved a{
-    color: #0C6904 !important;
+  .font__approved a {
+    color: #0c6904 !important;
     font-weight: 700 !important;
   }
 
-  .font__pending a{
-    color: #F49B09EB !important;
+  .font__pending a {
+    color: #f49b09eb !important;
     font-weight: 700 !important;
   }
 
-  .font__failed a{
-    color: #FD3003 !important;
+  .font__failed a {
+    color: #fd3003 !important;
     font-weight: 700 !important;
   }
 
-  .font__amount{
-    color: #FD3003 !important;
+  .font__amount {
+    color: #fd3003 !important;
   }
 
-  .narration__text{
+  .narration__text {
     font-weight: 700;
-    color: #0B0230 !important;
+    color: #0b0230 !important;
     margin-left: 10px;
   }
 
-  .btn-approve{
-    background: #0C6904 !important;
+  .btn-approve {
+    background: #0c6904 !important;
     color: #ffffff !important;
   }
 
-  .btn-cancel{
-    background: #FF0505 !important;
+  .btn-cancel {
+    background: #ff0505 !important;
     color: #ffffff !important;
   }
 
-  .approve__text{
-    color: #0C6904 !important;
+  .approve__text {
+    color: #0c6904 !important;
     font-weight: 700;
   }
 
-  .success__image{
+  .success__image {
     width: 150px;
   }
 
-  .success__text{
-    color: #0C6904 !important;
+  .success__text {
+    color: #0c6904 !important;
   }
 
-  label{
+  label {
     position: initial !important;
   }
 
@@ -99,12 +105,12 @@ export const FundRequestStyle = styled.section`
       align-items: center;
       justify-content: space-between;
       padding: 12px 0 24px 12px;
-      float: right
+      float: right;
     }
   }
 
-  .fund__request__card{
-     padding: 20px 50px 20px 50px;
+  .fund__request__card {
+    padding: 20px 50px 20px 50px;
   }
 
   .search_input {
@@ -112,7 +118,6 @@ export const FundRequestStyle = styled.section`
     align-items: center;
     justify-content: space-between;
     padding: 12px;
-   
 
     @media (min-width: 320px) and (max-width: 767px) {
       display: flex;
@@ -183,7 +188,7 @@ export const HeaderCell = styled.th`
 `;
 
 export const TableContainer = styled.section`
-  background: #0B0230;
+  background: #0b0230;
   overflow: scroll !important;
   border-radius: 8px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
@@ -288,21 +293,21 @@ export const TableContainer = styled.section`
     color: #213f7d;
   }
 
-  .view-more-btn{
-    background: #008CFF;
+  .view-more-btn {
+    background: #008cff;
     padding: 5px;
     border-radius: 5px;
     color: #ffffff;
   }
 
-  .suspended-user{
+  .suspended-user {
     background: red;
     padding: 5px;
     border-radius: 5px;
     color: #ffffff;
   }
 
-  .active-user{
+  .active-user {
     background: green;
     padding: 5px;
     border-radius: 5px;

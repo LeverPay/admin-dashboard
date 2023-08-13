@@ -14,17 +14,22 @@ import failedRequest from '../assets/failed.svg';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
-function FundRequest() {
+function UserToUser() {
   return (
     <SidebarLayout>
       <DashboardView>
         <div className="m-3 sticky top-0 right-0 bg-inherit p-2 z-10">
-          <Link to="/basic_information" className="profile-img flex-end">
-            <img
-              src="https://images.unsplash.com/photo-1587045525473-4861b1f9b5b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-              alt="profile-img"
-            />
-          </Link>
+          <div className="flex items-center justify-between">
+            <h2 className="w-full text-indigo-950 text-xl font-bold leading-normal">
+              User to User Transfer History
+            </h2>
+            <Link to="/basic_information" className="profile-img flex-end">
+              <img
+                src="https://images.unsplash.com/photo-1587045525473-4861b1f9b5b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+                alt="profile-img"
+              />
+            </Link>
+          </div>
         </div>
         <FundRequestStyle>
           <div className="transaction__table">
@@ -52,8 +57,8 @@ function FundRequest() {
                         <div className="row flex items-center gap-2">
                           <div className="col-3">
                             <svg
-                              width="50"
-                              height="50"
+                              width="40"
+                              height="40"
                               viewBox="0 0 50 50"
                               fill="none"
                               xmlns="http://www.w3.org/2000/svg"
@@ -65,11 +70,11 @@ function FundRequest() {
                             </svg>
                           </div>
                           <div className="col">
-                            <span>
-                              <b>REQUEST</b>
+                            <span className="text-white text-xl font-bold leading-normal">
+                              Sent
                             </span>
                             <p>
-                              <span className="text-white text-xl font-bold leading-normal">
+                              <span className="text-white text-base font-bold leading-normal">
                                 2000
                               </span>{' '}
                             </p>
@@ -98,7 +103,7 @@ function FundRequest() {
                           </div>
                           <div className="col">
                             <span>
-                              <b>APPROVED</b>
+                              <b>Received</b>
                             </span>
                             <p>
                               <b>2</b>
@@ -108,36 +113,7 @@ function FundRequest() {
                       </div>
                     </div>
                   </div>
-                  <div className="col">
-                    <div className="card bg__custom__yellow">
-                      <div className="card-body">
-                        <div className="row flex items-center justify-center gap-2">
-                          <div className="col-3">
-                            <svg
-                              width="42"
-                              height="42"
-                              viewBox="0 0 42 42"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M10.4167 23.9583C11.2847 23.9583 12.0229 23.6542 12.6313 23.0458C13.2396 22.4375 13.5431 21.7 13.5417 20.8333C13.5417 19.9653 13.2375 19.2271 12.6292 18.6188C12.0208 18.0104 11.2833 17.7069 10.4167 17.7083C9.54861 17.7083 8.81042 18.0125 8.20208 18.6208C7.59375 19.2292 7.29028 19.9667 7.29167 20.8333C7.29167 21.7014 7.59583 22.4396 8.20417 23.0479C8.8125 23.6563 9.55 23.9597 10.4167 23.9583ZM20.8333 23.9583C21.7014 23.9583 22.4396 23.6542 23.0479 23.0458C23.6563 22.4375 23.9597 21.7 23.9583 20.8333C23.9583 19.9653 23.6542 19.2271 23.0458 18.6188C22.4375 18.0104 21.7 17.7069 20.8333 17.7083C19.9653 17.7083 19.2271 18.0125 18.6188 18.6208C18.0104 19.2292 17.7069 19.9667 17.7083 20.8333C17.7083 21.7014 18.0125 22.4396 18.6208 23.0479C19.2292 23.6563 19.9667 23.9597 20.8333 23.9583ZM31.25 23.9583C32.1181 23.9583 32.8563 23.6542 33.4646 23.0458C34.0729 22.4375 34.3764 21.7 34.375 20.8333C34.375 19.9653 34.0708 19.2271 33.4625 18.6188C32.8542 18.0104 32.1167 17.7069 31.25 17.7083C30.3819 17.7083 29.6438 18.0125 29.0354 18.6208C28.4271 19.2292 28.1236 19.9667 28.125 20.8333C28.125 21.7014 28.4292 22.4396 29.0375 23.0479C29.6458 23.6563 30.3833 23.9597 31.25 23.9583ZM20.8333 41.6667C17.9514 41.6667 15.2431 41.1194 12.7083 40.025C10.1736 38.9306 7.96875 37.4465 6.09375 35.5729C4.21875 33.6979 2.73472 31.4931 1.64167 28.9583C0.548611 26.4236 0.00138889 23.7153 0 20.8333C0 17.9514 0.547222 15.2431 1.64167 12.7083C2.73611 10.1736 4.22014 7.96875 6.09375 6.09375C7.96875 4.21875 10.1736 2.73472 12.7083 1.64167C15.2431 0.548611 17.9514 0.00138889 20.8333 0C23.7153 0 26.4236 0.547222 28.9583 1.64167C31.4931 2.73611 33.6979 4.22014 35.5729 6.09375C37.4479 7.96875 38.9326 10.1736 40.0271 12.7083C41.1215 15.2431 41.6681 17.9514 41.6667 20.8333C41.6667 23.7153 41.1194 26.4236 40.025 28.9583C38.9306 31.4931 37.4465 33.6979 35.5729 35.5729C33.6979 37.4479 31.4931 38.9326 28.9583 40.0271C26.4236 41.1215 23.7153 41.6681 20.8333 41.6667ZM20.8333 37.5C25.4861 37.5 29.4271 35.8854 32.6562 32.6562C35.8854 29.4271 37.5 25.4861 37.5 20.8333C37.5 16.1806 35.8854 12.2396 32.6562 9.01042C29.4271 5.78125 25.4861 4.16667 20.8333 4.16667C16.1806 4.16667 12.2396 5.78125 9.01042 9.01042C5.78125 12.2396 4.16667 16.1806 4.16667 20.8333C4.16667 25.4861 5.78125 29.4271 9.01042 32.6562C12.2396 35.8854 16.1806 37.5 20.8333 37.5Z"
-                                fill="white"
-                              />
-                            </svg>
-                          </div>
-                          <div className="col">
-                            <span>
-                              <b>PENDING</b>
-                            </span>
-                            <p>
-                              <b>1</b>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
                   <div className="col">
                     <div className="card bg__custom__red">
                       <div className="card-body">
@@ -173,17 +149,17 @@ function FundRequest() {
                 <div className="row">
                   <div className="col-12 mt-5">
                     <Tabs defaultActiveKey="first">
-                      <Tab eventKey="first" title={'Request'}>
+                      <Tab eventKey="first" title={'Sent'}>
                         <div className="users__tab__padding">
                           <table className="table table-borderless">
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Date/Time</th>
-                                <th scope="col">LaverPay ID</th>
-                                <th scope="col">Currency</th>
-                                <th scope="col">Source</th>
+                                <th scope="col">Sender ID</th>
+                                <th scope="col">Receiver ID</th>
                                 <th scope="col">Amount</th>
+                                <th scope="col">Previous Balance</th>
                                 <th scope="col">Current Balance</th>
                                 <th scope="col">Status</th>
                               </tr>
@@ -206,7 +182,7 @@ function FundRequest() {
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    APPROVED
+                                    Received
                                   </Link>
                                 </td>
                               </tr>
@@ -227,7 +203,7 @@ function FundRequest() {
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    PENDING
+                                    Failed
                                   </Link>
                                 </td>
                               </tr>
@@ -269,7 +245,7 @@ function FundRequest() {
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    APPROVED
+                                    Received
                                   </Link>
                                 </td>
                               </tr>
@@ -277,17 +253,17 @@ function FundRequest() {
                           </table>
                         </div>
                       </Tab>
-                      <Tab eventKey="second" title={'Approve'}>
+                      <Tab eventKey="second" title={'Received'}>
                         <div className="users__tab__padding">
                           <table className="table table-borderless">
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Date/Time</th>
-                                <th scope="col">LaverPay ID</th>
-                                <th scope="col">Currency</th>
-                                <th scope="col">Source</th>
+                                <th scope="col">Sender ID</th>
+                                <th scope="col">Receiver ID</th>
                                 <th scope="col">Amount</th>
+                                <th scope="col">Previous Balance</th>
                                 <th scope="col">Current Balance</th>
                                 <th scope="col">Status</th>
                               </tr>
@@ -389,4 +365,4 @@ function FundRequest() {
   );
 }
 
-export default FundRequest;
+export default UserToUser;

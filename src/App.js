@@ -12,13 +12,17 @@ import CardPage from './Pages/CardPage';
 import UsersPage from './Pages/UsersPage';
 import AddUserPage from './Pages/AddUserPage';
 import EditCard from './Pages/EditCard';
-import DebitCard from './Pages/DebitCard'
-import CardUpgradePage from './Pages/CardUpgradePage'
+import DebitCard from './Pages/DebitCard';
+import CardUpgradePage from './Pages/CardUpgradePage';
 import FundRequest from './Pages/FundRequest';
 import AppproveRequestPage from './Pages/ApproveRequesPage';
 import ApproveConfirmationPage from './Pages/ApproveConfirmationPage';
 import CancelFormPage from './Pages/CancelFormPage';
 import CancelConfirmationPage from './Pages/CancelConfirmationPage';
+import MerchantPage from './Pages/MerchantPage';
+import AddMerchantPage from './Pages/AddMerchantPage';
+import UserToUser from './Pages/UserToUser';
+import MerchantSubscription from './Pages/MerchantSubscription';
 
 export default function App() {
   return (
@@ -34,15 +38,34 @@ export default function App() {
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/card-center" element={<CardPage />} />
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/merchant" element={<MerchantPage />} />
+
           <Route path="/add_user" element={<AddUserPage />} />
+          <Route path="/add_merchant" element={<AddMerchantPage />} />
+
           <Route path="/edit-card" element={<EditCard />} />
           <Route path="/debit-card" element={<DebitCard />} />
           <Route path="/card-upgraade" element={<CardUpgradePage />} />
           <Route path="/fund_request" element={<FundRequest />} />
-          <Route path="/approve_request/:id" element={<AppproveRequestPage />} />
-          <Route path="/approve_confirmation/:id" element={<ApproveConfirmationPage />} />
+          <Route path="/user-to-user-request" element={<UserToUser />} />
+          <Route
+            path="/merchant-subscription"
+            element={<MerchantSubscription />}
+          />
+
+          <Route
+            path="/approve_request/:id"
+            element={<AppproveRequestPage />}
+          />
+          <Route
+            path="/approve_confirmation/:id"
+            element={<ApproveConfirmationPage />}
+          />
           <Route path="/cancel_form/:id" element={<CancelFormPage />} />
-          <Route path="/cancel_confirmation/:id" element={<CancelConfirmationPage />} />
+          <Route
+            path="/cancel_confirmation/:id"
+            element={<CancelConfirmationPage />}
+          />
         </Routes>
       </Router>
     </div>

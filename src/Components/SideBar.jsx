@@ -99,18 +99,53 @@ const SideBar = () => {
               <FontAwesomeIcon icon={faGear} /> <span>Settings</span>{' '}
             </Link>
           </li>
-        </ListView>
-
-        <ListView>
           <li
             onClick={() => handleListItemClick(8)}
             className={activeIndex === 8 ? 'active' : ''}
           >
+            <Link to="/fund_request" className="nav__link">
+              <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+              <span>Fund Request</span>
+            </Link>
+          </li>
+          <li
+            onClick={() => handleListItemClick(9)}
+            className={activeIndex === 9 ? 'active' : ''}
+          >
+            <Link to="/merchant" className="nav__link">
+              <FontAwesomeIcon icon={faArrowTrendUp} /> <span>Merchant</span>
+            </Link>
+          </li>
+          <li
+            onClick={() => handleListItemClick(10)}
+            className={activeIndex === 10 ? 'active' : ''}
+          >
+            <Link to="/user-to-user-request" className="nav__link">
+              <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+              <span>User to User Request</span>
+            </Link>
+          </li>
+          <li
+            onClick={() => handleListItemClick(11)}
+            className={activeIndex === 11 ? 'active' : ''}
+          >
+            <Link to="/merchant-subscription" className="nav__link">
+              <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+              <span>Merchant Subscription</span>
+            </Link>
+          </li>
+        </ListView>
+
+        <ListView>
+          <li
+            onClick={() => handleListItemClick(12)}
+            className={activeIndex === 12 ? 'active' : ''}
+          >
             <FontAwesomeIcon icon={faCircleQuestion} /> <span>Help Center</span>
           </li>
           <li
-            className={activeIndex === 9 ? 'active' : ''}
-            onClick={() => handleListItemClick(9)}
+            className={activeIndex === 13 ? 'active' : ''}
+            onClick={() => handleListItemClick(13)}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
             <span>Logout</span>

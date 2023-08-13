@@ -116,6 +116,14 @@ const SidebarLayout = ({ children }) => {
               <FontAwesomeIcon icon={faChartSimple} /> <span>Reports</span>{' '}
             </li>
             <li
+              onClick={() => handleListItemClick(7)}
+              className={activeIndex === 7 ? 'active' : ''}
+            >
+              <Link to="/settings" className="nav__link">
+                <FontAwesomeIcon icon={faGear} /> <span>Settings</span>{' '}
+              </Link>
+            </li>
+            <li
               onClick={() => handleListItemClick(8)}
               className={activeIndex === 8 ? 'active' : ''}
             >
@@ -125,26 +133,35 @@ const SidebarLayout = ({ children }) => {
               </Link>
             </li>
             <li
-              onClick={() => handleListItemClick(7)}
-              className={activeIndex === 7 ? 'active' : ''}
+              onClick={() => handleListItemClick(9)}
+              className={activeIndex === 9 ? 'active' : ''}
             >
-              <Link to="/settings" className="nav__link">
-                <FontAwesomeIcon icon={faGear} /> <span>Settings</span>{' '}
+              <Link to="/merchant" className="nav__link">
+                <FontAwesomeIcon icon={faArrowTrendUp} /> <span>Merchant</span>
+              </Link>
+            </li>
+            <li
+              onClick={() => handleListItemClick(10)}
+              className={activeIndex === 10 ? 'active' : ''}
+            >
+              <Link to="/user-to-user-request" className="nav__link">
+                <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+                <span>User to User Request</span>
               </Link>
             </li>
           </ListView>
 
           <ListView>
             <li
-              onClick={() => handleListItemClick(8)}
-              className={activeIndex === 8 ? 'active' : ''}
+              onClick={() => handleListItemClick(11)}
+              className={activeIndex === 11 ? 'active' : ''}
             >
               <FontAwesomeIcon icon={faCircleQuestion} />{' '}
               <span>Help Center</span>
             </li>
             <li
-              className={activeIndex === 9 ? 'active' : ''}
-              onClick={() => handleListItemClick(9)}
+              className={activeIndex === 12 ? 'active' : ''}
+              onClick={() => handleListItemClick(12)}
             >
               <FontAwesomeIcon icon={faRightFromBracket} />
               <span>Logout</span>
