@@ -3,7 +3,7 @@ import chart from '../assets/dashboard-chart.svg';
 
 const DashboardStat = () => {
   return (
-    <div className="dashboard-stats">
+    <div className="dashboard-stats gap-2 ">
       <div className="dashboard-stat rounded shadow-sm w-[259px] h-[97px]">
         <div className="flex flex-col">
           <h2 className="w-full  text-slate-400 text-sm font-normal ">
@@ -48,11 +48,13 @@ const DashboardStat = () => {
         </div>
         <div className="transaction-dashboard ">
           <h2 className="text-slate-400 text-base font-bold leading-7">
-            Total Merchants
+            Total Users
           </h2>{' '}
-          <h2 className="w-36 h-[25px] text-blue-950 text-2xl font-bold leading-[30px]">
-            319
-          </h2>{' '}
+          <div className="flex items-start space-x-2 text-slate-400">
+            <small>active </small>
+            <small>inactive </small>
+            <small>deactivated </small>
+          </div>
         </div>
       </div>
 
@@ -77,18 +79,24 @@ const DashboardStat = () => {
           <h2 className="text-slate-400 text-base font-bold leading-7">
             Total Merchants
           </h2>
-          <h2 className="w-36 h-[25px] text-blue-950 text-2xl font-bold leading-[30px]">
-            319
-          </h2>
+          <div className="flex items-start space-x-2 text-slate-400">
+            <small>active </small>
+            <small>inactive </small>
+            <small>pending </small>
+          </div>
         </div>
       </div>
 
-      <div className="activity-container dashboard-stat shadow-sm">
+      <div className="activity-container h-[97px] dashboard-stat shadow-sm">
         <div className="activity-dashboard">
           <h2 className=" text-violet-100 text-base font-medium ">
-            Subscriptions{' '}
+            SUBSCRIPTION
           </h2>{' '}
-          <div className=" text-white text-2xl font-bold ">540000</div>{' '}
+          <div className="flex items-start space-x-2 text-white">
+            <small>active </small>
+            <small>pending </small>
+            <small>cancelled</small>
+          </div>
         </div>
 
         <div>

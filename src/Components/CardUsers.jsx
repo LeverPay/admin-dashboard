@@ -72,6 +72,9 @@ const CardUsers = () => {
                 className="absolute top-10 left-10 w-4 h-auto cursor-pointer"
                 onClick={navigateToDebitCard}
               />
+              <h1 className="text-slate-500 text-base font-bold leading-[42px] mt-2">
+                Add Debit Card
+              </h1>
             </div>
 
             <div className="absolute top-[0px] left-0">
@@ -91,6 +94,9 @@ const CardUsers = () => {
                 className="absolute top-10 left-10 w-4 h-auto cursor-pointer"
                 onClick={navigateToUpgradeCard}
               />
+              <h1 className="text-slate-500 text-base font-bold leading-[42px]">
+                Card Upgrade
+              </h1>
             </div>
           </div>
         </div>

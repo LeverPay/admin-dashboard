@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { TransactionTable } from '../css/TransactionStyles';
 import { AiOutlineSearch } from 'react-icons/ai';
 import UpgradeCard from './UpgradeCard';
-import UpgradeTable from './UpgradeTable'
+import UpgradeTable from './UpgradeTable';
 
 const CardUpgradeComponent = () => {
   return (
@@ -26,11 +26,11 @@ const CardUpgradeComponent = () => {
             </div>
           </div>
           <div className="flex items-center justify-between px-5 my-4">
-            <UpgradeCard />
-            <UpgradeCard />
-            <UpgradeCard />
+            <UpgradeCard title="REQUEST" number="500" color="#0B0230"/>
+            <UpgradeCard title="APPROVED" number="306" color="#0C6903" />
+            <UpgradeCard title="PENDING" number="13" color="#F49A09"/>
           </div>
-          <UpgradeTable/>
+          <UpgradeTable />
         </div>
       </TransactionTable>
     </DashboardView>

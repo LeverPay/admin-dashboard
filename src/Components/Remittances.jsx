@@ -21,7 +21,7 @@ const Remittances = () => {
       <div className="revenue-section  gap-2">
         <div className="w-[206px] h-[88px] bg-white rounded-[10px] border border-blue-600 p-2">
           <h2 className="w-full h-[26.49px] text-slate-400 text-base font-bold leading-7">
-            Revenue Generated
+            (Revenue) Generated
           </h2>{' '}
           <div className="revenue-data flex items-center justify-between">
             <h2 className="w-[142.44px] h-[23.66px] text-blue-950 text-2xl font-bold leading-[20px]">
@@ -35,7 +35,7 @@ const Remittances = () => {
 
         <div className="w-[206px] h-[88px] bg-white rounded-[10px] border border-blue-600 p-2">
           <h2 className="w-full h-[26.49px] text-slate-400 text-base font-bold leading-7">
-            Revenue Remitted
+            (Revenue) Remitted
           </h2>
           <div className="revenue-data flex items-center justify-between">
             <h2 className="w-[142.44px] h-[23.66px] text-blue-950 text-2xl font-bold leading-[20px]">
@@ -49,7 +49,7 @@ const Remittances = () => {
 
         <div className="w-[206px] h-[88px] bg-white rounded-[10px] border border-blue-600 p-2">
           <h2 className="w-full h-[26.49px] text-slate-400 text-base font-bold leading-7">
-            Revenue Unremitted
+            (Revenue) Unremitted
           </h2>
           <div className="revenue-data flex items-center justify-between">
             <h2 className="w-[142.44px] h-[23.66px] text-blue-950 text-2xl font-bold leading-[20px]">

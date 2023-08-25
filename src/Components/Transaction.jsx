@@ -5,7 +5,7 @@ import '../css/TransactionStyles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import DataTable from './DataTable';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Transaction = () => {
   return (
@@ -21,7 +21,7 @@ const Transaction = () => {
       <TransactionTable>
         <div className="transaction__table">
           <div className="TransactionTitle">
-            <p>Recent Transactions</p>
+            <p> Transactions History</p>
             <div className="search_input">
               <div className="left__input">
                 <input type="text" name="" id="" placeholder="Search" />

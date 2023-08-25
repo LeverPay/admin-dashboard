@@ -111,6 +111,9 @@ const BasicInformation = () => {
                 className="w-[563px] h-[50px] bg-blue-600 bg-opacity-5 rounded-[10px] border border-slate-900 p-2 outline-none text-black text-opacity-80 text-sm font-normal leading-normal"
               />
             </div>
+            <div className="w-max py-2 px-3 cursor-pointer gap-2 bg-blue-600 rounded-lg flex items-center justify-center text-neutral-50 text-sm font-semibold leading-[18px]">
+              Submit
+            </div>
           </form>
         </div>
       </div>

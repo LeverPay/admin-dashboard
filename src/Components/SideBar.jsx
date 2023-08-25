@@ -134,18 +134,26 @@ const SideBar = () => {
               <span>Merchant Subscription</span>
             </Link>
           </li>
-        </ListView>
-
-        <ListView>
           <li
             onClick={() => handleListItemClick(12)}
             className={activeIndex === 12 ? 'active' : ''}
           >
+            <Link to="/basic_information" className="nav__link">
+              <FontAwesomeIcon icon={faArrowTrendUp} /> <span>Profile</span>
+            </Link>
+          </li>
+        </ListView>
+
+        <ListView>
+          <li
+            onClick={() => handleListItemClick(13)}
+            className={activeIndex === 13 ? 'active' : ''}
+          >
             <FontAwesomeIcon icon={faCircleQuestion} /> <span>Help Center</span>
           </li>
           <li
-            className={activeIndex === 13 ? 'active' : ''}
-            onClick={() => handleListItemClick(13)}
+            className={activeIndex === 14 ? 'active' : ''}
+            onClick={() => handleListItemClick(14)}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
             <span>Logout</span>
