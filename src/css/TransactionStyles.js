@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const TransactionTable = styled.section`
   .transaction__table {
+    font-family: 'Montserrat', sans-serif;
     .TransactionTitle {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Agrandir Thin';
       font-size: 18px;
       font-weight: 500;
       line-height: 23px;
@@ -34,7 +35,6 @@ export const TransactionTable = styled.section`
       align-items: center;
       justify-content: center;
       gap: 2rem;
-      font-family: Inter;
       font-size: 12px;
       font-weight: 600;
       line-height: 16px;
@@ -82,12 +82,8 @@ export const TransactionTable = styled.section`
 `;
 
 export const HeaderCell = styled.th`
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  letter-spacing: -0.02em;
-  text-align: left;
+  font-size: 15px;
+  text-align: center;
   color: #ffffff;
 `;
 
@@ -108,11 +104,10 @@ export const TableContainer = styled.section`
   }
 
   table {
-    width: max-content;
     height: 400px;
     border-collapse: collapse;
     position: relative;
-    padding: 30px;
+    /* padding: 30px; */
     overflow: visible;
     margin-bottom: 20px;
     width: 100%;
@@ -122,7 +117,7 @@ export const TableContainer = styled.section`
     }
 
     tbody {
-      padding: 7px 13px;
+      /* padding: 7px 13px; */
 
       tr {
         &:hover {
@@ -132,12 +127,10 @@ export const TableContainer = styled.section`
         }
 
         td {
-          padding: 25px;
-          font-family: Inter;
+          padding: 0 25px;
           font-size: 14px;
           font-weight: 400;
           line-height: 16px;
-          letter-spacing: 0px;
           text-align: left;
           color: #ffffff;
         }
@@ -145,7 +138,6 @@ export const TableContainer = styled.section`
     }
 
     thead {
-      font-family: Work Sans;
       font-size: 12px;
       text-transform: uppercase;
       font-weight: 600;
@@ -156,7 +148,7 @@ export const TableContainer = styled.section`
 
       tr {
         th {
-          padding: 45px 0px 20px 25px;
+          padding: 25px 0px 20px 25px;
         }
       }
     }
@@ -188,7 +180,6 @@ export const TableContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Work Sans;
     font-size: 24px;
     font-weight: 600;
     line-height: 28px;
@@ -199,7 +190,9 @@ export const TableContainer = styled.section`
 
   .view-more-btn {
     background: #008cff;
+    width: 100% !important;
     padding: 5px;
+    text-align: center;
     border-radius: 5px;
     color: #ffffff;
   }

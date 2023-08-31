@@ -28,8 +28,8 @@ function DataTable() {
             <TableHeaderCell> Amount</TableHeaderCell>
             <TableHeaderCell>Failed</TableHeaderCell>
             <TableHeaderCell>Remark</TableHeaderCell>
-            <TableHeaderCell>-</TableHeaderCell>
-            <TableHeaderCell>-</TableHeaderCell>
+            <TableHeaderCell></TableHeaderCell>
+            <TableHeaderCell></TableHeaderCell>
           </tr>
         </thead>
         <tbody>

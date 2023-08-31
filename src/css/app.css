@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
+@import url(https://db.onlinewebfonts.com/c/fea31a6e7338aec52602b8c39dc16512?family=Agrandir+Thin);
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Playfair Display', serif;
 }
 
 body {
@@ -95,7 +96,6 @@ body::-webkit-scrollbar {
 .dropdown-icon:hover {
   transform: translateY(-2px);
 }
-
 
 /* TOGGLE  */
 

@@ -21,7 +21,10 @@ const Transaction = () => {
       <TransactionTable>
         <div className="transaction__table">
           <div className="TransactionTitle">
-            <p> Transactions History</p>
+            <p className="text-slate-900 text-lg font-bold leading-7">
+              {' '}
+              Transactions History
+            </p>
             <div className="search_input">
               <div className="left__input">
                 <input type="text" name="" id="" placeholder="Search" />
@@ -30,7 +33,7 @@ const Transaction = () => {
             </div>
           </div>
 
-          <div className="table">
+          <div className=" bg-white p-5 rounded m-5">
             <DataTable />
           </div>
         </div>
