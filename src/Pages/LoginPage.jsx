@@ -4,7 +4,7 @@ import '../css/LoginStyles.css'; // Assuming you have a Login.css file for styli
 import male_user from '../assets/male user.png';
 import { toast } from 'react-hot-toast';
 import login_logo from '../assets/login-logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PasswordIcon = ({ showPassword, togglePassword }) =>
   showPassword ? (
@@ -59,6 +59,11 @@ const LoginPage = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
+  const navigate = useNavigate()
+
+  const navigateToForgotPassword = () =>{
+    navigate('/forgot-password');
+  }
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -177,7 +182,7 @@ const LoginPage = () => {
                         />
                         <label htmlFor="rememberMe">Remember me</label>
                       </div>
-                      <div>
+                      <div onClick={navigateToForgotPassword}>
                         <label
                           htmlFor="forgotPassword"
                           className="cursor-pointer"

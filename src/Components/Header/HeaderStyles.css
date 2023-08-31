@@ -3,6 +3,7 @@
 }
 .profile-img {
   display: flex;
+  width: max-content !important;
   align-items: flex-end;
   padding-right: 20px;
   justify-content: flex-end;

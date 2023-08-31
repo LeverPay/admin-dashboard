@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/LeverPay Gold.png';
+import logo from '../../assets/LeverPayGold.png';
 import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = () => {

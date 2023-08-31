@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from '../../assets/LeverPay Gold.png';
+import logo from '../../assets/LeverPayGold.png';
 import { useNavigate } from 'react-router-dom';
 
 const EmailVerification = () => {
   const navigate = useNavigate();
   const navigateToEmailVerification = () => {
-    navigate('/email-verification');
+    navigate('/change-password');
   };
   return (
     <div className="bg-white w-full text-[#0F261D ] p-5">

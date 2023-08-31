@@ -23,6 +23,9 @@ import MerchantPage from './Pages/MerchantPage';
 import AddMerchantPage from './Pages/AddMerchantPage';
 import UserToUser from './Pages/UserToUser';
 import MerchantSubscription from './Pages/MerchantSubscription';
+import ForgotPassword from './Pages/forgotPassword';
+import EmailVerification from './Pages/forgotPassword/EmailVerification';
+import ChangePassword from './Pages/forgotPassword/ChangePassword'
 
 export default function App() {
   return (
@@ -44,6 +47,10 @@ export default function App() {
           <Route path="/add_merchant" element={<AddMerchantPage />} />
 
           <Route path="/edit-card" element={<EditCard />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/email-verification" element={<EmailVerification />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+
           <Route path="/debit-card" element={<DebitCard />} />
           <Route path="/card-upgraade" element={<CardUpgradePage />} />
           <Route path="/fund_request" element={<FundRequest />} />

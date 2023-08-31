@@ -74,6 +74,7 @@ export const DashboardNavView = styled.nav`
   position: sticky;
   top: 0;
   right: 0;
+  justify-content: flex-end;
   background-color: #f4f7fe;
   transition: all 0.2s ease-in-out;
   &::-webkit-scrollbar {
@@ -466,80 +467,81 @@ export const DashboardBody = styled.div`
 `;
 
 export const AddUserContainer = styled.div`
-    label{
-      position: inherit !important;
-      font-size: 16px !important;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 500;
-      line-height: 32px;
-      letter-spacing: -0.02em;
-      text-align: left;
-      opacity: 1 !important;
+  label {
+    position: inherit !important;
+    font-size: 16px !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    opacity: 1 !important;
+  }
+
+  .add__user__container {
+    input[type='text'] {
+      height: 40px;
+      margin-bottom: 10px;
     }
 
-    .add__user__container{
-      input[type=text]{
-        height: 40px;
-        margin-bottom: 10px;
-      }
-
-      input[type=password]{
-        height: 40px;
-        margin-bottom: 10px;
-      }
-
-      input[type=email]{
-        height: 40px;
-        margin-bottom: 10px;
-      }
-
-      select{
-        height: 40px;
-        margin-bottom: 10px;
-        outline: 1px solid inherit !important;
-      }
-
-      textarea:focus, 
-      textarea.form-control:focus, 
-      input.form-control:focus, 
-      input[type=text]:focus, 
-      input[type=password]:focus, 
-      input[type=email]:focus, 
-      input[type=number]:focus, 
-      [type=text].form-control:focus, 
-      [type=password].form-control:focus, 
-      [type=email].form-control:focus, 
-      [type=tel].form-control:focus, 
-      [contenteditable].form-control:focus {
-        background: #ffffff !important;
-        border: 1px solid inherit !important;
-      }
-
-      textarea:focus,
-      input[type="text"]:focus,
-      input[type="password"]:focus,
-      input[type="datetime"]:focus,
-      input[type="datetime-local"]:focus,
-      input[type="date"]:focus,
-      input[type="month"]:focus,
-      input[type="time"]:focus,
-      input[type="week"]:focus,
-      input[type="number"]:focus,
-      input[type="email"]:focus,
-      input[type="url"]:focus,
-      input[type="search"]:focus,
-      input[type="tel"]:focus,
-      input[type="color"]:focus,
-      select:focus,
-      .uneditable-input:focus {   
-        border-color: rgba(236, 236, 236);
-        box-shadow: 0 1px 1px rgba(236, 236, 236) inset, 0 0 8px rgba(236, 236, 236);
-        outline: 0 none;
-      }
-
-      select:focus{
-        border-color: rgba(236, 236, 236) !important;
-        outline: 1px solid inherit !important;
-      }
+    input[type='password'] {
+      height: 40px;
+      margin-bottom: 10px;
     }
+
+    input[type='email'] {
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    select {
+      height: 40px;
+      margin-bottom: 10px;
+      outline: 1px solid inherit !important;
+    }
+
+    textarea:focus,
+    textarea.form-control:focus,
+    input.form-control:focus,
+    input[type='text']:focus,
+    input[type='password']:focus,
+    input[type='email']:focus,
+    input[type='number']:focus,
+    [type='text'].form-control:focus,
+    [type='password'].form-control:focus,
+    [type='email'].form-control:focus,
+    [type='tel'].form-control:focus,
+    [contenteditable].form-control:focus {
+      background: #ffffff !important;
+      border: 1px solid inherit !important;
+    }
+
+    textarea:focus,
+    input[type='text']:focus,
+    input[type='password']:focus,
+    input[type='datetime']:focus,
+    input[type='datetime-local']:focus,
+    input[type='date']:focus,
+    input[type='month']:focus,
+    input[type='time']:focus,
+    input[type='week']:focus,
+    input[type='number']:focus,
+    input[type='email']:focus,
+    input[type='url']:focus,
+    input[type='search']:focus,
+    input[type='tel']:focus,
+    input[type='color']:focus,
+    select:focus,
+    .uneditable-input:focus {
+      border-color: rgba(236, 236, 236);
+      box-shadow: 0 1px 1px rgba(236, 236, 236) inset,
+        0 0 8px rgba(236, 236, 236);
+      outline: 0 none;
+    }
+
+    select:focus {
+      border-color: rgba(236, 236, 236) !important;
+      outline: 1px solid inherit !important;
+    }
+  }
 `;
