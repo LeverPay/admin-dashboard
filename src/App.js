@@ -26,6 +26,7 @@ import MerchantSubscription from './Pages/MerchantSubscription';
 import ForgotPassword from './Pages/forgotPassword';
 import EmailVerification from './Pages/forgotPassword/EmailVerification';
 import ChangePassword from './Pages/forgotPassword/ChangePassword'
+import UserViewMore from './Pages/UserViewMore'
 
 export default function App() {
   return (
@@ -50,6 +51,8 @@ export default function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/user-view-more" element={<UserViewMore />} />
+
 
           <Route path="/debit-card" element={<DebitCard />} />
           <Route path="/card-upgraade" element={<CardUpgradePage />} />

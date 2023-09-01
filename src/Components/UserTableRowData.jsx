@@ -1,7 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserTableRowData = ({ item, index }) => {
+
+  const navigate = useNavigate()
+
+  const navigateToViewMore = ()=>{
+    navigate('/user-view-more')
+  }
   return (
     <tr key={item.id}>
       <td>{item.customerName}</td> {/**Name */}
@@ -17,7 +23,7 @@ const UserTableRowData = ({ item, index }) => {
       <td>{item.id}</td> {/**phone number */}
       <td>{item.customerEmail.split('@')[0]}</td> {/**username */}
       <td>{item.source}</td> {/**card type */}
-      <td>
+      <td onClick={navigateToViewMore}>
         <div className="view-more-btn">View More</div>
       </td>
       {/* 
