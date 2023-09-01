@@ -27,7 +27,7 @@ function ApproveRequesPage() {
                   <div className="card-body">
                     <div className="flex items-center justify-center w-full">
                       <h2 className="text-lime-700 text-xl font-bold leading-normal">
-                        Approve{' '}
+                        Funding Approval
                       </h2>{' '}
                       <div className="col flex items-end justify-end">
                         <svg
@@ -57,15 +57,31 @@ function ApproveRequesPage() {
                       </div>
                     </div>
                     <div className="row mt-5">
-                      <div className="col-12">
-                        <h3 className="text-slate-900 text-xl font-bold leading-normal">
-                          Narration
-                        </h3>
+                      <div className="flex items-center justify-center gap-5">
+                        <div className=" bg-slate-900 rounded-[20px] flex items-center justify-center p-2 flex-col">
+                          {' '}
+                          <span className="text-stone-300 text-base font-bold leading-normal">
+                            Current Balance
+                          </span>{' '}
+                          <span className="text-white text-base font-bold leading-normal">
+                            N 73,000 | $ 100.00
+                          </span>
+                        </div>
+
+                        <div className=" bg-[#0C6903] rounded-[20px] flex items-center justify-center p-2 flex-col">
+                          {' '}
+                          <span className="text-stone-300 text-base font-bold leading-normal">
+                            Current Balance
+                          </span>{' '}
+                          <span className="text-white text-base font-bold leading-normal">
+                            N 73,000 | $ 100.00
+                          </span>
+                        </div>
                       </div>
                       <div className="col-12 ">
                         <p className="flex items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
-                            LeverPay ID :{' '}
+                            Full Name :{' '}
                           </span>{' '}
                           <span className="text-blue-950 text-base font-extrabold">
                             Lvpxe325x97
@@ -73,7 +89,7 @@ function ApproveRequesPage() {
                         </p>
                         <p className="flex items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
-                            Currency:{' '}
+                            Phone:{' '}
                           </span>
                           <span className="text-blue-950 text-base font-extrabold">
                             Naira
@@ -81,7 +97,7 @@ function ApproveRequesPage() {
                         </p>
                         <p className="flex items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
-                            Source:{' '}
+                            Email:{' '}
                           </span>
                           <span className="text-blue-950 text-base font-extrabold">
                             Binance
@@ -89,7 +105,7 @@ function ApproveRequesPage() {
                         </p>
                         <p className="flex items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
-                            Amount:{' '}
+                            User Id:{' '}
                           </span>
                           <span className="text-blue-950 text-base font-extrabold">
                             4000
@@ -97,14 +113,56 @@ function ApproveRequesPage() {
                         </p>
                         <p className="flex items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
-                            User Email:{' '}
+                            Fundng Type:{' '}
+                          </span>
+                          <span className="text-blue-950 text-base font-extrabold">
+                            test@leverpay.com
+                          </span>
+                        </p>
+                        <p className="flex items-center gap-2 my-2">
+                          <span className="text-blue-950 text-base font-medium">
+                            Narration:{' '}
                           </span>
                           <span className="text-blue-950 text-base font-extrabold">
                             test@leverpay.com
                           </span>
                         </p>
                       </div>
-                      <div className="col-12 mt-5">
+                      <div>
+                        <p className="flex items-center gap-2 my-2">
+                          <span className="text-blue-950 text-base font-medium">
+                            Source:{' '}
+                          </span>
+                          <span className="text-blue-950 text-base font-extrabold"></span>
+                        </p>
+                        <p className="flex items-center gap-2 my-2">
+                          <span className="text-blue-950 text-base font-medium">
+                            GTB
+                          </span>
+                          <span className="text-blue-950 text-base font-extrabold">
+                            SSSSSSS
+                          </span>
+                        </p>
+                        <p className="flex items-center gap-2 my-2">
+                          <span className="text-blue-950 text-base font-medium">
+                            Coinbase Wallet
+                          </span>
+                          <span className="text-blue-950 text-base font-extrabold">
+                            SSSSSSS
+                          </span>
+                        </p>
+                      </div>
+                      <div>
+                        <span>Message (Optional)</span>
+                        <textarea
+                          name=""
+                          id=""
+                          cols="30"
+                          rows="10"
+                          className=" border border-stone-900 rounded"
+                        ></textarea>
+                      </div>
+                      <div className="flex items-center justify-center gap-1 mt-5">
                         <Link
                           className="btn btn-approve"
                           to={{
@@ -114,6 +172,16 @@ function ApproveRequesPage() {
                         >
                           {' '}
                           Approve
+                        </Link>
+                        <Link
+                          className="btn btn-amber  bg-amber-500 text-white"
+                          to={{
+                            pathname: `/approve_confirmation/1`,
+                            state: { users: '' },
+                          }}
+                        >
+                          {' '}
+                          Pending
                         </Link>
                         <Link
                           className="btn btn-danger"

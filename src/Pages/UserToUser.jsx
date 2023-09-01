@@ -185,6 +185,18 @@ function UserToUser() {
                                     Received
                                   </Link>
                                 </td>
+                                <td className="font__approved">
+                                  <Link
+                                    to={{
+                                      pathname: `/user_to_user_details/1`,
+                                      state: { users: '' },
+                                    }}
+                                    className="view-more-btn"
+                                  >
+                                    {' '}
+                                    View More
+                                  </Link>
+                                </td>
                               </tr>
                               <tr>
                                 <th scope="row">2</th>
@@ -204,6 +216,18 @@ function UserToUser() {
                                   >
                                     {' '}
                                     Failed
+                                  </Link>
+                                </td>
+                                <td className="font__approved">
+                                  <Link
+                                    to={{
+                                      pathname: `/user_to_user_details/1`,
+                                      state: { users: '' },
+                                    }}
+                                    className="view-more-btn"
+                                  >
+                                    {' '}
+                                    View More
                                   </Link>
                                 </td>
                               </tr>
@@ -227,6 +251,18 @@ function UserToUser() {
                                     FAILED
                                   </Link>
                                 </td>
+                                <td className="font__approved">
+                                  <Link
+                                    to={{
+                                      pathname: `/user_to_user_details/1`,
+                                      state: { users: '' },
+                                    }}
+                                    className="view-more-btn"
+                                  >
+                                    {' '}
+                                    View More
+                                  </Link>
+                                </td>
                               </tr>
                               <tr>
                                 <th scope="row">4</th>
@@ -246,6 +282,18 @@ function UserToUser() {
                                   >
                                     {' '}
                                     Received
+                                  </Link>
+                                </td>
+                                <td className="font__approved">
+                                  <Link
+                                    to={{
+                                      pathname: `/user_to_user_details/1`,
+                                      state: { users: '' },
+                                    }}
+                                    className="view-more-btn"
+                                  >
+                                    {' '}
+                                    View More
                                   </Link>
                                 </td>
                               </tr>

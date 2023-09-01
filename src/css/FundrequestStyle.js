@@ -72,6 +72,10 @@ export const FundRequestStyle = styled.section`
     color: #ffffff !important;
   }
 
+  .btn-amber {
+    background-color: #f49a09;
+  }
+
   .btn-cancel {
     background: #ff0505 !important;
     color: #ffffff !important;

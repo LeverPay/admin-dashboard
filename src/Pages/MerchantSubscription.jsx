@@ -223,7 +223,7 @@ function MerchantSubscription() {
                                 <th scope="col">Description</th>
                                 <th scope="col">Plan Type</th>
                                 <th scope="col">Duration</th>
-                                <th scope="col">Start Date</th>
+                                <th scope="col"></th>
                                 {/* <th scope="col">End Date</th>
                                 <th scope="col">Paid</th>
                                 <th scope="col">Status</th>
@@ -242,13 +242,13 @@ function MerchantSubscription() {
                                 <td className="font__approved">
                                   <Link
                                     to={{
-                                      pathname: `/approve_request/1`,
+                                      pathname: `/merchant_subscription_details/1`,
                                       state: { users: '' },
                                     }}
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    Received
+                                    View More
                                   </Link>
                                 </td>
                               </tr>
@@ -263,13 +263,13 @@ function MerchantSubscription() {
                                 <td className="font__pending">
                                   <Link
                                     to={{
-                                      pathname: `/approve_request/1`,
+                                      pathname: `/merchant_subscription_details/1`,
                                       state: { users: '' },
                                     }}
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    Failed
+                                    View More
                                   </Link>
                                 </td>
                               </tr>
@@ -284,13 +284,13 @@ function MerchantSubscription() {
                                 <td className="font__failed">
                                   <Link
                                     to={{
-                                      pathname: `/approve_request/1`,
+                                      pathname: `/merchant_subscription_details/1`,
                                       state: { users: '' },
                                     }}
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    FAILED
+                                    View More
                                   </Link>
                                 </td>
                               </tr>
@@ -305,13 +305,13 @@ function MerchantSubscription() {
                                 <td className="font__approved">
                                   <Link
                                     to={{
-                                      pathname: `/approve_request/1`,
+                                      pathname: `/merchant_subscription_details/1`,
                                       state: { users: '' },
                                     }}
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    Received
+                                    View More
                                   </Link>
                                 </td>
                               </tr>

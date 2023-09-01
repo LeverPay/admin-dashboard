@@ -25,8 +25,11 @@ import UserToUser from './Pages/UserToUser';
 import MerchantSubscription from './Pages/MerchantSubscription';
 import ForgotPassword from './Pages/forgotPassword';
 import EmailVerification from './Pages/forgotPassword/EmailVerification';
-import ChangePassword from './Pages/forgotPassword/ChangePassword'
-import UserViewMore from './Pages/UserViewMore'
+import ChangePassword from './Pages/forgotPassword/ChangePassword';
+import UserViewMore from './Pages/UserViewMore';
+import MerchantViewMore from './Pages/MerchantViewMore';
+import MerchantSubscriptionDetails from './Pages/MerchantSubscriptionDetails';
+import UserToUserDetails from './Components/UserToUserDetails'
 
 export default function App() {
   return (
@@ -52,7 +55,7 @@ export default function App() {
           <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/user-view-more" element={<UserViewMore />} />
-
+          <Route path="/merchant-view-more" element={<MerchantViewMore />} />
 
           <Route path="/debit-card" element={<DebitCard />} />
           <Route path="/card-upgraade" element={<CardUpgradePage />} />
@@ -66,6 +69,14 @@ export default function App() {
           <Route
             path="/approve_request/:id"
             element={<AppproveRequestPage />}
+          />
+          <Route
+            path="/merchant_subscription_details/:id"
+            element={<MerchantSubscriptionDetails />}
+          />
+          <Route
+            path="/user_to_user_details/:id"
+            element={<UserToUserDetails />}
           />
           <Route
             path="/approve_confirmation/:id"

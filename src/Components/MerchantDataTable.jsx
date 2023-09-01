@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import Pagination from './Pagination';
 import TableHeaderCell from './TableHeaderCell';
-import UserTableRowData from './UserTableRowData';
 import details from '../data/TransactionData';
 import { TableContainer } from '../css/TransactionStyles';
+import MerchantTableRowData from './MerchantTableRowData';
 
 const PAGE_SIZE = 5;
 
@@ -26,12 +26,12 @@ function MerchantDataTable() {
             <TableHeaderCell>Phone</TableHeaderCell>
             <TableHeaderCell>Merchant Name</TableHeaderCell>
             <TableHeaderCell>Card Type</TableHeaderCell>
-            <TableHeaderCell>-</TableHeaderCell>
+            <TableHeaderCell></TableHeaderCell>
           </tr>
         </thead>
         <tbody>
           {currentTableData.map((item, index) => (
-            <UserTableRowData key={item.id} item={item} index={index} />
+            <MerchantTableRowData key={item.id} item={item} index={index} />
           ))}
         </tbody>
       </table>
