@@ -1,86 +1,137 @@
 import React from 'react';
 import { DashboardView } from '../css/DashboardPageStyles';
 import { TransactionTable } from '../css/TransactionStyles';
+
 const EditCardComponent = () => {
   return (
     <DashboardView>
       <TransactionTable>
-        <form>
-          <div className="my-2">
-            <h5 className="my-1 text-slate-900 text-base font-bold leading-normal">
-              Card Name
-            </h5>{' '}
-            <input
-              type="text"
-              name=""
-              id=""
-              className="w-[516px] h-14 pl-[15px] pr-[276px] py-[19px]  bg-white bg-opacity-0 rounded-md shadow border border-gray-100 justify-start items-center inline-flex outline-none"
-              placeholder="Gold Card"
-            />
-          </div>
+        <div className="flex items-center justify-center">
+          <form className="w-full max-w-lg my-2 shadow p-5">
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full px-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-card-name"
+                >
+                  Card Name
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  id="grid-card-name"
+                  type="text"
+                />
+              </div>
 
-          <div className="my-3">
-            <h5 className=" text-slate-900 text-base font-bold leading-normal outline-none my-2">
-              LeverPay Logo
-            </h5>{' '}
-            <select
-              name=""
-              id=""
-              className="w-[366px] h-14 pl-[337.07px] pr-[17.98px] rounded-md shadow border border-gray-100 justify-end items-center inline-flex outline-none"
-            >
-              <option value="leverpay.jpg">Leverpay.jpg</option>
-            </select>
-          </div>
+              <div className="w-full px-3 mb-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-state"
+                >
+                  Leverpay Logo
+                </label>
+                <div className="relative">
+                  <select
+                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-state"
+                  >
+                    <option>New Mexico</option>
+                    <option>Missouri</option>
+                    <option>Texas</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg
+                      className="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
 
-          <div className="my-3">
-            <h5 className="my-1 text-slate-900 text-base font-bold leading-normal">
-              Card Number{' '}
-            </h5>{' '}
-            <input
-              type="number"
-              name=""
-              id=""
-              placeholder="xxxx xxxx xxxx 3748"
-              className="w-[516px] h-14 pl-[15px] pr-[276px] py-[19px]  bg-white bg-opacity-0 rounded-md shadow border border-gray-100 justify-start items-center inline-flex outline-none"
-            />
-          </div>
+              <div className="w-full mb-3 px-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-last-name"
+                >
+                  Card Number
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-last-name"
+                  type="number"
+                  placeholder="Auto Generate"
+                />
+              </div>
 
-          <div className="my-3">
-            <h5 className=" text-slate-900 text-base font-bold leading-normal outline-none my-2">
-              Valid Thru Date{' '}
-            </h5>{' '}
-            <select
-              name=""
-              id=""
-              className="w-[366px] h-14 pl-[337.07px] pr-[17.98px] rounded-md shadow border border-gray-100 justify-end items-center inline-flex outline-none"
-            >
-              <option value="">04/26</option>
-            </select>
-          </div>
+              <div className="w-full px-3 mb-3">
+                <label className="w-[140.75px] h-4 text-slate-900 text-base font-bold leading-normal">
+                  Valid Thru Date
+                </label>
+                <div className="relative">
+                  <select
+                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-state"
+                  >
+                    <option>New Mexico</option>
+                    <option>Missouri</option>
+                    <option>Texas</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg
+                      className="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
 
-          <div className="my-3">
-            <h5 className=" text-slate-900 text-base font-bold leading-normal outline-none my-2">
-              Card Status{' '}
-            </h5>{' '}
-            <select
-              name=""
-              id=""
-              className="w-[366px] h-14 pl-[337.07px] pr-[17.98px] rounded-md shadow border border-gray-100 justify-end items-center inline-flex outline-none"
-            >
-              <option value="Inactive">Inactive</option>
-            </select>
-          </div>
-
-          <div className="flex items-center justify-between my-5 w-[366px] ">
-            <div className="text-center flex items-center justify-center py-1 px-4 text-white bg-blue-600 rounded cursor-pointer">
-              Update
+              <div className="w-full px-3 mb-3">
+                <label className="w-[140.75px] h-4 text-slate-900 text-base font-bold leading-normal">
+                  Card Status{' '}
+                </label>
+                <div className="relative">
+                  <select
+                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-state"
+                  >
+                    <option>New Mexico</option>
+                    <option>Missouri</option>
+                    <option>Texas</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg
+                      className="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="text-center flex items-center justify-center py-1 px-4 text-white bg-red-600 rounded cursor-pointer">
-              Cancel
+            <div className="flex items-center justify-center gap-5">
+              <button className="w-[150px] h-[52px] bg-blue-600 rounded-[10px] border border-blue-600">
+                <div className="text-center text-white text-2xl font-bold leading-7">
+                  Generate
+                </div>
+              </button>
+
+              <button className="w-[150px] h-[52px] bg-red-600 rounded-[10px] border-red-600">
+                <div className="text-center text-white text-2xl font-bold leading-7">
+                  Cancel
+                </div>
+              </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </TransactionTable>
     </DashboardView>
   );

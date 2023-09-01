@@ -26,7 +26,7 @@ function UserDataTable() {
             <TableHeaderCell>Phone</TableHeaderCell>
             <TableHeaderCell>Username</TableHeaderCell>
             <TableHeaderCell>Card Type</TableHeaderCell>
-            <TableHeaderCell>-</TableHeaderCell>
+            <TableHeaderCell></TableHeaderCell>
           </tr>
         </thead>
         <tbody>

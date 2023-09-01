@@ -7,14 +7,16 @@ import { BsArrowDownShort } from 'react-icons/bs';
 import medium from '../assets/Medium_User.svg';
 import add from '../assets/zondicons_add-solid.svg';
 import brown from '../assets/brown_Medium_User.svg';
+import gold from '../assets/gold.png';
+import pinkbg from '../assets/pinkbg.png';
 import yellow from '../assets/yellow_Medium_User.svg';
+import diamond from '../assets/diamond.png';
+import enterprise from '../assets/enterprise.png';
 import addVector from '../assets/add-Vector.svg';
-import { MdOutlineClose } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
-import ATMCard from './ATMCard';
-import DebitCard from '../Pages/DebitCard';
 import CardTable from './CardTable';
+import AtmCard from './ATMCard';
 
 const CardUsers = () => {
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ const CardUsers = () => {
         </Link>
       </DashboardNavView>
       <TransactionTable>
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-10 p-5">
           <div className="flex flex-col  items-start rounded bg-white w-[70%] p-4 relative">
             <div className="flex items-center justify-between w-full">
               <h2 className="text-slate-500 text-xl font-bold ">
@@ -45,11 +47,11 @@ const CardUsers = () => {
               </h2>{' '}
               <BiDotsHorizontalRounded size={10} color="#000000" />
             </div>
-            <div className="flex gap-2 no-scrollbar overflow-scroll flex-wrap h-[250px] ">
-              <ATMCard />
-              <ATMCard />
-              <ATMCard />
-              <ATMCard />
+            <div className="flex gap-2 no-scrollbar overflow-scroll flex-wrap h-[250px]">
+              <AtmCard type="Gold" background={`url(${gold})`} />
+              <AtmCard type="Pink-lady" background={`url(${pinkbg})`} />
+              <AtmCard type="Diamond" background={`url(${diamond})`} />
+              <AtmCard type="Enterprise" background={`url(${enterprise})`} />
               <div className="absolute bottom-10 right-10">
                 <div className="bg-neutral-200 p-2 rounded-full cursor-pointer">
                   <BsArrowDownShort size={20} />
@@ -100,7 +102,7 @@ const CardUsers = () => {
             </div>
           </div>
         </div>
-        <div className="my-5 bg-white rounded">
+        <div className=" bg-white rounded m-5">
           <CardTable />
         </div>
       </TransactionTable>

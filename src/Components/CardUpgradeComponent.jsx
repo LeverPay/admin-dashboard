@@ -26,11 +26,13 @@ const CardUpgradeComponent = () => {
             </div>
           </div>
           <div className="flex items-center justify-between px-5 my-4">
-            <UpgradeCard title="REQUEST" number="500" color="#0B0230"/>
+            <UpgradeCard title="REQUEST" number="500" color="#0B0230" />
             <UpgradeCard title="APPROVED" number="306" color="#0C6903" />
-            <UpgradeCard title="PENDING" number="13" color="#F49A09"/>
+            <UpgradeCard title="PENDING" number="13" color="#F49A09" />
           </div>
-          <UpgradeTable />
+          <div className="m-5 shadow">
+            <UpgradeTable />
+          </div>
         </div>
       </TransactionTable>
     </DashboardView>
