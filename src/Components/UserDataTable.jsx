@@ -21,11 +21,7 @@ function UserDataTable() {
           <tr>
             <TableHeaderCell>Name</TableHeaderCell>
             <TableHeaderCell>Email</TableHeaderCell>
-            <TableHeaderCell>User ID</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>
-            <TableHeaderCell>Phone</TableHeaderCell>
-            <TableHeaderCell>Username</TableHeaderCell>
-            <TableHeaderCell>Card Type</TableHeaderCell>
             <TableHeaderCell></TableHeaderCell>
           </tr>
         </thead>

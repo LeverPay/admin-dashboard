@@ -21,11 +21,7 @@ function MerchantDataTable() {
           <tr>
             <TableHeaderCell>Name</TableHeaderCell>
             <TableHeaderCell>Email</TableHeaderCell>
-            <TableHeaderCell>Merchant ID</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>
-            <TableHeaderCell>Phone</TableHeaderCell>
-            <TableHeaderCell>Merchant Name</TableHeaderCell>
-            <TableHeaderCell>Card Type</TableHeaderCell>
             <TableHeaderCell></TableHeaderCell>
           </tr>
         </thead>

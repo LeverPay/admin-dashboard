@@ -146,7 +146,7 @@ const SidebarLayout = ({ children }) => {
             >
               <Link to="/user-to-user-request" className="nav__link">
                 <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
-                <span>User to User Request</span>
+                <span>User to User Transfer</span>
               </Link>
             </li>
             <li

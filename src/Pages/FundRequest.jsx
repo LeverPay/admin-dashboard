@@ -186,10 +186,7 @@ function FundRequest() {
                                 <th scope="col">#</th>
                                 <th scope="col">Date/Time</th>
                                 <th scope="col">LaverPay ID</th>
-                                <th scope="col">Currency</th>
-                                <th scope="col">Source</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Current Balance</th>
                                 <th scope="col">Status</th>
                               </tr>
                             </thead>
@@ -198,10 +195,8 @@ function FundRequest() {
                                 <th scope="row">1</th>
                                 <td>02/08/2023 12:53</td>
                                 <td>Lvphhdhd01</td>
-                                <td>Naira</td>
                                 <td>Binance</td>
                                 <td className="font__amount">200USDT</td>
-                                <td>210USDT</td>
                                 <td className="font__approved">
                                   <Link
                                     to={{
@@ -219,10 +214,8 @@ function FundRequest() {
                                 <th scope="row">2</th>
                                 <td>02/08/2023 12:53</td>
                                 <td>Lvphhdhd01</td>
-                                <td>Stable Coin</td>
                                 <td>Binance</td>
                                 <td className="font__amount">40USDT</td>
-                                <td>910USDT</td>
                                 <td className="font__pending">
                                   <Link
                                     to={{
@@ -240,10 +233,8 @@ function FundRequest() {
                                 <th scope="row">3</th>
                                 <td>02/08/2023 12:53</td>
                                 <td>Lvphhdhd01</td>
-                                <td>Stable Coin</td>
                                 <td>Binance</td>
                                 <td className="font__amount">540USDT</td>
-                                <td>1110USDT</td>
                                 <td className="font__failed">
                                   <Link
                                     to={{
@@ -261,10 +252,8 @@ function FundRequest() {
                                 <th scope="row">4</th>
                                 <td>02/08/2023 12:53</td>
                                 <td>Lvphhdhd01</td>
-                                <td>Naira</td>
                                 <td>Binance</td>
                                 <td className="font__amount">200USDT</td>
-                                <td>210USDT</td>
                                 <td className="font__approved">
                                   <Link
                                     to={{
@@ -290,10 +279,7 @@ function FundRequest() {
                                 <th scope="col">#</th>
                                 <th scope="col">Date/Time</th>
                                 <th scope="col">LaverPay ID</th>
-                                <th scope="col">Currency</th>
-                                <th scope="col">Source</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Current Balance</th>
                                 <th scope="col">Status</th>
                               </tr>
                             </thead>
@@ -304,8 +290,6 @@ function FundRequest() {
                                 <td>Lvphhdhd01</td>
                                 <td>Naira</td>
                                 <td>Binance</td>
-                                <td className="font__amount">200USDT</td>
-                                <td>210USDT</td>
                                 <td className="font__approved">APPROVED</td>
                               </tr>
                               <tr>
@@ -314,8 +298,6 @@ function FundRequest() {
                                 <td>Lvphhdhd01</td>
                                 <td>Naira</td>
                                 <td>Binance</td>
-                                <td className="font__amount">200USDT</td>
-                                <td>210USDT</td>
                                 <td className="font__approved">APPROVED</td>
                               </tr>
                             </tbody>
@@ -330,10 +312,7 @@ function FundRequest() {
                                 <th scope="col">#</th>
                                 <th scope="col">Date/Time</th>
                                 <th scope="col">LaverPay ID</th>
-                                <th scope="col">Currency</th>
-                                <th scope="col">Source</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Current Balance</th>
                                 <th scope="col">Status</th>
                               </tr>
                             </thead>
@@ -344,8 +323,6 @@ function FundRequest() {
                                 <td>Lvphhdhd01</td>
                                 <td>Stable Coin</td>
                                 <td>Binance</td>
-                                <td className="font__amount">40USDT</td>
-                                <td>910USDT</td>
                                 <td className="font__pending">PENDING</td>
                               </tr>
                             </tbody>
@@ -360,10 +337,7 @@ function FundRequest() {
                                 <th scope="col">#</th>
                                 <th scope="col">Date/Time</th>
                                 <th scope="col">LaverPay ID</th>
-                                <th scope="col">Currency</th>
-                                <th scope="col">Source</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Current Balance</th>
                                 <th scope="col">Status</th>
                               </tr>
                             </thead>
@@ -374,8 +348,6 @@ function FundRequest() {
                                 <td>Lvphhdhd01</td>
                                 <td>Stable Coin</td>
                                 <td>Binance</td>
-                                <td className="font__amount">540USDT</td>
-                                <td>1110USDT</td>
                                 <td className="font__failed">FAILED</td>
                               </tr>
                             </tbody>

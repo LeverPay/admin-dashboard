@@ -5,13 +5,15 @@ const MerchantData = () => {
     <div className="bg-white p-5">
       <div className="flex items-start gap-5">
         <div>
-          <span className="text-black text-[22px] font-light leading-normal">
-            First Name :{' '}
-          </span>
-          <span className="text-black text-[22px] font-bold leading-normal">
-            Nina
-            <br />
-          </span>
+          <p className="flex justify-between w-1/2 items-center gap-2 my-2">
+            <span className="text-black text-[22px] font-light leading-normal">
+              First Name :{' '}
+            </span>
+            <span className="text-black text-[22px] font-bold leading-normal">
+              Nina
+              <br />
+            </span>
+          </p>
           <span className="text-black text-[22px] font-light leading-normal">
             Last Name :{' '}
           </span>

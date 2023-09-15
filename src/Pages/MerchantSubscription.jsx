@@ -10,11 +10,15 @@ import allRequest from '../assets/all-request.svg';
 import approvedRequest from '../assets/check.svg';
 import pendingRequest from '../assets/pending.svg';
 import failedRequest from '../assets/failed.svg';
+import lock from '../assets/ph_lock-simple-fill.svg';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import AppModal from '../Components/Modal';
 
 function MerchantSubscription() {
+  const [show, setShow] = React.useState(false);
+
   return (
     <SidebarLayout>
       <DashboardView>
@@ -240,16 +244,13 @@ function MerchantSubscription() {
                                 <td className="font__amount">200USDT</td>
                                 <td>210USDT</td>
                                 <td className="font__approved">
-                                  <Link
-                                    to={{
-                                      pathname: `/merchant_subscription_details/1`,
-                                      state: { users: '' },
-                                    }}
+                                  <div
+                                    onClick={() => setShow(true)}
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    View More
-                                  </Link>
+                                    View
+                                  </div>
                                 </td>
                               </tr>
                               <tr>
@@ -261,16 +262,13 @@ function MerchantSubscription() {
                                 <td className="font__amount">40USDT</td>
                                 <td>910USDT</td>
                                 <td className="font__pending">
-                                  <Link
-                                    to={{
-                                      pathname: `/merchant_subscription_details/1`,
-                                      state: { users: '' },
-                                    }}
+                                  <div
+                                    onClick={() => setShow(true)}
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    View More
-                                  </Link>
+                                    View
+                                  </div>
                                 </td>
                               </tr>
                               <tr>
@@ -282,16 +280,13 @@ function MerchantSubscription() {
                                 <td className="font__amount">540USDT</td>
                                 <td>1110USDT</td>
                                 <td className="font__failed">
-                                  <Link
-                                    to={{
-                                      pathname: `/merchant_subscription_details/1`,
-                                      state: { users: '' },
-                                    }}
+                                  <div
+                                    onClick={() => setShow(true)}
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    View More
-                                  </Link>
+                                    View
+                                  </div>
                                 </td>
                               </tr>
                               <tr>
@@ -303,16 +298,13 @@ function MerchantSubscription() {
                                 <td className="font__amount">200USDT</td>
                                 <td>210USDT</td>
                                 <td className="font__approved">
-                                  <Link
-                                    to={{
-                                      pathname: `/merchant_subscription_details/1`,
-                                      state: { users: '' },
-                                    }}
+                                  <div
+                                    onClick={() => setShow(true)}
                                     className="view-more-btn"
                                   >
                                     {' '}
-                                    View More
-                                  </Link>
+                                    View
+                                  </div>
                                 </td>
                               </tr>
                             </tbody>
@@ -455,6 +447,122 @@ function MerchantSubscription() {
               </div>
             </div>
           </div>
+          <AppModal
+            visible={show}
+            closable={true}
+            handleCancel={() => setShow(false)}
+          >
+            <div className="p-2">
+              <h2 className="w-[213px] text-blue-900 text-xl font-bold leading-[30px]">
+                Subscription Details
+              </h2>
+
+              <div className="w-[414px] h-[504px]">
+                <span className="text-black text-xl font-light leading-normal">
+                  Date|time:{' '}
+                </span>
+                <span className="text-black text-xl font-bold leading-normal">
+                  12/08/24 9:40pm
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  Merchant ID :{' '}
+                </span>
+                <span className="text-black text-xl font-bold leading-normal">
+                  lvp897583klp
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  Merchant Name :{' '}
+                </span>
+                <span className="text-red-600 text-xl font-bold leading-normal">
+                  Netflix
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  User ID :{' '}
+                </span>
+                <span className="text-black text-xl font-bold leading-normal">
+                  Lvp238765lj
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  User email :{' '}
+                </span>
+                <span className="text-black text-xl font-bold leading-normal">
+                  Nina@gmail.com
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  User fullname :{' '}
+                </span>
+                <span className="text-black text-xl font-bold leading-normal">
+                  Nina Okoye
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  Service Description :{' '}
+                </span>
+                <span className="text-black text-xl font-bold leading-normal">
+                  Entertainment <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  Sub. duration :{' '}
+                </span>
+                <span className="text-black text-xl font-bold leading-normal">
+                  6 Month
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  Amount :{' '}
+                </span>
+                <span className="text-green-900 text-xl font-bold leading-normal">
+                  N 45,000
+                  <br />
+                  Sub Expiration : 16/12/23 6:00Pm
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  Transaction fee{' '}
+                </span>
+                <span className="text-orange-700 text-xl font-bold leading-normal">
+                  N15.00
+                  <br />
+                </span>
+                <span className="text-black text-xl font-light leading-normal">
+                  Status :{' '}
+                </span>
+                <span className="text-green-900 text-xl font-bold leading-normal">
+                  Paid
+                </span>
+              </div>
+              <div className="">
+                <span className="text-orange-700 text-base font-bold leading-normal">
+                  Note : This user have Activated an Automatic Subscription with{' '}
+                </span>
+                <span className="text-green-900 text-base font-bold leading-normal">
+                  Netflix{' '}
+                </span>
+                <span className="text-orange-700 text-base font-bold leading-normal">
+                  for Every Six Month. Which will be deducted from his LeverPay
+                  Account every Six Month.
+                </span>
+              </div>
+
+              <div className="flex items-center justify-center gap-3">
+                <img src={lock} alt="" />
+                <div>
+                  <span className="text-black text-xl font-medium">
+                    Secured by
+                  </span>
+                  <span className="text-blue-900 text-xl font-bold">
+                    {' '}
+                    LeverPay
+                  </span>
+                </div>
+              </div>
+            </div>
+          </AppModal>
         </FundRequestStyle>
       </DashboardView>
     </SidebarLayout>

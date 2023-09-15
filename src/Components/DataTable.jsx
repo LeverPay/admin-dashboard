@@ -23,11 +23,9 @@ function DataTable() {
         <thead>
           <tr>
             <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>LeverPay ID</TableHeaderCell>
-            <TableHeaderCell>Status</TableHeaderCell>
+            <TableHeaderCell>user-ID</TableHeaderCell>
             <TableHeaderCell> Amount</TableHeaderCell>
-            <TableHeaderCell>Failed</TableHeaderCell>
-            <TableHeaderCell>Remark</TableHeaderCell>
+            <TableHeaderCell>Status</TableHeaderCell>
             <TableHeaderCell></TableHeaderCell>
             <TableHeaderCell></TableHeaderCell>
           </tr>

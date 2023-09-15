@@ -2,17 +2,15 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const UserTableRowData = ({ item, index }) => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const navigateToViewMore = ()=>{
-    navigate('/user-view-more')
-  }
+  const navigateToViewMore = () => {
+    navigate('/user-view-more');
+  };
   return (
     <tr key={item.id}>
       <td>{item.customerName}</td> {/**Name */}
       <td>{item.customerEmail}</td> {/**email */}
-      <td>{item.failed}</td> {/**user id */}
       <td>
         {item.failed === 0 ? (
           <span className="suspended-user">Suspended</span>
@@ -20,9 +18,6 @@ const UserTableRowData = ({ item, index }) => {
           <span className="active-user">Active</span>
         )}
       </td>
-      <td>{item.id}</td> {/**phone number */}
-      <td>{item.customerEmail.split('@')[0]}</td> {/**username */}
-      <td>{item.source}</td> {/**card type */}
       <td onClick={navigateToViewMore}>
         <div className="view-more-btn">View More</div>
       </td>

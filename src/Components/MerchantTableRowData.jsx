@@ -11,7 +11,6 @@ const MerchantTableRowData = ({ item, index }) => {
     <tr key={item.id}>
       <td>{item.customerName}</td> {/**Name */}
       <td>{item.customerEmail}</td> {/**email */}
-      <td>{item.failed}</td> {/**user id */}
       <td>
         {item.failed === 0 ? (
           <span className="suspended-user">Suspended</span>
@@ -19,9 +18,6 @@ const MerchantTableRowData = ({ item, index }) => {
           <span className="active-user">Active</span>
         )}
       </td>
-      <td>{item.id}</td> {/**phone number */}
-      <td>{item.customerEmail.split('@')[0]}</td> {/**username */}
-      <td>{item.source}</td> {/**card type */}
       <td onClick={navigateToViewMore}>
         <div className="view-more-btn">View More</div>
       </td>

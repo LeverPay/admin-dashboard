@@ -114,7 +114,7 @@ export const FundRequestStyle = styled.section`
   }
 
   .fund__request__card {
-    padding: 20px 50px 20px 50px;
+    /* padding: 20px 50px 20px 50px; */
   }
 
   .search_input {

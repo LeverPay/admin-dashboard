@@ -79,7 +79,7 @@ function ApproveRequesPage() {
                         </div>
                       </div>
                       <div className="col-12 ">
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             Full Name :{' '}
                           </span>{' '}
@@ -87,7 +87,7 @@ function ApproveRequesPage() {
                             Lvpxe325x97
                           </span>{' '}
                         </p>
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             Phone:{' '}
                           </span>
@@ -95,7 +95,7 @@ function ApproveRequesPage() {
                             Naira
                           </span>
                         </p>
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             Email:{' '}
                           </span>
@@ -103,7 +103,7 @@ function ApproveRequesPage() {
                             Binance
                           </span>
                         </p>
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             User Id:{' '}
                           </span>
@@ -111,7 +111,7 @@ function ApproveRequesPage() {
                             4000
                           </span>
                         </p>
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             Fundng Type:{' '}
                           </span>
@@ -119,7 +119,7 @@ function ApproveRequesPage() {
                             test@leverpay.com
                           </span>
                         </p>
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             Narration:{' '}
                           </span>
@@ -129,13 +129,13 @@ function ApproveRequesPage() {
                         </p>
                       </div>
                       <div>
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             Source:{' '}
                           </span>
                           <span className="text-blue-950 text-base font-extrabold"></span>
                         </p>
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             GTB
                           </span>
@@ -143,7 +143,7 @@ function ApproveRequesPage() {
                             SSSSSSS
                           </span>
                         </p>
-                        <p className="flex items-center gap-2 my-2">
+                        <p className="flex justify-between items-center gap-2 my-2">
                           <span className="text-blue-950 text-base font-medium">
                             Coinbase Wallet
                           </span>
