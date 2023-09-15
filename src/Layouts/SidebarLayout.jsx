@@ -166,19 +166,27 @@ const SidebarLayout = ({ children }) => {
                 <FontAwesomeIcon icon={faArrowTrendUp} /> <span>Profile</span>
               </Link>
             </li>
+            <li
+              onClick={() => handleListItemClick(13)}
+              className={activeIndex === 13 ? 'active' : ''}
+            >
+              <Link to="/investors" className="nav__link">
+                <FontAwesomeIcon icon={faArrowTrendUp} /> <span>Investors</span>
+              </Link>
+            </li>
           </ListView>
 
           <ListView>
             <li
-              onClick={() => handleListItemClick(13)}
-              className={activeIndex === 13 ? 'active' : ''}
+              onClick={() => handleListItemClick(14)}
+              className={activeIndex === 14 ? 'active' : ''}
             >
               <FontAwesomeIcon icon={faCircleQuestion} />{' '}
               <span>Help Center</span>
             </li>
             <li
-              className={activeIndex === 14 ? 'active' : ''}
-              onClick={() => handleListItemClick(14)}
+              className={activeIndex === 15 ? 'active' : ''}
+              onClick={() => handleListItemClick(15)}
             >
               <FontAwesomeIcon icon={faRightFromBracket} />
               <span>Logout</span>
