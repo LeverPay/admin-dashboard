@@ -4,11 +4,15 @@ import minilogo from '../assets/mini-logo.svg';
 import { DashboardView } from '../css/DashboardPageStyles';
 import phoneLock from '../assets/ph_lock-simple-fill.svg';
 import AppModal from '../Components/Modal';
+import close from '../assets/close.svg';
+import { useNavigate } from 'react-router-dom';
 
 const LeverpayInvestor = () => {
   const [show, setShow] = React.useState(false);
   const [deny, setDeny] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <SidebarLayout>
@@ -17,14 +21,21 @@ const LeverpayInvestor = () => {
           <div className="w-[651px] h-[935.85px] p-5 bg-white rounded-[10px] shadow">
             <div className="flex items-center justify-between">
               <img src={minilogo} alt="" />
-              close
+              <img
+                src={close}
+                alt=""
+                className="cursor-pointer"
+                onClick={() => {
+                  navigate('/investors');
+                }}
+              />
             </div>
             <h2 className="my-5 text-center text-indigo-950 text-2xl font-bold font-['Montserrat'] leading-normal">
               Leverpay Investor
             </h2>
 
-            <div className="w-[338.89px] h-[508px] relative">
-              <div className="w-[204.14px] h-6 left-0 top-0 absolute">
+            <div className="w-[338.89px] my-5 ">
+              <div className="w-[304.14px] flex items-center justify-between my-2">
                 <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
                   First Name :{' '}
                 </span>
@@ -32,7 +43,7 @@ const LeverpayInvestor = () => {
                   Nina{' '}
                 </span>
               </div>
-              <div className="w-[227.27px] h-6 left-0 top-[44px] absolute">
+              <div className="w-[304.14px] flex items-center justify-between my-2">
                 <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
                   Last Name :{' '}
                 </span>
@@ -40,7 +51,7 @@ const LeverpayInvestor = () => {
                   OKOYE
                 </span>
               </div>
-              <div className="w-[220.23px] h-6 left-0 top-[88px] absolute">
+              <div className="w-[304.14px] flex items-center justify-between my-2">
                 <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
                   Othername :{' '}
                 </span>
@@ -48,7 +59,7 @@ const LeverpayInvestor = () => {
                   Aboki
                 </span>
               </div>
-              <div className="w-[232.30px] h-6 left-0 top-[132px] absolute">
+              <div className="w-[304.14px] flex items-center justify-between my-2">
                 <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
                   Gender :{' '}
                 </span>
@@ -56,7 +67,7 @@ const LeverpayInvestor = () => {
                   Female
                 </span>
               </div>
-              <div className="w-[338.89px] h-6 left-0 top-[176px] absolute">
+              <div className="w-[304.14px] flex items-center justify-between my-2">
                 <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
                   Email :{' '}
                 </span>
@@ -64,16 +75,31 @@ const LeverpayInvestor = () => {
                   Nina001@gmail.com
                 </span>
               </div>
-              <div className="w-[250.40px] h-6 left-0 top-[220px] absolute text-black text-base font-normal font-['Montserrat'] leading-normal">
-                Date of Birth : 12/09/2023
+              <div className="w-[304.14px] flex items-center justify-between my-2 text-black text-base font-normal font-['Montserrat'] leading-normal">
+                <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
+                  Date of Birth :{' '}
+                </span>
+                <span className="text-black text-base font-['Montserrat'] leading-normal">
+                  12/09/2023
+                </span>
               </div>
-              <div className="w-[277.55px] h-6 left-0 top-[264px] absolute text-black text-base font-normal font-['Montserrat'] leading-normal">
-                Phone number : 09060898687
+              <div className="w-[304.14px] flex items-center justify-between my-2 text-black text-base font-normal font-['Montserrat'] leading-normal">
+                <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
+                  Phone number :{' '}
+                </span>
+                <span className="text-black text-base font-['Montserrat'] leading-normal">
+                  09060898687
+                </span>
               </div>
-              <div className="w-[216.21px] h-6 left-0 top-[308px] absolute text-black text-base font-normal font-['Montserrat'] leading-normal">
-                State : Lagos
+              <div className="w-[304.14px] flex items-center justify-between my-2 text-black text-base font-normal font-['Montserrat'] leading-normal">
+                <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
+                  State :{' '}
+                </span>
+                <span className="text-black text-base font-['Montserrat'] leading-normal">
+                  Lagos
+                </span>
               </div>
-              <div className="w-[224.25px] h-6 left-0 top-[352px] absolute">
+              <div className="w-[304.14px] flex items-center justify-between my-2">
                 <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
                   Amount Invested :{' '}
                 </span>
@@ -87,27 +113,29 @@ const LeverpayInvestor = () => {
               <h2 className=" text-black text-base font-normal font-['Montserrat'] leading-normal">
                 Note :{' '}
               </h2>
-              <textarea className="w-[439px] h-[72px] bg-zinc-300 rounded-md" />
+              <textarea className="w-[439px] h-[100px] outline-none p-1 bg-zinc-300 rounded-md" />
             </div>
 
             <div className="flex items-center justify-between my-2">
               <div
-                className="w-[202.91px] h-[51px] cursor-pointer relative"
+                className="w-[202.91px] h-[51px] cursor-pointer"
                 onClick={() => setShow(true)}
               >
-                <div className="w-[202.91px] h-[51px] left-0 top-0 absolute bg-blue-600 rounded-[10px]" />
-                <div className="w-[115.34px] h-5 left-[58.55px] top-[13px] absolute text-neutral-50 text-xl font-bold font-['Montserrat']">
-                  Approve
+                <div className="px-5 py-3 text-center  bg-blue-600 rounded-[10px]">
+                  <div className=" text-neutral-50 text-base font-bold font-['Montserrat']">
+                    Approve
+                  </div>
                 </div>
               </div>
 
               <div
-                className="w-[202.91px] h-[51px] relative cursor-pointer"
+                className="w-[202.91px] h-[51px]  cursor-pointer"
                 onClick={() => setDeny(true)}
               >
-                <div className="w-[202.91px] h-[51px] left-0 top-0 absolute bg-red-600 rounded-[10px]" />
-                <div className="w-[115.34px] h-5 left-[78.66px] top-[14px] absolute text-neutral-50 text-xl font-bold font-['Montserrat']">
-                  Deny
+                <div className="px-5 py-3 text-center  bg-red-600 rounded-[10px]">
+                  <div className=" text-neutral-50 text-base font-bold font-['Montserrat']">
+                    Deny
+                  </div>
                 </div>
               </div>
             </div>
@@ -141,22 +169,21 @@ const LeverpayInvestor = () => {
               Approve this investor?
             </p>
 
-            <div className="w-[277.55px] h-[51px] relative">
-              <div
-                className="w-[134.75px] h-[51px] left-0 top-0 absolute cursor-pointer"
-                onClick={() => setConfirm(true)}
-              >
-                <div className="w-[134.75px] h-[51px] left-0 top-0 absolute bg-blue-600 rounded-[10px]" />
-                <div className="w-[47.26px] h-5 left-[45.25px] top-[10px] absolute text-neutral-50 text-2xl font-bold font-['Montserrat']">
-                  Yes
+            <div className="w-[277.55px] flex items-center justify-between">
+              <span className="cursor-pointer" onClick={() => setConfirm(true)}>
+                <div className="flex items-center justify-center text-center w-[100px] py-2  bg-blue-600 rounded-[10px]">
+                  <div className="  text-neutral-50 text-base font-bold font-['Montserrat']">
+                    Yes
+                  </div>
                 </div>
-              </div>
-              <div className="w-[134.75px] h-[51px] left-[142.80px] top-0 absolute">
-                <div className="w-[134.75px] h-[51px] left-0 top-0 absolute bg-red-600 rounded-[10px]" />
-                <div className="w-[47.26px] h-5 left-[52.29px] top-[10px] absolute text-neutral-50 text-2xl font-bold font-['Montserrat']">
-                  No
+              </span>
+              <span>
+                <div className="flex items-center justify-center text-center w-[100px] py-2 bg-red-600 rounded-[10px]">
+                  <div className="  text-neutral-50 text-base font-bold font-['Montserrat']">
+                    No
+                  </div>
                 </div>
-              </div>
+              </span>
             </div>
           </div>
         </AppModal>
@@ -167,22 +194,26 @@ const LeverpayInvestor = () => {
           handleCancel={() => setDeny(false)}
         >
           <div className="flex items-center justify-center gap-5 flex-col">
-            <p className="w-[344.93px] h-12 text-center text-black text-base font-bold font-['Montserrat'] leading-normal">
+            <p className="h-12 text-center text-black text-base font-bold font-['Montserrat'] leading-normal">
               This investment would canceled because
               <br /> the payment was not received
             </p>
 
-            <div className="w-[277.55px] h-[51px] relative">
-              <div className="w-[134.75px] h-[51px] left-0 top-0 absolute">
-                <div className="w-[134.75px] h-[51px] left-0 top-0 absolute bg-blue-600 rounded-[10px]" />
-                <div className="w-[47.26px] h-5 left-[45.25px] top-[10px] absolute text-neutral-50 text-2xl font-bold font-['Montserrat']">
-                  Yes
+            <div className="w-[277.55px] h-[51px] flex items-center justify-between">
+              <div className="w-[134.75px] h-[51px] ">
+                <div className="flex items-center justify-center text-center w-[100px] py-2  bg-blue-600 rounded-[10px]">
+                  {' '}
+                  <div className="  text-neutral-50 text-base font-bold font-['Montserrat']">
+                    Yes
+                  </div>
                 </div>
               </div>
-              <div className="w-[134.75px] h-[51px] left-[142.80px] top-0 absolute">
-                <div className="w-[134.75px] h-[51px] left-0 top-0 absolute bg-red-600 rounded-[10px]" />
-                <div className="w-[47.26px] h-5 left-[52.29px] top-[10px] absolute text-neutral-50 text-2xl font-bold font-['Montserrat']">
-                  No
+              <div className="w-[134.75px] h-[51px]  ">
+                <div className="flex items-center justify-center text-center w-[100px] py-2 bg-red-600 rounded-[10px]">
+                  {' '}
+                  <div className="  text-neutral-50 text-base font-bold font-['Montserrat']">
+                    No
+                  </div>
                 </div>
               </div>
             </div>
@@ -194,6 +225,9 @@ const LeverpayInvestor = () => {
           handleCancel={() => setConfirm(false)}
         >
           <div className="flex items-center justify-center flex-col gap-2">
+            <div className="flex items-end justify-end w-full pr-7 ">
+              <img src={minilogo} alt="" />
+            </div>
             <svg
               width="270"
               height="232"
@@ -244,7 +278,7 @@ const LeverpayInvestor = () => {
             <p className="w-[373px] h-[30.76px] text-center text-lime-500 text-base font-extrabold font-['Montserrat']">
               You have successfully approve this investment
             </p>
-            <p className="w-[455px] h-[49.21px] text-center text-neutral-400 text-2xl font-bold font-['Montserrat']">
+            <p className="w-[455px] h-[49.21px] text-center text-neutral-400 text-xl font-bold font-['Montserrat']">
               A Confirmation mail will be sent to *****scaled@gmail.com.
             </p>
             <div className="w-[216px] p-3 bg-blue-950 rounded-[5px]">
