@@ -41,7 +41,7 @@ const Daashboard = () => {
             {' '}
             Recent Transactions
           </h2>
-          <DataTable />
+          <DataTable isShown={false} />
         </div>
       </div>
     </DashboardView>

@@ -2,7 +2,7 @@ import React from 'react';
 import AppModal from './Modal';
 import lock from '../assets/ph_lock-simple-fill.svg';
 
-const TableDataRow = ({ item }) => {
+const TableDataRow = ({ item, isShown }) => {
   const [show, setShow] = React.useState(false);
 
   return (
@@ -130,7 +130,7 @@ const TableDataRow = ({ item }) => {
         </div>
       </AppModal>
       <td>{item.customerName}</td>
-      <td>#{item.id}</td>
+      {isShown && <td>#{item.id}</td>}
       <td>${item.amount}.00</td>
       <td>{item.status}</td>
       <td>

@@ -8,7 +8,7 @@ import { TableContainer } from '../css/TransactionStyles';
 
 const PAGE_SIZE = 3;
 
-function DataTable() {
+function DataTable({ isShown }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentTableData = useMemo(() => {
@@ -23,7 +23,7 @@ function DataTable() {
         <thead>
           <tr>
             <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>user-ID</TableHeaderCell>
+            {isShown && <TableHeaderCell>user-ID</TableHeaderCell>}{' '}
             <TableHeaderCell> Amount</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>
             <TableHeaderCell></TableHeaderCell>
@@ -32,7 +32,12 @@ function DataTable() {
         </thead>
         <tbody>
           {currentTableData.map((item, index) => (
-            <TableDataRow key={item.id} item={item} index={index} />
+            <TableDataRow
+              key={item.id}
+              item={item}
+              index={index}
+              isShown={isShown}
+            />
           ))}
         </tbody>
       </table>
