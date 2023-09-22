@@ -4,7 +4,10 @@ import '../css/LoginStyles.css'; // Assuming you have a Login.css file for styli
 import male_user from '../assets/male user.png';
 import { toast } from 'react-hot-toast';
 import login_logo from '../assets/login-logo.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { baseUrl } from '../utils/constants';
 
 const PasswordIcon = ({ showPassword, togglePassword }) =>
   showPassword ? (
@@ -53,55 +56,71 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Function to handle changes in the username input
+  const handleUsernameChange = (e) => {
+    const value = e.target.value;
+    setUsername(value);
+  };
+
+  // Function to handle changes in the password input
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+  };
 
   // Function to toggle the password visibility
   const togglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const navigateToForgotPassword = () =>{
+  const navigateToForgotPassword = () => {
     navigate('/forgot-password');
-  }
+  };
+
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic form validation
-    if (username.trim() === '') {
-      toast.error('Please enter your username.', {
-        style: {
-          border: '1px solid #0B0230',
-          padding: '16px',
-          color: 'white',
-          backgroundColor: '#0B0230',
-        },
-        iconTheme: {
-          primary: 'red',
-          secondary: '#FFFAEE',
-        },
-      });
+    if (!validateEmail(username) || !password) {
+      toast.error('Please provide a valid details to continue.');
       return;
     }
 
-    if (password.trim() === '') {
-      toast.error('Please enter your password.', {
-        style: {
-          border: '1px solid #0B0230',
-          padding: '16px',
-          color: 'white',
-          backgroundColor: '#0B0230',
+    setLoading(true);
+    try {
+      // Make a POST request to the API endpoint
+      const response = await axios.post(
+        `${baseUrl}/v1/admin/admin-login`,
+        {
+          email: username,
+          password: password,
         },
-        iconTheme: {
-          primary: 'red',
-          secondary: '#FFFAEE',
-        },
-      });
-      return;
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'X-CSRF-TOKEN': 'NkqJL4ZZ3uo7Sp489LDOLWwx1Ocx13vZIfpVEzNo',
+          },
+        }
+      );
+      const token = response.data.data.token;
+      Cookies.set('authToken', token, { expires: rememberMe ? 7 : null });
+      navigate('/');
+      toast.success(response.message);
+    } catch (error) {
+      toast.error(error?.response?.data.message || 'Login failed');
+    } finally {
+      setLoading(false);
     }
+  };
 
-    console.log('Login Data:', { username, password, rememberMe });
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   return (
@@ -135,10 +154,11 @@ const LoginPage = () => {
                       </svg>
 
                       <input
-                        type="text"
+                        type="email"
                         placeholder="Username"
+                        required
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={handleUsernameChange}
                       />
                     </div>
 
@@ -161,8 +181,9 @@ const LoginPage = () => {
                         <input
                           type={showPassword ? 'text' : 'password'}
                           placeholder="**********"
+                          required
                           value={password}
-                          onChange={(e) => setPassword(e.target.value)}
+                          onChange={handlePasswordChange}
                         />
                       </div>
                       <PasswordIcon
@@ -195,10 +216,11 @@ const LoginPage = () => {
                       type="submit"
                       aria-label="Login"
                       className="login-btn"
+                      disabled={loading}
                     >
-                      <Link to="/" className="login-btn-link">
-                        LOGIN
-                      </Link>
+                      <div className="login-btn-link">
+                        {loading ? 'Logging in...' : 'LOGIN'}
+                      </div>
                     </button>
                   </form>
                 </div>
@@ -212,13 +234,13 @@ const LoginPage = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className=" password_eye"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
             />
           </svg>
@@ -231,13 +253,13 @@ const LoginPage = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className=" password_eye"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
             />
           </svg>

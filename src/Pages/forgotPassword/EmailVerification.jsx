@@ -7,6 +7,11 @@ const EmailVerification = () => {
   const navigateToEmailVerification = () => {
     navigate('/change-password');
   };
+
+  React.useEffect(() => {
+    document.title = 'Email Verification | LeverPay Admin';
+  }, []);
+
   return (
     <div className="bg-white w-full text-[#0F261D ] p-5">
       <div className="w-[150px] h-auto">
@@ -16,12 +21,10 @@ const EmailVerification = () => {
       <div className="flex items-center justify-center h-[90vh] flex-col space-y-3">
         <h2 className="text-gray-800 text-2xl font-bold">Email Verification</h2>
         <p className="text-gray-800 text-xl font-normal leading-normal">
-          Please enter the 6-digit code that was sent to your email{' '}
+          Please enter the 4-digit code that was sent to your email{' '}
         </p>
 
         <div className="flex items-center justify-center gap-5">
-          <input className="w-14 h-14 px-2.5 rounded-sm border border-gray-800 justify-start items-center gap-6 inline-flex" />
-          <input className="w-14 h-14 px-2.5 rounded-sm border border-gray-800 justify-start items-center gap-6 inline-flex" />
           <input className="w-14 h-14 px-2.5 rounded-sm border border-gray-800 justify-start items-center gap-6 inline-flex" />
           <input className="w-14 h-14 px-2.5 rounded-sm border border-gray-800 justify-start items-center gap-6 inline-flex" />
           <input className="w-14 h-14 px-2.5 rounded-sm border border-gray-800 justify-start items-center gap-6 inline-flex" />

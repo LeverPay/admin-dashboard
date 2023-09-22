@@ -10,7 +10,7 @@ const AppModal = ({ handleCancel, children, visible, closable }) => {
       closable={closable}
       centered
       title={null}
-      visible={visible}
+      open={visible}
       maskClosable={false}
       //   width={446}
       closeIcon={

@@ -83,9 +83,9 @@ function ApproveConfirmationPage() {
                           <path
                             d="M52.7913 91.3136C60.0047 97.0885 74.4322 108.638 74.4322 108.638C74.4322 108.638 100.96 79.1219 114.224 64.3642"
                             stroke="white"
-                            stroke-width="24.1073"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="24.1073"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
 

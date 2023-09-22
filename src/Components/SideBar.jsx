@@ -15,14 +15,24 @@ import {
   faChartSimple,
   faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
-
-import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleListItemClick = (index) => {
     setActiveIndex(index);
+  };
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remove the authentication token (or any other session-related data)
+    Cookies.remove('authToken');
+
+    // Redirect the user to the login page (or any other desired page)
+    navigate('/login');
   };
 
   return (
@@ -161,7 +171,7 @@ const SideBar = () => {
           </li>
           <li
             className={activeIndex === 15 ? 'active' : ''}
-            onClick={() => handleListItemClick(15)}
+            onClick={() => handleLogout()}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
             <span>Logout</span>

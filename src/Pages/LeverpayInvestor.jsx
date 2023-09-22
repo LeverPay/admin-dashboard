@@ -159,7 +159,7 @@ const LeverpayInvestor = () => {
           </div>
         </div>
         <AppModal
-          visible={show}
+          open={show}
           closable={true}
           handleCancel={() => setShow(false)}
         >
@@ -189,7 +189,7 @@ const LeverpayInvestor = () => {
         </AppModal>
 
         <AppModal
-          visible={deny}
+          open={deny}
           closable={true}
           handleCancel={() => setDeny(false)}
         >
@@ -220,7 +220,7 @@ const LeverpayInvestor = () => {
           </div>
         </AppModal>
         <AppModal
-          visible={confirm}
+          open={confirm}
           closable={true}
           handleCancel={() => setConfirm(false)}
         >
@@ -269,9 +269,9 @@ const LeverpayInvestor = () => {
                 <path
                   d="M91.9013 124.865C101.293 130.987 120.078 143.231 120.078 143.231C120.078 143.231 158.157 109.7 177.197 92.9354"
                   stroke="white"
-                  stroke-width="24.1073"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="24.1073"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </g>
             </svg>

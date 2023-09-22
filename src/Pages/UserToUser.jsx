@@ -374,7 +374,7 @@ function UserToUser() {
                       </Tab>
                     </Tabs>
                     <AppModal
-                      visible={show}
+                      open={show}
                       closable={true}
                       handleCancel={() => setShow(false)}
                     >

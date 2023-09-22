@@ -31,66 +31,78 @@ import MerchantViewMore from './Pages/MerchantViewMore';
 import MerchantSubscriptionDetails from './Pages/MerchantSubscriptionDetails';
 import UserToUserDetails from './Components/UserToUserDetails';
 import Investors from './Pages/Investors';
-import LeverpayInvestor from './Pages/LeverpayInvestor'
+import { Toaster } from 'react-hot-toast';
+import LeverpayInvestor from './Pages/LeverpayInvestor';
+import ProtectedRoute from './auth/ProtectedRoute';
 
 export default function App() {
   return (
     <div>
+      <Toaster position="top-right" reverseOrder={false} />
       <Router>
         <Routes>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/transaction" element={<TransactionPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/basic_information" element={<BasicInformationPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/messages" element={<MessagesPage />} />
-          <Route path="/card-center" element={<CardPage />} />
-          <Route path="/users" element={<UsersPage />} />
-          <Route path="/merchant" element={<MerchantPage />} />
-
-          <Route path="/add_user" element={<AddUserPage />} />
-          <Route path="/add_merchant" element={<AddMerchantPage />} />
-
-          <Route path="/edit-card" element={<EditCard />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/user-view-more" element={<UserViewMore />} />
-          <Route path="/merchant-view-more" element={<MerchantViewMore />} />
-
-          <Route path="/debit-card" element={<DebitCard />} />
-          <Route path="/card-upgraade" element={<CardUpgradePage />} />
-          <Route path="/fund_request" element={<FundRequest />} />
-          <Route path="/user-to-user-request" element={<UserToUser />} />
-          <Route
-            path="/merchant-subscription"
-            element={<MerchantSubscription />}
-          />
-          <Route path="/investors" element={<Investors />} />
-          <Route path="/leverpay-investors" element={<LeverpayInvestor />} />
 
           <Route
-            path="/approve_request/:id"
-            element={<AppproveRequestPage />}
-          />
-          <Route
-            path="/merchant_subscription_details/:id"
-            element={<MerchantSubscriptionDetails />}
-          />
-          <Route
-            path="/user_to_user_details/:id"
-            element={<UserToUserDetails />}
-          />
-          <Route
-            path="/approve_confirmation/:id"
-            element={<ApproveConfirmationPage />}
-          />
-          <Route path="/cancel_form/:id" element={<CancelFormPage />} />
-          <Route
-            path="/cancel_confirmation/:id"
-            element={<CancelConfirmationPage />}
-          />
+            // path="/admission/*"
+            element={<ProtectedRoute />}
+          >
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="/transaction" element={<TransactionPage />} />
+            <Route
+              path="/basic_information"
+              element={<BasicInformationPage />}
+            />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/messages" element={<MessagesPage />} />
+            <Route path="/card-center" element={<CardPage />} />
+            <Route path="/users" element={<UsersPage />} />
+            <Route path="/merchant" element={<MerchantPage />} />
+
+            <Route path="/add_user" element={<AddUserPage />} />
+            <Route path="/add_merchant" element={<AddMerchantPage />} />
+
+            <Route path="/edit-card" element={<EditCard />} />
+            <Route path="/user-view-more" element={<UserViewMore />} />
+            <Route path="/merchant-view-more" element={<MerchantViewMore />} />
+
+            <Route path="/debit-card" element={<DebitCard />} />
+            <Route path="/card-upgraade" element={<CardUpgradePage />} />
+            <Route path="/fund_request" element={<FundRequest />} />
+            <Route path="/user-to-user-request" element={<UserToUser />} />
+            <Route
+              path="/merchant-subscription"
+              element={<MerchantSubscription />}
+            />
+            <Route path="/investors" element={<Investors />} />
+            <Route path="/leverpay-investors" element={<LeverpayInvestor />} />
+
+            <Route
+              path="/approve_request/:id"
+              element={<AppproveRequestPage />}
+            />
+            <Route
+              path="/merchant_subscription_details/:id"
+              element={<MerchantSubscriptionDetails />}
+            />
+            <Route
+              path="/user_to_user_details/:id"
+              element={<UserToUserDetails />}
+            />
+            <Route
+              path="/approve_confirmation/:id"
+              element={<ApproveConfirmationPage />}
+            />
+            <Route path="/cancel_form/:id" element={<CancelFormPage />} />
+            <Route
+              path="/cancel_confirmation/:id"
+              element={<CancelConfirmationPage />}
+            />
+          </Route>
         </Routes>
       </Router>
     </div>

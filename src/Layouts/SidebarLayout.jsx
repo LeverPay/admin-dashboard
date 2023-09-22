@@ -3,7 +3,7 @@ import Logo from '../assets/LeverPayGold.png';
 
 import { SidebarLayoutView, MobileNavbar } from '../css/DashboardPageStyles';
 import { ListView } from '../css/SidebarStyles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +19,7 @@ import {
   faChartSimple,
   faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
+import Cookies from 'js-cookie';
 
 const SidebarLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +28,16 @@ const SidebarLayout = ({ children }) => {
 
   const handleListItemClick = (index) => {
     setActiveIndex(index);
+  };
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remove the authentication token (or any other session-related data)
+    Cookies.remove('authToken');
+
+    // Redirect the user to the login page (or any other desired page)
+    navigate('/login');
   };
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -186,7 +197,7 @@ const SidebarLayout = ({ children }) => {
             </li>
             <li
               className={activeIndex === 15 ? 'active' : ''}
-              onClick={() => handleListItemClick(15)}
+              onClick={() => handleLogout()}
             >
               <FontAwesomeIcon icon={faRightFromBracket} />
               <span>Logout</span>
