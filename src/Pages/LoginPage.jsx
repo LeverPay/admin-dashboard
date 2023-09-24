@@ -108,6 +108,7 @@ const LoginPage = () => {
         }
       );
       const token = response.data.data.token;
+      console.log(token);
       Cookies.set('authToken', token, { expires: rememberMe ? 7 : null });
       navigate('/');
       toast.success(response.message);
@@ -269,7 +270,7 @@ const LoginPage = () => {
           <img
             src={login_logo}
             alt="logo"
-            srcset=""
+            srcSet=""
             className="w-[150px] h-auto"
           />{' '}
         </div>
