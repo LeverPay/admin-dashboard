@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { DashboardView } from '../css/DashboardPageStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -5,7 +7,42 @@ import {
   faPen,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
+
+import Cookies from 'js-cookie';
+
 const BasicInformation = () => {
+  const [data, setData] = useState(null);
+
+  const authToken = Cookies.get('authToken');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          'https://leverpay-api.azurewebsites.net/api/v1/admin/admin-profile',
+          {
+            headers: {
+              Accept: 'application/json',
+              Authorization: `Bearer ${authToken}`,
+              'X-CSRF-TOKEN': 'Lsvq6bmNqtgogj9pEvAjoSKmNw7dAoVLhPigy4LB',
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          setData(response.data[0]);
+          console.log('response', data.first_name);
+        } else {
+          console.error('Error:', response.data);
+        }
+      } catch (error) {
+        console.error('Network error:', error);
+      }
+    };
+
+    fetchData();
+  }, [authToken, data]);
+
   return (
     <DashboardView>
       <div>
@@ -51,7 +88,7 @@ const BasicInformation = () => {
                 type="text"
                 name=""
                 id=""
-                placeholder="Patricia Douglas"
+                placeholder={data.first_name + ' ' + data.last_name}
                 className="w-[563px] h-[50px] bg-blue-600 bg-opacity-5 rounded-[10px] border border-slate-900 p-2 outline-none text-black text-opacity-80 text-sm font-normal leading-normal"
               />
             </div>
@@ -92,6 +129,7 @@ const BasicInformation = () => {
                 </div>
                 <input
                   type="number"
+                  placeholder={data.phone}
                   name=""
                   id=""
                   className="w-[563px] h-[50px] bg-blue-600 bg-opacity-5 rounded-[10px] border border-slate-900 p-2 outline-none text-black text-opacity-80 text-sm font-normal leading-normal"
@@ -107,7 +145,7 @@ const BasicInformation = () => {
                 type="email"
                 name=""
                 id=""
-                placeholder="Patricia Douglas@gmail.com"
+                placeholder={data.email}
                 className="w-[563px] h-[50px] bg-blue-600 bg-opacity-5 rounded-[10px] border border-slate-900 p-2 outline-none text-black text-opacity-80 text-sm font-normal leading-normal"
               />
             </div>

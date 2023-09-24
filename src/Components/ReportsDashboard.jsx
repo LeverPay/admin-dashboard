@@ -4,7 +4,7 @@ import '../css/DashboardStyles.css';
 
 const ReportsDashboard = () => {
   return (
-    <div className="report-container">
+    <div className="report-container w-full lg:my-0 my-5">
       <h1 className="text-center text-blue-950 text-base font-normal uppercase leading-normal">
         Report
       </h1>

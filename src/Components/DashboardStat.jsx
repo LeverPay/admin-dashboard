@@ -3,8 +3,8 @@ import chart from '../assets/dashboard-chart.svg';
 
 const DashboardStat = () => {
   return (
-    <div className="dashboard-stats gap-2 ">
-      <div className="dashboard-stat rounded shadow-sm w-[259px] h-[97px]">
+    <div className="dashboard-stats gap-4 lg:gap-2 flex-wrap">
+      <div className="dashboard-stat rounded shadow-sm w-full lg:w-[259px] h-[97px]">
         <div className="flex flex-col">
           <h2 className="w-full  text-slate-400 text-sm font-normal ">
             Total Transactions
@@ -29,7 +29,7 @@ const DashboardStat = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded shadow-sm w-[220px] h-[97px] flex items-center justify-between p-2">
+      <div className="bg-white rounded shadow-sm w-full lg:w-[220px] h-[97px] flex items-center justify-between p-2">
         <div className="svg-container-user">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ const DashboardStat = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded shadow-sm w-[220px] h-[97px] flex items-center justify-between p-2">
+      <div className="bg-white rounded shadow-sm w-full lg:w-[220px] h-[97px] flex items-center justify-between p-2">
         <div className="svg-container-user2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@ const DashboardStat = () => {
         </div>
       </div>
 
-      <div className="activity-container h-[97px] dashboard-stat shadow-sm">
+      <div className="activity-container w-full lg:w-[220px]  h-[97px] dashboard-stat shadow-sm">
         <div className="activity-dashboard">
           <h2 className=" text-violet-100 text-base font-medium ">
             SUBSCRIPTION
