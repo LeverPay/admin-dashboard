@@ -73,18 +73,18 @@ const SetRates = () => {
   return (
     <SidebarLayout>
       <DashboardView>
-        <div className="w-full p-2 flex items-end justify-end">
+        <div className="w-full p-2 flex items-end justify-end ">
           <img
             src="https://images.unsplash.com/photo-1587045525473-4861b1f9b5b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
             alt="profile-img"
-            className="w-10 h-10 rounded-full "
+            className="w-10 h-10 rounded-full mr-4"
           />{' '}
         </div>
         <div className="p-3">
           <h2 className="text-indigo-950 text-2xl font-bold font-['Inter'] leading-normal">
             Set Rates
           </h2>
-          <div className="flex items-center gap-1 justify-between">
+          <div className="flex flex-wrap items-center gap-3 md:gap-1 justify-between">
             <CardFinanceOptions
               title="Exchange Rate"
               bgColor="#2962F2"
@@ -137,467 +137,477 @@ const SetRates = () => {
               <Tabs defaultActiveKey="first">
                 <Tab eventKey="first" title={'Exchange'}>
                   <div className="users__tab__padding">
-                    <table className="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">
-                            <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              Date/Time{' '}
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Current
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Previous
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                    <div className="table-responsive">
+                      <table className="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">
+                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                Date/Time{' '}
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Current
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Previous
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                {' '}
+                                Status
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Activate / Deactivate
+                              </h2>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>
+                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td className="font__amount">
+                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
+                                Deactivated
+                              </span>
+                            </td>
+                            <td className="font__approved">
                               {' '}
-                              Status
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Activate / Deactivate
-                            </h2>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>
-                            <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td className="font__amount">
-                            <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                              Deactivated
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>
-                            <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td className="font__amount">
-                            <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                              Deactivated
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>
-                            <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td className="font__amount">
-                            <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                              Deactivated
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">4</th>
-                          <td>
-                            <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td className="font__amount">
-                            <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                              Deactivated
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>
+                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td className="font__amount">
+                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
+                                Deactivated
+                              </span>
+                            </td>
+                            <td className="font__approved">
+                              {' '}
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>
+                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td className="font__amount">
+                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
+                                Deactivated
+                              </span>
+                            </td>
+                            <td className="font__approved">
+                              {' '}
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>
+                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td className="font__amount">
+                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
+                                Deactivated
+                              </span>
+                            </td>
+                            <td className="font__approved">
+                              {' '}
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </Tab>
                 <Tab eventKey="second" title={'Local Transaction'}>
                   <div className="users__tab__padding">
-                    <table className="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">
-                            <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              Date/Time{' '}
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Current
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Previous
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                    <div className="table-responsive">
+                      <table className="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">
+                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                Date/Time{' '}
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Current
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Previous
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                {' '}
+                                Status
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Activate / Deactivate
+                              </h2>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>
+                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Active
+                              </span>
+                            </td>
+                            <td className="font__approved">
                               {' '}
-                              Status
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Activate / Deactivate
-                            </h2>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>
-                            <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Active
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>{' '}
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>
-                            <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                              Deactivated
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>{' '}
-                        </tr>
-                      </tbody>
-                    </table>
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>{' '}
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>
+                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
+                                Deactivated
+                              </span>
+                            </td>
+                            <td className="font__approved">
+                              {' '}
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>{' '}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </Tab>
                 <Tab eventKey="third" title="International Trans">
                   <div className="users__tab__padding">
-                    <table className="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">
-                            <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              Date/Time{' '}
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Current
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Previous
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                    <div className="table-responsive">
+                      <table className="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">
+                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                Date/Time{' '}
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Current
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Previous
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                {' '}
+                                Status
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Activate / Deactivate
+                              </h2>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>
+                              <div className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </div>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
+                                Deactivated
+                              </span>
+                            </td>
+                            <td className="font__approved">
                               {' '}
-                              Status
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Activate / Deactivate
-                            </h2>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>
-                            <div className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </div>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                              Deactivated
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>{' '}
-                        </tr>
-                      </tbody>
-                    </table>
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>{' '}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </Tab>
                 <Tab eventKey="fourth" title="Conversion">
                   <div className="users__tab__padding">
-                    <table className="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">
-                            <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              Date/Time{' '}
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Current
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Previous
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                    <div className="table-responsive">
+                      <table className="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">
+                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                Date/Time{' '}
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Current
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Previous
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                {' '}
+                                Status
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Activate / Deactivate
+                              </h2>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>
+                              <div className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </div>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
+                                Deactivated
+                              </span>
+                            </td>
+                            <td className="font__approved">
                               {' '}
-                              Status
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Activate / Deactivate
-                            </h2>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>
-                            <div className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </div>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                              Deactivated
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>{' '}
-                        </tr>
-                      </tbody>
-                    </table>
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>{' '}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </Tab>
                 <Tab eventKey="fifth" title="Funding">
                   <div className="users__tab__padding">
-                    <table className="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">
-                            <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              Date/Time{' '}
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Current
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Previous
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                    <div className="table-responsive">
+                      <table className="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">
+                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                Date/Time{' '}
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Current
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Previous
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                {' '}
+                                Status
+                              </h2>
+                            </th>
+                            <th scope="col">
+                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                Activate / Deactivate
+                              </h2>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>
+                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
+                                12/23 /2:00am{' '}
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                987
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+                                200
+                              </span>
+                            </td>
+                            <td>
+                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
+                                Deactivated
+                              </span>
+                            </td>
+                            <td className="font__approved">
                               {' '}
-                              Status
-                            </h2>
-                          </th>
-                          <th scope="col">
-                            <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              Activate / Deactivate
-                            </h2>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>
-                            <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                              12/23 /2:00am{' '}
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              987
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                              200
-                            </span>
-                          </td>
-                          <td>
-                            <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                              Deactivated
-                            </span>
-                          </td>
-                          <td className="font__approved">
-                            {' '}
-                            <Toggle
-                              isOn={isActive}
-                              handleToggle={handleIsActive}
-                            />
-                          </td>{' '}
-                        </tr>
-                      </tbody>
-                    </table>
+                              <Toggle
+                                isOn={isActive}
+                                handleToggle={handleIsActive}
+                              />
+                            </td>{' '}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </Tab>
               </Tabs>
