@@ -56,14 +56,14 @@ const EmailVerification = () => {
     navigate('/forgot-password');
   };
   return (
-    <div className="bg-white w-full text-[#0F261D ] p-5">
+    <div className="bg-white w-full text-[#0F261D ] p-3 md:p-5">
       <div className="w-[150px] h-auto">
         <img src={logo} alt="leverpay logo" />
       </div>
 
       <div className="flex items-center justify-center h-[90vh] flex-col space-y-3">
         <h2 className="text-gray-800 text-2xl font-bold">Email Verification</h2>
-        <p className="text-gray-800 text-xl font-normal leading-normal">
+        <p className="text-gray-800 text-xl font-normal text-center leading-normal">
           Please enter the 4-digit code that was sent to your email{' '}
         </p>
 
@@ -81,7 +81,7 @@ const EmailVerification = () => {
         </div>
 
         <div
-          className="w-[568px] h-14 p-2.5 my-5 text-center bg-blue-600 rounded-[10px] justify-center cursor-pointer items-center gap-2.5 flex"
+          className="w-full md:w-[568px] h-14 p-2.5 my-3 md:my-5 text-center bg-blue-600 rounded-[10px] justify-center cursor-pointer items-center gap-2.5 flex"
           onClick={navigateToEmailVerification}
         >
           <div className="text-white text-lg font-bold leading-normal">

@@ -41,7 +41,7 @@ const ForgotPassword = () => {
   }, []);
 
   return (
-    <div className="bg-white w-full text-[#0F261D ] p-5">
+    <div className="bg-white w-full text-[#0F261D ] p-3 md:p-5">
       <div className="w-[150px] h-auto">
         <img src={logo} alt="leverpay logo" />
       </div>
