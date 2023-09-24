@@ -10,7 +10,18 @@ const ForgotPassword = () => {
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
 
+  const validateInput = () => {
+    if (!email) {
+      toast.error('Email cannot be empty');
+      return false;
+    }
+    return true;
+  };
+
   const navigateToEmailVerification = async () => {
+    if (!validateInput()) {
+      return;
+    }
     try {
       setLoading(true);
       // Make a POST request to the API endpoint for forgot password

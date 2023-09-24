@@ -3,6 +3,7 @@ import logo from '../../assets/LeverPayGold.png';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { baseUrl } from '../../utils/constants';
+import axios from 'axios';
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = React.useState('');
@@ -14,7 +15,7 @@ const ChangePassword = () => {
     document.title = 'Change Password | LeverPay Admin';
   }, []);
 
-  const navigateToLogin = () => {
+  const navigateToLogin = async () => {
     // Password validation logic
     if (newPassword.length < 10) {
       toast.error('Password must be at least 10 characters long.');
@@ -41,32 +42,44 @@ const ChangePassword = () => {
       return;
     }
 
-    // Perform API call and navigation here
-    const requestBody = new FormData();
-    requestBody.append('new_password', newPassword);
-    requestBody.append('confirm_new_password', confirmNewPassword);
+    if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(newPassword)) {
+      toast.error(
+        'Password must contain at least one symbol (!@#$%^&*()_+{}[]:;<>,.?~-).'
+      );
+      return;
+    }
 
-    fetch(`${baseUrl}/v1/admin/admin-reset-password`, {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-        'X-CSRF-TOKEN': 'qdSGvov4yfN5oxhn6TI8JGrfXnvGu9OxKPeMFpbi',
-      },
-      body: requestBody,
-    })
-      .then((response) => {
-        if (response.ok) {
-          toast.success('Password changed successfully');
-          navigate('/login');
-        } else {
-          toast.error('Something went wrong');
+    try {
+      const response = await axios.post(
+        `${baseUrl}/v1/admin/admin-reset-password`,
+        {
+          old_password: oldPassword,
+          new_password: newPassword,
+          confirm_new_password: confirmNewPassword,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json', // Use JSON content type
+            'X-CSRF-TOKEN': 'qdSGvov4yfN5oxhn6TI8JGrfXnvGu9OxKPeMFpbi',
+          },
         }
-      })
-      .catch((error) => {
+      );
+
+      if (response.status === 200) {
+        toast.success('Password changed successfully');
+        navigate('/login');
+      } else {
+        toast.error('Something went wrong');
+      }
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message || 'Something went wrong');
+      } else {
         toast.error('Network error');
-      });
+      }
+    }
   };
+
   return (
     <div className="bg-white w-full text-[#0F261D ] p-3 md:p-5">
       <div className="w-[150px] h-auto">
@@ -92,6 +105,9 @@ const ChangePassword = () => {
           </p>
           <p className="text-gray-800 lg:text-sm md:text-xl text-sm font-normal leading-none">
             At least 1 number (0-9)
+          </p>
+          <p className="text-gray-800 lg:text-sm md:text-xl text-sm font-normal leading-none">
+            At least 1 symbol
           </p>
         </div>
 

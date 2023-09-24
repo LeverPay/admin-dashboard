@@ -3,35 +3,48 @@ import logo from '../../assets/LeverPayGold.png';
 import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../utils/constants';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const EmailVerification = () => {
   const [token, setToken] = React.useState(['', '', '', '']);
+  const [loading, setLoading] = React.useState(false);
   const inputRefs = React.useRef([]);
   const navigate = useNavigate();
 
   const navigateToEmailVerification = async () => {
     const enteredToken = token.join('');
-    try {
-      const response = await fetch(`${baseUrl}/v1/admin/admin-verify-email`, {
-        method: 'POST',
-        headers: {
-          accept: 'application/json',
-          'Content-Type': 'multipart/form-data',
-          'X-CSRF-TOKEN': 'qdSGvov4yfN5oxhn6TI8JGrfXnvGu9OxKPeMFpbi',
-        },
-        body: `token=${enteredToken}`,
-      });
 
-      if (response.ok) {
+    // Check if any of the token fields are empty
+    if (token.some((digit) => digit === '')) {
+      toast.error('Please fill in all token fields.');
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${baseUrl}/v1/admin/admin-verify-email`,
+        {
+          token: enteredToken,
+        },
+        {
+          headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': 'qdSGvov4yfN5oxhn6TI8JGrfXnvGu9OxKPeMFpbi',
+          },
+        }
+      );
+
+      if (response.status === 200) {
         toast.success('Please enter your new password');
         navigate('/change-password');
       } else {
-        // Handle errors here
-        toast.error('Error: ' + response.message || 'Something went wrong');
+        toast.error(response.data.message || 'Something went wrong');
       }
     } catch (error) {
-      // Handle network errors
-      toast.error('Network error:', error);
+      toast.error('Network error:', error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,7 +99,7 @@ const EmailVerification = () => {
         >
           <div className="text-white text-lg font-bold leading-normal">
             {' '}
-            Verify email address{' '}
+            {loading ? 'Verifying...' : 'Verify email address'}{' '}
           </div>
         </div>
 

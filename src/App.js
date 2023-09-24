@@ -35,6 +35,7 @@ import { Toaster } from 'react-hot-toast';
 import LeverpayInvestor from './Pages/LeverpayInvestor';
 import ProtectedRoute from './auth/ProtectedRoute';
 import SetRates from './Pages/SetRates'
+import NotFoundPage from './Pages/NotFoundPage'
 
 export default function App() {
   return (
@@ -105,6 +106,7 @@ export default function App() {
               element={<CancelConfirmationPage />}
             />
           </Route>
+          <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </div>
