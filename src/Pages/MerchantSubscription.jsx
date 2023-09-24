@@ -448,7 +448,7 @@ function MerchantSubscription() {
             </div>
           </div>
           <AppModal
-            open={show}
+            visible={show}
             closable={true}
             handleCancel={() => setShow(false)}
           >

@@ -159,7 +159,7 @@ const LeverpayInvestor = () => {
           </div>
         </div>
         <AppModal
-          open={show}
+          visible={show}
           closable={true}
           handleCancel={() => setShow(false)}
         >
@@ -189,7 +189,7 @@ const LeverpayInvestor = () => {
         </AppModal>
 
         <AppModal
-          open={deny}
+          visible={deny}
           closable={true}
           handleCancel={() => setDeny(false)}
         >
@@ -220,7 +220,7 @@ const LeverpayInvestor = () => {
           </div>
         </AppModal>
         <AppModal
-          open={confirm}
+          visible={confirm}
           closable={true}
           handleCancel={() => setConfirm(false)}
         >

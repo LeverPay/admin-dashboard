@@ -124,6 +124,10 @@ const LoginPage = () => {
     return emailRegex.test(email);
   };
 
+  React.useEffect(() => {
+    document.title = 'Login  | LeverPay Admin';
+  }, []);
+
   return (
     <div className="login-container">
       <div>

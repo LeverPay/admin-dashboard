@@ -7,7 +7,11 @@ const TableDataRow = ({ item, isShown }) => {
 
   return (
     <tr key={item.id}>
-      <AppModal open={show} closable={true} handleCancel={() => setShow(false)}>
+      <AppModal
+        visible={show}
+        closable={true}
+        handleCancel={() => setShow(false)}
+      >
         <h2 className="w-[182px] text-blue-900 text-xl font-bold leading-[30px] mb-3">
           Transaction Details
         </h2>{' '}

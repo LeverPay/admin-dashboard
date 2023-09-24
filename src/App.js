@@ -34,6 +34,7 @@ import Investors from './Pages/Investors';
 import { Toaster } from 'react-hot-toast';
 import LeverpayInvestor from './Pages/LeverpayInvestor';
 import ProtectedRoute from './auth/ProtectedRoute';
+import SetRates from './Pages/SetRates'
 
 export default function App() {
   return (
@@ -69,6 +70,7 @@ export default function App() {
             <Route path="/edit-card" element={<EditCard />} />
             <Route path="/user-view-more" element={<UserViewMore />} />
             <Route path="/merchant-view-more" element={<MerchantViewMore />} />
+            <Route path="/set-rates" element={<SetRates />} />
 
             <Route path="/debit-card" element={<DebitCard />} />
             <Route path="/card-upgraade" element={<CardUpgradePage />} />
