@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SidebarLayout from '../Layouts/SidebarLayout';
 import { DashboardView } from '../css/DashboardPageStyles';
 import CardFinanceOptions from '../Components/CardFinanceOptions';
@@ -11,12 +11,13 @@ import Toggle from '../Components/Toggle';
 import AppModal from '../Components/Modal';
 import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const SetRates = () => {
   const [isActive, setIsActive] = React.useState(true);
   const [show, setShow] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-  const [token, setToken] = React.useState('');
+  const [response, setResponse] = useState(null);
   const [exchangeLoading, setExchangeLoading] = React.useState(false);
   const [exchangeRate, setExchangeRate] = useState('');
   const [localTransRate, setLocalTransRate] = useState('');
@@ -32,41 +33,45 @@ const SetRates = () => {
     setIsActive((prevIsisActive) => !prevIsisActive);
   };
 
-  const handleIsConfirm = () => {
-    setShow(false);
-    handleRateClick();
-  };
-
   React.useEffect(() => {
     document.title = 'Set Rates  | LeverPay Admin';
-    const authToken = Cookies.get('authToken');
-    setToken(authToken);
   }, []);
+
+  const authToken = Cookies.get('authToken');
 
   // EXCHANGE Rate Endpoint
 
-  const handleRateClick = async () => {
+  const handleRateClick = async (e) => {
+    e.preventDefault();
+    setExchangeLoading(true);
     try {
-      setExchangeLoading(true);
-      const response = await fetch(`${baseUrl}/v1/admin/add-exchange-rate`, {
-        method: 'POST',
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-          'X-CSRF-TOKEN': 'Uw2Ch5MqHI3r4YbF5AdbYDpgCC5Ht7WriIYqAcQ3',
-        },
-        body: JSON.stringify({ rate: exchangeRate }),
-      });
+      const data = {
+        rate: exchangeRate,
+        local_transaction_rate: localTransRate,
+        funding_rate: fundingRate,
+        conversion_rate: convsnRate,
+        international_transaction_rate: intTransRate,
+      };
 
-      if (response.ok) {
-        // Handle success, e.g., show a success message or update the UI
-        setConfirm(true);
-      } else {
-        toast.error('Request failed');
-      }
-    } catch (error) {
-      toast.error('An error occurred', error);
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': 'SKMKbJYHs1nugaO4DNb4K4f1DMFzsGTKY2RSEoYt',
+        accept: 'application/json',
+      };
+
+      const response = await axios.post(
+        'https://leverpay-api.azurewebsites.net/api/v1/admin/update-exchange-rates',
+        data,
+        { headers }
+      );
+
+      setResponse(response.data);
+    } catch (err) {
+      setResponse(null);
+    } finally {
+      setExchangeLoading(false);
+      setShow(false);
     }
   };
 
@@ -87,8 +92,6 @@ const SetRates = () => {
           <div className="flex flex-wrap items-center gap-3 md:gap-1 justify-between">
             <CardFinanceOptions
               title="Exchange Rate"
-              bgColor="#2962F2"
-              setShow={setShow}
               rate={exchangeRate}
               handleRateChange={(value) =>
                 handleRateChange(value, setExchangeRate)
@@ -96,8 +99,6 @@ const SetRates = () => {
             />
             <CardFinanceOptions
               title="Local Trans Rate"
-              bgColor="#257708"
-              setShow={setShow}
               rate={localTransRate}
               handleRateChange={(value) =>
                 handleRateChange(value, setLocalTransRate)
@@ -105,8 +106,6 @@ const SetRates = () => {
             />
             <CardFinanceOptions
               title="Int. Trans Rate"
-              bgColor="#9A8B0A"
-              setShow={setShow}
               rate={intTransRate}
               handleRateChange={(value) =>
                 handleRateChange(value, setIntTransRate)
@@ -114,8 +113,6 @@ const SetRates = () => {
             />
             <CardFinanceOptions
               title="Convsn Rate"
-              bgColor="#CF7205"
-              setShow={setShow}
               rate={convsnRate}
               handleRateChange={(value) =>
                 handleRateChange(value, setConvsnRate)
@@ -123,13 +120,20 @@ const SetRates = () => {
             />
             <CardFinanceOptions
               title="Funding Rate"
-              bgColor="#A312FB"
-              setShow={setShow}
               rate={fundingRate}
               handleRateChange={(value) =>
                 handleRateChange(value, setFundingRate)
               }
             />
+
+            <div className="flex items-center w-full justify-center">
+              <button
+                className="w-1/2 my-2 h-[52px] text-center text-white text-[15px] font-bold font-['Inter'] leading-[17.25px] rounded-[10px] bg-[#A312FB]"
+                onClick={() => setShow(true)}
+              >
+                Save
+              </button>
+            </div>
           </div>
 
           <div className="row">
@@ -627,10 +631,10 @@ const SetRates = () => {
             <div className="flex items-center justify-center gap-4 my-2">
               <div
                 className="w-[134px] flex items-center justify-center h-[51px] bg-blue-600 rounded-[10px] cursor-pointer"
-                onClick={handleIsConfirm}
+                onClick={handleRateClick}
               >
                 <span className="w-[47px]  text-neutral-50 text-2xl font-bold font-['Montserrat']">
-                  Yes
+                  {exchangeLoading ? 'loading...' : 'Yes'}
                 </span>
               </div>
               <div

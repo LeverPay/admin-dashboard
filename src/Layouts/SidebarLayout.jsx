@@ -215,7 +215,7 @@ const SidebarLayout = ({ children }) => {
             </li>
             <li
               className={activeIndex === 17 ? 'active' : ''}
-              onClick={() => handleLogout()}
+              onClick={() => handleLogout}
             >
               <FontAwesomeIcon icon={faRightFromBracket} />
               <span>Logout</span>

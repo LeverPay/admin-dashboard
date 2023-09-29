@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/DashboardStyles.css';
+import { baseUrl } from '../utils/constants';
 
-import { DashboardView, DashboardBody } from '../css/DashboardPageStyles';
+import { DashboardView } from '../css/DashboardPageStyles';
 import Header from '../Components/Header/Header';
 import DashboardStat from './DashboardStat';
 import ReportsDashboard from './ReportsDashboard';
@@ -20,20 +21,16 @@ const Daashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          'https://leverpay-api.azurewebsites.net/api/v1/admin/admin-profile',
-          {
-            headers: {
-              Accept: 'application/json',
-              Authorization: `Bearer ${authToken}`,
-              'X-CSRF-TOKEN': 'Lsvq6bmNqtgogj9pEvAjoSKmNw7dAoVLhPigy4LB',
-            },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/v1/admin/admin-profile`, {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${authToken}`,
+            'X-CSRF-TOKEN': 'Lsvq6bmNqtgogj9pEvAjoSKmNw7dAoVLhPigy4LB',
+          },
+        });
 
         if (response.status === 200) {
           setData(response.data[0]);
-          console.log('response', data.first_name);
         } else {
           console.error('Error:', response.data);
         }
@@ -43,7 +40,7 @@ const Daashboard = () => {
     };
 
     fetchData();
-  }, [authToken, data]);
+  }, [authToken]);
 
   return (
     <DashboardView>

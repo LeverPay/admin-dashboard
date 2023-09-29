@@ -24,15 +24,6 @@ const CardFinanceOptions = ({
             onChange={(e) => handleRateChange(e.target.value)}
           />
         </div>
-        <div className="flex items-center justify-center">
-          <button
-            className="w-[70px] h-[52px] text-center text-white text-[15px] font-bold font-['Inter'] leading-[17.25px] rounded-[10px] "
-            style={cardStyles}
-            onClick={() => setShow(true)}
-          >
-            Save
-          </button>
-        </div>
       </div>
     </div>
   );
