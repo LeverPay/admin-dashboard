@@ -109,7 +109,15 @@ const LoginPage = () => {
       );
       const token = response.data.data.token;
       console.log(token);
-      Cookies.set('authToken', token, { expires: rememberMe ? 7 : null });
+      // Calculate the expiration time for the cookie (24 hours from now)
+      const expirationTime = new Date();
+      expirationTime.setTime(expirationTime.getTime() + 24 * 60 * 60 * 1000);
+
+      // Set the cookie with the expiration time
+      Cookies.set('authToken', token, {
+        expires: expirationTime,
+        secure: true,
+      });
       navigate('/');
       toast.success(response.message);
     } catch (error) {

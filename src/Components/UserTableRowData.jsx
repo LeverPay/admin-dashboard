@@ -9,10 +9,10 @@ const UserTableRowData = ({ item, index }) => {
   };
   return (
     <tr key={item.id}>
-      <td>{item.customerName}</td> {/**Name */}
-      <td>{item.customerEmail}</td> {/**email */}
+      <td>{item.first_name}</td> {/**Name */}
+      <td>{item.email}</td> {/**email */}
       <td>
-        {item.failed === 0 ? (
+        {item.status === 0 ? (
           <span className="suspended-user">Suspended</span>
         ) : (
           <span className="active-user">Active</span>
