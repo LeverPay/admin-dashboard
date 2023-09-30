@@ -5,32 +5,35 @@ import CardFinanceOptions from '../Components/CardFinanceOptions';
 import minilogo from '../assets/mini-logo.svg';
 import { baseUrl } from '../utils/constants';
 
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import Toggle from '../Components/Toggle';
+import { format } from 'date-fns';
+import { DataGrid } from '@mui/x-data-grid';
+import { v4 as uuidv4 } from 'uuid';
 import AppModal from '../Components/Modal';
 import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
 const SetRates = () => {
-  const [isActive, setIsActive] = React.useState(true);
   const [show, setShow] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-  const [response, setResponse] = useState(null);
   const [exchangeLoading, setExchangeLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const [exchangeRate, setExchangeRate] = useState('');
   const [localTransRate, setLocalTransRate] = useState('');
   const [intTransRate, setIntTransRate] = useState('');
   const [convsnRate, setConvsnRate] = useState('');
   const [fundingRate, setFundingRate] = useState('');
+  const [exchangeResponse, setExchangeResponse] = useState([]);
 
   const handleRateChange = (value, setter) => {
     setter(value);
   };
 
-  const handleIsActive = () => {
-    setIsActive((prevIsisActive) => !prevIsisActive);
+  // Define a function to format the transactionDate
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return format(date, 'yyyy-MM-dd'); // Format date to 'yyyy-MM-dd'
   };
 
   React.useEffect(() => {
@@ -44,6 +47,21 @@ const SetRates = () => {
   const handleRateClick = async (e) => {
     e.preventDefault();
     setExchangeLoading(true);
+
+    // Check if any of the fields are empty
+    if (
+      !exchangeRate ||
+      !localTransRate ||
+      !fundingRate ||
+      !convsnRate ||
+      !intTransRate
+    ) {
+      toast.error('Please input values for all rates.');
+      setExchangeLoading(false);
+      setShow(false);
+      return; // Exit early if any field is empty
+    }
+
     try {
       const data = {
         rate: exchangeRate,
@@ -61,19 +79,126 @@ const SetRates = () => {
       };
 
       const response = await axios.post(
-        'https://leverpay-api.azurewebsites.net/api/v1/admin/update-exchange-rates',
+        `${baseUrl}/v1/admin/update-exchange-rates`,
         data,
         { headers }
       );
 
-      setResponse(response.data);
+      toast.success('Rates updated successfully');
     } catch (err) {
-      setResponse(null);
+      toast.error('Failed to update rates: ' + err.message);
     } finally {
       setExchangeLoading(false);
       setShow(false);
     }
   };
+
+  useEffect(() => {
+    const getExchangeRatesHistory = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          `${baseUrl}/v1/admin/get-exchange-rates-history`,
+          {
+            headers: {
+              accept: '*/*',
+              Authorization: `Bearer ${authToken}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        // Add a unique ID to each row
+        const rowsWithIds = response?.data?.data.map((row) => ({
+          ...row,
+          id: uuidv4(), // Generate a unique ID
+        }));
+
+        // Update the state with rows containing unique IDs
+        setExchangeResponse(rowsWithIds);
+      } catch (error) {
+        // Handle errors here
+        toast.error('Error:', error);
+        console.error('Error:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+  }, []);
+
+  const columns = [
+    {
+      field: 'created_at',
+      renderHeader: (params) => (
+        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+          Date/Time
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+      valueFormatter: (params) => formatDate(params.value), // Format the date
+    },
+    {
+      field: 'rate',
+      renderHeader: (params) => (
+        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+          Exchange
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'local_transaction_rate',
+      renderHeader: (params) => (
+        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+          Local Trans.{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'international_transaction_rate',
+      renderHeader: (params) => (
+        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+          Int. Trans.{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'funding_rate',
+      renderHeader: (params) => (
+        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+          Funding{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'conversion_rate',
+      renderHeader: (params) => (
+        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+          Conversion{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'status',
+      renderHeader: (params) => (
+        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+          status{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+  ];
 
   return (
     <SidebarLayout>
@@ -138,483 +263,27 @@ const SetRates = () => {
 
           <div className="row">
             <div className="col-12 mt-5">
-              <Tabs defaultActiveKey="first">
-                <Tab eventKey="first" title={'Exchange'}>
-                  <div className="users__tab__padding">
-                    <div className="table-responsive">
-                      <table className="table table-borderless">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">
-                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                Date/Time{' '}
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Current
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Previous
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                {' '}
-                                Status
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Activate / Deactivate
-                              </h2>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>
-                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td className="font__amount">
-                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                                Deactivated
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>
-                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td className="font__amount">
-                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                                Deactivated
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>
-                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td className="font__amount">
-                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                                Deactivated
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>
-                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td className="font__amount">
-                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                                Deactivated
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+              <div className="users__tab__padding">
+                {isLoading ? (
+                  <div className="text-slate-500 text-sm font-normal font-['Agrandir'] leading-normal flex items-center justify-center">
+                    Loading Set Rates History...{' '}
                   </div>
-                </Tab>
-                <Tab eventKey="second" title={'Local Transaction'}>
-                  <div className="users__tab__padding">
-                    <div className="table-responsive">
-                      <table className="table table-borderless">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">
-                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                Date/Time{' '}
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Current
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Previous
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                {' '}
-                                Status
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Activate / Deactivate
-                              </h2>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>
-                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Active
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>{' '}
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>
-                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                                Deactivated
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>{' '}
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </Tab>
-                <Tab eventKey="third" title="International Trans">
-                  <div className="users__tab__padding">
-                    <div className="table-responsive">
-                      <table className="table table-borderless">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">
-                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                Date/Time{' '}
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Current
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Previous
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                {' '}
-                                Status
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Activate / Deactivate
-                              </h2>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>
-                              <div className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </div>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                                Deactivated
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>{' '}
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </Tab>
-                <Tab eventKey="fourth" title="Conversion">
-                  <div className="users__tab__padding">
-                    <div className="table-responsive">
-                      <table className="table table-borderless">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">
-                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                Date/Time{' '}
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Current
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Previous
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                {' '}
-                                Status
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Activate / Deactivate
-                              </h2>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>
-                              <div className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </div>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                                Deactivated
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>{' '}
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </Tab>
-                <Tab eventKey="fifth" title="Funding">
-                  <div className="users__tab__padding">
-                    <div className="table-responsive">
-                      <table className="table table-borderless">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">
-                              <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                Date/Time{' '}
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-lime-800 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Current
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Previous
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-indigo-950 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                {' '}
-                                Status
-                              </h2>
-                            </th>
-                            <th scope="col">
-                              <h2 className="text-black text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                Activate / Deactivate
-                              </h2>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>
-                              <span className="text-slate-900 text-xs font-bold font-['Agrandir'] leading-3 tracking-tight">
-                                12/23 /2:00am{' '}
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-lime-900 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                987
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-yellow-400 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-                                200
-                              </span>
-                            </td>
-                            <td>
-                              <span className="text-red-700 text-xs font-bold font-['Inter'] leading-3 tracking-tight">
-                                Deactivated
-                              </span>
-                            </td>
-                            <td className="font__approved">
-                              {' '}
-                              <Toggle
-                                isOn={isActive}
-                                handleToggle={handleIsActive}
-                              />
-                            </td>{' '}
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </Tab>
-              </Tabs>
+                ) : (
+                  <DataGrid
+                    sx={{
+                      boxShadow: 2,
+                      border: 0,
+                      backgroundColor: 'white',
+                      '& .MuiDataGrid-cell:hover': {
+                        color: 'primary.main',
+                      },
+                    }}
+                    rows={exchangeResponse}
+                    columns={columns}
+                    rowKeyField="id"
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -630,18 +299,18 @@ const SetRates = () => {
             </h2>
             <div className="flex items-center justify-center gap-4 my-2">
               <div
-                className="w-[134px] flex items-center justify-center h-[51px] bg-blue-600 rounded-[10px] cursor-pointer"
+                className="w-[134px] h-[51px] flex items-center justify-center bg-blue-600 rounded-[10px] cursor-pointer"
                 onClick={handleRateClick}
               >
-                <span className="w-[47px]  text-neutral-50 text-2xl font-bold font-['Montserrat']">
-                  {exchangeLoading ? 'loading...' : 'Yes'}
+                <span className=" w-max text-neutral-50 text-xl font-bold font-['Montserrat']">
+                  {exchangeLoading ? '...' : 'Yes'}
                 </span>
               </div>
               <div
-                className="w-[134px] h-[51px] flex items-center justify-center bg-[#FC0019] rounded-[10px] cursor-pointer"
+                className="w-[134px] h-[51px]  flex items-center justify-center bg-[#FC0019] rounded-[10px] cursor-pointer"
                 onClick={() => setShow(false)}
               >
-                <span className="w-[47px]  text-neutral-50 text-2xl font-bold font-['Montserrat']">
+                <span className="w-max text-neutral-50 text-xl font-bold font-['Montserrat']">
                   No
                 </span>
               </div>
