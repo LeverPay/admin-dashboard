@@ -15,6 +15,7 @@ import {
   faChartSimple,
   faArrowTrendUp,
   faPercent,
+  faMoneyCheckAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import Cookies from 'js-cookie';
 import { Link, useNavigate } from 'react-router-dom';
@@ -178,17 +179,26 @@ const SideBar = () => {
               <span>Set Card Limit</span>
             </Link>
           </li>
-        </ListView>
-
-        <ListView>
           <li
             onClick={() => handleListItemClick(16)}
             className={activeIndex === 16 ? 'active' : ''}
           >
+            <Link to="/bank-details" className="nav__link">
+              <FontAwesomeIcon icon={faMoneyCheckAlt} />{' '}
+              <span>Bank Details</span>
+            </Link>
+          </li>
+        </ListView>
+
+        <ListView>
+          <li
+            onClick={() => handleListItemClick(17)}
+            className={activeIndex === 17 ? 'active' : ''}
+          >
             <FontAwesomeIcon icon={faCircleQuestion} /> <span>Help Center</span>
           </li>
           <li
-            className={activeIndex === 17 ? 'active' : ''}
+            className={activeIndex === 18 ? 'active' : ''}
             onClick={() => handleLogout}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />

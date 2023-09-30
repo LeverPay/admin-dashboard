@@ -34,8 +34,9 @@ import Investors from './Pages/Investors';
 import { Toaster } from 'react-hot-toast';
 import LeverpayInvestor from './Pages/LeverpayInvestor';
 import ProtectedRoute from './auth/ProtectedRoute';
-import SetRates from './Pages/SetRates'
-import NotFoundPage from './Pages/NotFoundPage'
+import SetRates from './Pages/SetRates';
+import NotFoundPage from './Pages/NotFoundPage';
+import BankDetails from './Pages/BankDetails';
 
 export default function App() {
   return (
@@ -48,9 +49,7 @@ export default function App() {
           <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/change-password" element={<ChangePassword />} />
 
-          <Route
-            element={<ProtectedRoute />}
-          >
+          <Route element={<ProtectedRoute />}>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/transaction" element={<TransactionPage />} />
             <Route
@@ -80,6 +79,7 @@ export default function App() {
               path="/merchant-subscription"
               element={<MerchantSubscription />}
             />
+            <Route path="/bank-details" element={<BankDetails />} />
             <Route path="/investors" element={<Investors />} />
             <Route path="/leverpay-investors" element={<LeverpayInvestor />} />
 
