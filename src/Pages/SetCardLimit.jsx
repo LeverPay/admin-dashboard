@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SidebarLayout from '../Layouts/SidebarLayout';
 import { DashboardView } from '../css/DashboardPageStyles';
-import CardFinanceOptions from '../Components/CardFinanceOptions';
+import CardLimitOptions from '../Components/CardLimitOptions';
 import minilogo from '../assets/mini-logo.svg';
 import { baseUrl } from '../utils/constants';
 
@@ -13,20 +13,20 @@ import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
-const SetRates = () => {
+const SetCardLimit = () => {
   const [show, setShow] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-  const [exchangeLoading, setExchangeLoading] = React.useState(false);
+  const [limitLoading, setCardLimitLoading] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const [exchangeRate, setExchangeRate] = useState('');
-  const [localTransRate, setLocalTransRate] = useState('');
-  const [intTransRate, setIntTransRate] = useState('');
-  const [convsnRate, setConvsnRate] = useState('');
-  const [fundingRate, setFundingRate] = useState('');
-  const [exchangeResponse, setExchangeResponse] = useState([]);
+  const [defaultCardLimit, setDefaultCardLimit] = useState('');
+  const [goldCardLimit, setGoldCardLimit] = useState('');
+  const [diamondCardLimit, setDiamondCardLimit] = useState('');
+  const [pinkLadyCardLimit, setPinkLadyCardLimit] = useState('');
+  const [enterpriseCardLimit, setEnterpriseCardLimit] = useState('');
+  const [limitResponse, setCardLimitResponse] = useState([]);
 
-  const handleRateChange = (value, setter) => {
+  const handleLimitChange = (value, setter) => {
     setter(value);
   };
 
@@ -37,38 +37,38 @@ const SetRates = () => {
   };
 
   React.useEffect(() => {
-    document.title = 'Set Rates  | LeverPay Admin';
+    document.title = 'Set Card Limit  | LeverPay Admin';
   }, []);
 
   const authToken = Cookies.get('authToken');
 
-  // EXCHANGE Rate Endpoint
+  // Card Limt Endpoint
 
-  const handleRateClick = async (e) => {
+  const handleLimitClick = async (e) => {
     e.preventDefault();
-    setExchangeLoading(true);
+    setCardLimitLoading(true);
 
-    // Check if all of the fields are not empty
+    // Check if all of the fields are empty
     if (
-      !exchangeRate &&
-      !localTransRate &&
-      !fundingRate &&
-      !convsnRate &&
-      !intTransRate
+      !defaultCardLimit &&
+      !goldCardLimit &&
+      !diamondCardLimit &&
+      !pinkLadyCardLimit &&
+      !enterpriseCardLimit
     ) {
-      toast.error('Please input values for atleast one rate.');
-      setExchangeLoading(false);
+      toast.error('Please input atleast 1 before saving.');
+      setCardLimitLoading(false);
       setShow(false);
-      return; // Exit early if any field is empty
+      return; // Exit early if all field is empty
     }
 
     try {
       const data = {
-        rate: exchangeRate,
-        local_transaction_rate: localTransRate,
-        funding_rate: fundingRate,
-        conversion_rate: convsnRate,
-        international_transaction_rate: intTransRate,
+        default: defaultCardLimit,
+        gold: goldCardLimit,
+        diamond: diamondCardLimit,
+        pinklady: pinkLadyCardLimit,
+        enterprise: enterpriseCardLimit,
       };
 
       const headers = {
@@ -79,26 +79,26 @@ const SetRates = () => {
       };
 
       const response = await axios.post(
-        `${baseUrl}/v1/admin/update-exchange-rates`,
+        `${baseUrl}/v1/admin/update-card-limits`,
         data,
         { headers }
       );
 
-      toast.success('Rate updated successfully');
+      toast.success('Card Limit updated successfully');
     } catch (err) {
-      toast.error('Failed to update rates: ' + err.message);
+      toast.error('Failed to update card limit: ' + err.message);
     } finally {
-      setExchangeLoading(false);
+      setCardLimitLoading(false);
       setShow(false);
     }
   };
 
   useEffect(() => {
-    const getExchangeRatesHistory = async () => {
+    const getCardLimitsHistory = async () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `${baseUrl}/v1/admin/get-exchange-rates-history`,
+          `${baseUrl}/v1/admin/get-card-limits-history`,
           {
             headers: {
               accept: '*/*',
@@ -115,7 +115,7 @@ const SetRates = () => {
         }));
 
         // Update the state with rows containing unique IDs
-        setExchangeResponse(rowsWithIds);
+        setCardLimitResponse(rowsWithIds);
       } catch (error) {
         // Handle errors here
         toast.error('Error:', error);
@@ -139,50 +139,50 @@ const SetRates = () => {
       valueFormatter: (params) => formatDate(params.value), // Format the date
     },
     {
-      field: 'rate',
+      field: 'default_card',
       renderHeader: (params) => (
         <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-          Exchange
+          Default
         </h2>
       ),
       flex: 1,
       headerAlign: 'left',
     },
     {
-      field: 'local_transaction_rate',
+      field: 'gold_card',
       renderHeader: (params) => (
         <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-          Local Trans.{' '}
+          Gold{' '}
         </h2>
       ),
       flex: 1,
       headerAlign: 'left',
     },
     {
-      field: 'international_transaction_rate',
+      field: 'diamond_card',
       renderHeader: (params) => (
         <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-          Int. Trans.{' '}
+          Diamond.{' '}
         </h2>
       ),
       flex: 1,
       headerAlign: 'left',
     },
     {
-      field: 'funding_rate',
+      field: 'pink_lady_card',
       renderHeader: (params) => (
         <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-          Funding{' '}
+          Pink Lady{' '}
         </h2>
       ),
       flex: 1,
       headerAlign: 'left',
     },
     {
-      field: 'conversion_rate',
+      field: 'enterprise_card',
       renderHeader: (params) => (
         <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-          Conversion{' '}
+          Enterprise{' '}
         </h2>
       ),
       flex: 1,
@@ -212,42 +212,42 @@ const SetRates = () => {
         </div>
         <div className="p-3">
           <h2 className="text-indigo-950 text-2xl font-bold font-['Inter'] leading-normal">
-            Set Rates
+            Set Card Limits
           </h2>
           <div className="flex flex-wrap items-center gap-3 md:gap-1 justify-between">
-            <CardFinanceOptions
-              title="Exchange Rate"
-              rate={exchangeRate}
-              handleRateChange={(value) =>
-                handleRateChange(value, setExchangeRate)
+            <CardLimitOptions
+              title="Default Card"
+              limit={defaultCardLimit}
+              handleLimitChange={(value) =>
+                handleLimitChange(value, setDefaultCardLimit)
               }
             />
-            <CardFinanceOptions
-              title="Local Trans Rate"
-              rate={localTransRate}
-              handleRateChange={(value) =>
-                handleRateChange(value, setLocalTransRate)
+            <CardLimitOptions
+              title="Gold Card"
+              limit={goldCardLimit}
+              handleLimitChange={(value) =>
+                handleLimitChange(value, setGoldCardLimit)
               }
             />
-            <CardFinanceOptions
-              title="Int. Trans Rate"
-              rate={intTransRate}
-              handleRateChange={(value) =>
-                handleRateChange(value, setIntTransRate)
+            <CardLimitOptions
+              title="Diamond Card"
+              limit={diamondCardLimit}
+              handleLimitChange={(value) =>
+                handleLimitChange(value, setDiamondCardLimit)
               }
             />
-            <CardFinanceOptions
-              title="Convsn Rate"
-              rate={convsnRate}
-              handleRateChange={(value) =>
-                handleRateChange(value, setConvsnRate)
+            <CardLimitOptions
+              title="Pink-Lady"
+              limit={pinkLadyCardLimit}
+              handleLmityChange={(value) =>
+                handleLimitChange(value, setPinkLadyCardLimit)
               }
             />
-            <CardFinanceOptions
-              title="Funding Rate"
-              rate={fundingRate}
-              handleRateChange={(value) =>
-                handleRateChange(value, setFundingRate)
+            <CardLimitOptions
+              title="Enterprise"
+              limit={enterpriseCardLimit}
+              handleLimitChange={(value) =>
+                handleLimitChange(value, setEnterpriseCardLimit)
               }
             />
 
@@ -266,7 +266,7 @@ const SetRates = () => {
               <div className="users__tab__padding">
                 {isLoading ? (
                   <div className="text-slate-500 text-sm font-normal font-['Agrandir'] leading-normal flex items-center justify-center">
-                    Loading Set Rates History...{' '}
+                    Loading Set Limits History...{' '}
                   </div>
                 ) : (
                   <DataGrid
@@ -278,7 +278,7 @@ const SetRates = () => {
                         color: 'primary.main',
                       },
                     }}
-                    rows={exchangeResponse}
+                    rows={limitResponse}
                     columns={columns}
                     rowKeyField="id"
                   />
@@ -295,15 +295,15 @@ const SetRates = () => {
           <div className="py-5">
             <h2 className="text-center text-black text-base font-bold font-['Montserrat'] leading-normal">
               Are you sure you want to <br />
-              save the New Exchange Rate?
+              save the New Card Limit?
             </h2>
             <div className="flex items-center justify-center gap-4 my-2">
               <div
                 className="w-[134px] h-[51px] flex items-center justify-center bg-blue-600 rounded-[10px] cursor-pointer"
-                onClick={handleRateClick}
+                onClick={handleLimitClick}
               >
                 <span className=" w-max text-neutral-50 text-xl font-bold font-['Montserrat']">
-                  {exchangeLoading ? '...' : 'Yes'}
+                  {limitLoading ? '...' : 'Yes'}
                 </span>
               </div>
               <div
@@ -390,7 +390,7 @@ const SetRates = () => {
               </svg>
 
               <h2 className="w-[354px] h-[38px] text-center text-lime-500 text-base font-extrabold font-['Montserrat']">
-                The new exchange rate has been updated successfully
+                The new card limit has been updated successfully
               </h2>
 
               <div
@@ -409,4 +409,4 @@ const SetRates = () => {
   );
 };
 
-export default SetRates;
+export default SetCardLimit;

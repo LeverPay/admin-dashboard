@@ -81,6 +81,14 @@ const SideBar = () => {
             </Link>
           </li>
           <li
+            className={activeIndex === 3 ? 'active' : ''}
+            onClick={() => handleListItemClick(3)}
+          >
+            <Link to="/merchant" className="text-base nav__link">
+              <FontAwesomeIcon icon={faUserGroup} /> <span>Merchants</span>{' '}
+            </Link>
+          </li>
+          <li
             onClick={() => handleListItemClick(4)}
             className={activeIndex === 4 ? 'active' : ''}
           >
@@ -120,14 +128,7 @@ const SideBar = () => {
               <span>Fund Request</span>
             </Link>
           </li>
-          <li
-            onClick={() => handleListItemClick(9)}
-            className={activeIndex === 9 ? 'active' : ''}
-          >
-            <Link to="/merchant" className="nav__link">
-              <FontAwesomeIcon icon={faArrowTrendUp} /> <span>Merchant</span>
-            </Link>
-          </li>
+          
           <li
             onClick={() => handleListItemClick(10)}
             className={activeIndex === 10 ? 'active' : ''}

@@ -35,6 +35,7 @@ import { Toaster } from 'react-hot-toast';
 import LeverpayInvestor from './Pages/LeverpayInvestor';
 import ProtectedRoute from './auth/ProtectedRoute';
 import SetRates from './Pages/SetRates';
+import SetCardLimit from './Pages/SetCardLimit';
 import NotFoundPage from './Pages/NotFoundPage';
 import BankDetails from './Pages/BankDetails';
 
@@ -45,6 +46,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/change-password" element={<ChangePassword />} />
@@ -70,6 +72,7 @@ export default function App() {
             <Route path="/user-view-more" element={<UserViewMore />} />
             <Route path="/merchant-view-more" element={<MerchantViewMore />} />
             <Route path="/set-rates" element={<SetRates />} />
+            <Route path="/set-card-limit" element={<SetCardLimit />} />
 
             <Route path="/debit-card" element={<DebitCard />} />
             <Route path="/card-upgraade" element={<CardUpgradePage />} />

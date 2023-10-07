@@ -42,7 +42,8 @@ const ChangePassword = () => {
       return;
     }
 
-    if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(newPassword)) {
+    //if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(newPassword)) {
+    if (!/[!@#$%^&*()_+{}\]:;<>,.?~\\-]/.test(newPassword)) {
       toast.error(
         'Password must contain at least one symbol (!@#$%^&*()_+{}[]:;<>,.?~-).'
       );

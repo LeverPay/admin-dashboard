@@ -22,7 +22,7 @@ function MerchantDataTable() {
             <TableHeaderCell>Name</TableHeaderCell>
             <TableHeaderCell>Email</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>
-            <TableHeaderCell></TableHeaderCell>
+            <TableHeaderCell>More</TableHeaderCell>
           </tr>
         </thead>
         <tbody>
