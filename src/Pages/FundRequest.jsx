@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarLayout from '../Layouts/SidebarLayout';
 import { DashboardNavView, DashboardView } from '../css/DashboardPageStyles';
@@ -6,15 +6,140 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FundRequestStyle } from '../css/FundrequestStyle';
-import allRequest from '../assets/all-request.svg';
-import approvedRequest from '../assets/check.svg';
-import pendingRequest from '../assets/pending.svg';
-import failedRequest from '../assets/failed.svg';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import Cookies from 'js-cookie';
+import { baseUrl } from '../utils/constants';
+import { format } from 'date-fns';
+import { DataGrid } from '@mui/x-data-grid';
 
 function FundRequest() {
+  const [fundRequestData, setFundRequestData] = useState(null);
+
+  const authToken = Cookies.get('authToken');
+
+  // Define a function to format the transactionDate
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return format(date, 'yyyy-MM-dd'); // Format date to 'yyyy-MM-dd'
+  };
+
+  React.useEffect(() => {
+    document.title = 'Fund Request  | LeverPay Admin';
+  }, []);
+
+  useEffect(() => {
+    const apiUrl = `${baseUrl}/v1/admin/get-topup-requests`;
+    const headers = {
+      accept: '*/*',
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': 'VAjFe3gR4N6VeLZWsLPozlm4ttYquPC13KfprAim',
+    };
+
+    axios
+      .get(apiUrl, { headers })
+      .then((response) => {
+        // Add a unique ID to each row
+        const rowsWithIds = response?.data?.data.map((row) => ({
+          ...row,
+          id: uuidv4(),
+        }));
+        setFundRequestData(rowsWithIds);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const columns = [
+    {
+      field: '#',
+      renderHeader: (params) => (
+        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
+          {' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'created_at',
+      renderHeader: () => (
+        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+          Date/Time{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+      valueFormatter: (params) => formatDate(params.value), // Format the date
+    },
+    {
+      field: 'leverpayId',
+      renderHeader: () => (
+        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+          Leverpay ID{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'currency',
+      renderHeader: () => (
+        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+          Currency (Stable Coin/Naira)
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'source',
+      renderHeader: () => (
+        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+          Source{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'Amount',
+      renderHeader: () => (
+        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+          Amount{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'current_balance',
+      renderHeader: () => (
+        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+          Current Balance{' '}
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+    {
+      field: 'status',
+      renderHeader: () => (
+        <h2 className="text-orange-600 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
+          {' '}
+          Status
+        </h2>
+      ),
+      flex: 1,
+      headerAlign: 'left',
+    },
+  ];
+
   return (
     <SidebarLayout>
       <DashboardView>
@@ -179,180 +304,80 @@ function FundRequest() {
                   <div className="col-12 mt-5">
                     <Tabs defaultActiveKey="first">
                       <Tab eventKey="first" title={'Request'}>
-                        <div className="users__tab__padding">
-                          <table className="table table-borderless">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Date/Time</th>
-                                <th scope="col">LaverPay ID</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>02/08/2023 12:53</td>
-                                <td>Lvphhdhd01</td>
-                                <td>Binance</td>
-                                <td className="font__amount">200USDT</td>
-                                <td className="font__approved">
-                                  <Link
-                                    to={{
-                                      pathname: `/approve_request/1`,
-                                      state: { users: '' },
-                                    }}
-                                    className="view-more-btn"
-                                  >
-                                    {' '}
-                                    APPROVED
-                                  </Link>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>02/08/2023 12:53</td>
-                                <td>Lvphhdhd01</td>
-                                <td>Binance</td>
-                                <td className="font__amount">40USDT</td>
-                                <td className="font__pending">
-                                  <Link
-                                    to={{
-                                      pathname: `/approve_request/1`,
-                                      state: { users: '' },
-                                    }}
-                                    className="view-more-btn"
-                                  >
-                                    {' '}
-                                    PENDING
-                                  </Link>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>02/08/2023 12:53</td>
-                                <td>Lvphhdhd01</td>
-                                <td>Binance</td>
-                                <td className="font__amount">540USDT</td>
-                                <td className="font__failed">
-                                  <Link
-                                    to={{
-                                      pathname: `/approve_request/1`,
-                                      state: { users: '' },
-                                    }}
-                                    className="view-more-btn"
-                                  >
-                                    {' '}
-                                    FAILED
-                                  </Link>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">4</th>
-                                <td>02/08/2023 12:53</td>
-                                <td>Lvphhdhd01</td>
-                                <td>Binance</td>
-                                <td className="font__amount">200USDT</td>
-                                <td className="font__approved">
-                                  <Link
-                                    to={{
-                                      pathname: `/approve_request/1`,
-                                      state: { users: '' },
-                                    }}
-                                    className="view-more-btn"
-                                  >
-                                    {' '}
-                                    APPROVED
-                                  </Link>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                        {fundRequestData ? (
+                          <DataGrid
+                            sx={{
+                              boxShadow: 2,
+                              border: 0,
+                              backgroundColor: 'white',
+                              '& .MuiDataGrid-cell:hover': {
+                                color: 'primary.main',
+                              },
+                            }}
+                            rows={fundRequestData}
+                            columns={columns}
+                            rowKeyField="id"
+                          />
+                        ) : (
+                          <p>Loading...</p> // You can replace this with a loading indicator
+                        )}
                       </Tab>
                       <Tab eventKey="second" title={'Approve'}>
-                        <div className="users__tab__padding">
-                          <table className="table table-borderless">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Date/Time</th>
-                                <th scope="col">LaverPay ID</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>02/08/2023 12:53</td>
-                                <td>Lvphhdhd01</td>
-                                <td>Naira</td>
-                                <td>Binance</td>
-                                <td className="font__approved">APPROVED</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>02/08/2023 12:53</td>
-                                <td>Lvphhdhd01</td>
-                                <td>Naira</td>
-                                <td>Binance</td>
-                                <td className="font__approved">APPROVED</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                        {fundRequestData ? (
+                          <DataGrid
+                            sx={{
+                              boxShadow: 2,
+                              border: 0,
+                              backgroundColor: 'white',
+                              '& .MuiDataGrid-cell:hover': {
+                                color: 'primary.main',
+                              },
+                            }}
+                            rows={fundRequestData}
+                            columns={columns}
+                            rowKeyField="id"
+                          />
+                        ) : (
+                          <p>Loading...</p> // You can replace this with a loading indicator
+                        )}
                       </Tab>
                       <Tab eventKey="third" title="Pending">
-                        <div className="users__tab__padding">
-                          <table className="table table-borderless">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Date/Time</th>
-                                <th scope="col">LaverPay ID</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>02/08/2023 12:53</td>
-                                <td>Lvphhdhd01</td>
-                                <td>Stable Coin</td>
-                                <td>Binance</td>
-                                <td className="font__pending">PENDING</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                        {fundRequestData ? (
+                          <DataGrid
+                            sx={{
+                              boxShadow: 2,
+                              border: 0,
+                              backgroundColor: 'white',
+                              '& .MuiDataGrid-cell:hover': {
+                                color: 'primary.main',
+                              },
+                            }}
+                            rows={fundRequestData}
+                            columns={columns}
+                            rowKeyField="id"
+                          />
+                        ) : (
+                          <p>Loading...</p> // You can replace this with a loading indicator
+                        )}
                       </Tab>
                       <Tab eventKey="fourth" title="Fail">
-                        <div className="users__tab__padding">
-                          <table className="table table-borderless">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Date/Time</th>
-                                <th scope="col">LaverPay ID</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>02/08/2023 12:53</td>
-                                <td>Lvphhdhd01</td>
-                                <td>Stable Coin</td>
-                                <td>Binance</td>
-                                <td className="font__failed">FAILED</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                         {fundRequestData ? (
+                          <DataGrid
+                            sx={{
+                              boxShadow: 2,
+                              border: 0,
+                              backgroundColor: 'white',
+                              '& .MuiDataGrid-cell:hover': {
+                                color: 'primary.main',
+                              },
+                            }}
+                            rows={fundRequestData}
+                            columns={columns}
+                            rowKeyField="id"
+                          />
+                        ) : (
+                          <p>Loading...</p> // You can replace this with a loading indicator
+                        )}
                       </Tab>
                     </Tabs>
                   </div>

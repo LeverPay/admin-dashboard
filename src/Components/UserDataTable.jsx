@@ -52,7 +52,7 @@ function UserDataTable() {
         </thead>
         <tbody>
           {userData.map((item, index) => (
-            <UserTableRowData key={item.id} item={item} index={index} />
+            <UserTableRowData key={item?.id} item={item} index={index} />
           ))}
         </tbody>
       </table>

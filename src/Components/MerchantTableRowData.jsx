@@ -2,27 +2,14 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const MerchantTableRowData = ({ item, index }) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   
-  const merchantData = {
-    uuid: item.uuid,
-    first_name: item.first_name,
-    last_name: item.last_name,
-    gender: item.gender,
-    dob: item.dob,
-    primaryEmail: item.primary_email,
-    primaryPhone: item.primary_phone,
-    address: item.address,
-    picture: item.picture,
+
+  const handleViewMoreClick = () => {
+    // Use the navigate function to pass the merchantData object as state
+    navigate(`/merchant-view-more/${item.uuid}`);
   };
-
-    const handleViewMoreClick = () => {
-      // Use the navigate function to pass the merchantData object as state
-      navigate(`/merchant-view-more/${item.uuid}`, { state: { merchantData } });
-    };
-
 
   return (
     <tr key={item.uuid}>

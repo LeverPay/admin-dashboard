@@ -128,7 +128,7 @@ const SideBar = () => {
               <span>Fund Request</span>
             </Link>
           </li>
-          
+
           <li
             onClick={() => handleListItemClick(10)}
             className={activeIndex === 10 ? 'active' : ''}
@@ -200,7 +200,7 @@ const SideBar = () => {
           </li>
           <li
             className={activeIndex === 18 ? 'active' : ''}
-            onClick={() => handleLogout}
+            onClick={handleLogout}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
             <span>Logout</span>

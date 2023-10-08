@@ -15,10 +15,15 @@ import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 import UserDataTable from '../Components/UserDataTable';
 
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
-import MerchantDataTable from '../Components/MerchantDataTable'
+import MerchantDataTable from '../Components/MerchantDataTable';
 
 const MerchantPage = () => {
   const count = 10;
+
+  React.useEffect(() => {
+    document.title = 'Merchant  | LeverPay Admin';
+  }, []);
+
   return (
     <SidebarLayout>
       <DashboardView>
