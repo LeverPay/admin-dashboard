@@ -1,58 +1,50 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import axios from 'axios';
-import { baseUrl } from '../utils/constants';
-const MerchantTableRowData = ({ item, index }) => {
-  const navigate = useNavigate();
-  const [data, setData] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-  const navigateToViewMore = () => {
-    navigate('/merchant-view-more');
+const MerchantTableRowData = ({ item, index }) => {
+
+  const navigate = useNavigate()
+
+  
+  const merchantData = {
+    uuid: item.uuid,
+    first_name: item.first_name,
+    last_name: item.last_name,
+    gender: item.gender,
+    dob: item.dob,
+    primaryEmail: item.primary_email,
+    primaryPhone: item.primary_phone,
+    address: item.address,
+    picture: item.picture,
   };
 
-  const authToken = Cookies.get('authToken');
-
-  React.useEffect(() => {
-    const fetchMerchants = async () => {
-      try {
-        // Get the token from the cookie
-        const response = await axios.get(
-          `${baseUrl}/v1/admin/get-all-merchants`,
-          {
-            headers: {
-              Authorization: `Bearer ${authToken}`,
-              accept: '*/*',
-              'X-CSRF-TOKEN': 'qC0LrUVwQhWwAXb6bRGYi3xyVnEvqAI8olCNV5ow',
-            },
-          }
-        );
-
-        setData(response.data);
-        console.log('data', data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-        setIsLoading(false);
-      }
+    const handleViewMoreClick = () => {
+      // Use the navigate function to pass the merchantData object as state
+      navigate(`/merchant-view-more/${item.uuid}`, { state: { merchantData } });
     };
-    fetchMerchants();
-  }, []);
+
 
   return (
-    <tr key={item.id}>
-      <td>{item.customerName}</td> {/**Name */}
-      <td>{item.customerEmail}</td> {/**email */}
+    <tr key={item.uuid}>
       <td>
-        {item.failed === 0 ? (
+        {item.first_name} {item.last_name}
+      </td>{' '}
+      {/**Name */}
+      <td>{item.email}</td> {/**email */}
+      <td>
+        {item.status === 0 ? (
           <span className="suspended-user">Suspended</span>
         ) : (
           <span className="active-user">Active</span>
         )}
       </td>
-      <td onClick={navigateToViewMore}>
-        <div className="view-more-btn">View More</div>
+      <td>
+        {/* <Link to={`/merchant-view-more/${item.uuid}`} className="view-more-btn">
+          View More
+        </Link> */}
+        <div onClick={handleViewMoreClick} className="view-more-btn">
+          View More
+        </div>
       </td>
     </tr>
   );

@@ -68,7 +68,10 @@ export default function App() {
 
             <Route path="/edit-card" element={<EditCard />} />
             <Route path="/user-view-more" element={<UserViewMore />} />
-            <Route path="/merchant-view-more" element={<MerchantViewMore />} />
+            <Route
+              path="/merchant-view-more/:userId"
+              element={<MerchantViewMore />}
+            />
             <Route path="/set-rates" element={<SetRates />} />
 
             <Route path="/debit-card" element={<DebitCard />} />
