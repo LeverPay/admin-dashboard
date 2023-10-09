@@ -8,11 +8,11 @@ const UserTableRowData = ({ item, index }) => {
     navigate('/user-view-more');
   };
   return (
-    <tr key={item.id}>
-      <td>{item.first_name}</td> {/**Name */}
-      <td>{item.email}</td> {/**email */}
+    <tr key={item?.id}>
+      <td>{item?.first_name}</td> {/**Name */}
+      <td>{item?.email}</td> {/**email */}
       <td>
-        {item.status === 0 ? (
+        {item?.status === 0 ? (
           <span className="suspended-user">Suspended</span>
         ) : (
           <span className="active-user">Active</span>

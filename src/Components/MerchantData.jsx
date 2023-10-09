@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MerchantData = () => {
+const MerchantData = ({ selectedMerchant }) => {
   return (
     <div className="bg-white p-5">
       <div className="flex items-start gap-5">
@@ -10,7 +10,7 @@ const MerchantData = () => {
               First Name :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              Nina
+              {selectedMerchant?.first_name}
               <br />
             </span>
           </p>
@@ -18,7 +18,7 @@ const MerchantData = () => {
             Last Name :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Okoye
+            {selectedMerchant?.last_name}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
@@ -26,7 +26,7 @@ const MerchantData = () => {
             Gender :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Female
+            {selectedMerchant?.gender}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
@@ -34,7 +34,7 @@ const MerchantData = () => {
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
             {' '}
-            09/09/1995
+            {selectedMerchant?.dob}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
@@ -68,7 +68,7 @@ const MerchantData = () => {
               Primary Email :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              Neena002@gmail.com
+              {selectedMerchant?.primary_email}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
@@ -83,7 +83,7 @@ const MerchantData = () => {
               Primary Phone :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              07068936345
+              {selectedMerchant?.primary_phone}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
