@@ -19,6 +19,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Cookies from 'js-cookie';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -32,6 +33,7 @@ const SideBar = () => {
   const handleLogout = () => {
     // Remove the authentication token (or any other session-related data)
     Cookies.remove('authToken');
+    axios.get('https://leverpay-api.azurewebsites.net/api/v1/admin/admin-logout')
 
     // Redirect the user to the login page (or any other desired page)
     navigate('/login');
