@@ -31,9 +31,10 @@ const SideBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    axios.get('https://leverpay-api.azurewebsites.net/api/v1/admin/admin-logout')
+
     // Remove the authentication token (or any other session-related data)
     Cookies.remove('authToken');
-    axios.get('https://leverpay-api.azurewebsites.net/api/v1/admin/admin-logout')
 
     // Redirect the user to the login page (or any other desired page)
     navigate('/login');
