@@ -51,8 +51,8 @@ function DataTable({ isShown }) {
             <TableHeaderCell>Name</TableHeaderCell>
             {isShown && <TableHeaderCell>user-ID</TableHeaderCell>}{' '}
             <TableHeaderCell> Amount</TableHeaderCell>
-            <TableHeaderCell>Status</TableHeaderCell>
             <TableHeaderCell>Type</TableHeaderCell>
+            <TableHeaderCell>Status</TableHeaderCell>
             <TableHeaderCell></TableHeaderCell>
             <TableHeaderCell></TableHeaderCell>
           </tr>
