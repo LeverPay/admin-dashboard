@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SidebarLayout from '../Layouts/SidebarLayout';
-import { DashboardNavView, DashboardView } from '../css/DashboardPageStyles';
+import SidebarLayout from '../../Layouts/SidebarLayout';
+import { DashboardNavView, DashboardView } from '../../css/DashboardPageStyles';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { FundRequestStyle } from '../css/FundrequestStyle';
+import { FundRequestStyle } from '../../css/FundrequestStyle';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import './fundrequest.css'
 
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
 import Cookies from 'js-cookie';
-import { baseUrl } from '../utils/constants';
+import { baseUrl } from '../../utils/constants';
 import { format } from 'date-fns';
-import { DataGrid } from '@mui/x-data-grid';
 
 function FundRequest() {
   const [fundRequestData, setFundRequestData] = useState(null);
-
+  const [isApproved, setIsApproved] = useState(false)
+  const [approving, setApproving] = useState(false)
   const authToken = Cookies.get('authToken');
 
   // Define a function to format the transactionDate
@@ -51,6 +49,29 @@ function FundRequest() {
         console.error('Error fetching data:', error);
       });
   }, []);
+
+  function approve_top_up() {
+    setApproving(true)
+    axios.post(`${baseUrl}v1/admin/approve-topup-request`,
+      fundRequestData.uuid,
+      {
+        headers: {
+          accept: '*/*',
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': 'VAjFe3gR4N6VeLZWsLPozlm4ttYquPC13KfprAim',
+        }
+      }
+    )
+      .then(res => {
+        console.log(res)
+        setIsApproved(true)
+      })
+      .catch(err => {
+        console.log(err)
+        setApproving(false)
+      })
+  }
 
 
 
@@ -114,7 +135,7 @@ function FundRequest() {
                             </span>
                             <p>
                               <span className="text-white text-xl font-bold leading-normal">
-                                2000
+                                {fundRequestData && fundRequestData.length}
                               </span>{' '}
                             </p>
                           </div>
@@ -214,7 +235,80 @@ function FundRequest() {
                   </div>
                 </div>
 
-               
+                <div className='funding-table'>
+                  <ul className='tableHead'>
+                    <li>
+                      Name
+                    </li>
+                    <li>
+                      Amount
+                    </li>
+                    <li>
+                      Reference
+                    </li>
+                    <li>
+                      Action
+                    </li>
+                    <li>
+                      Receipt
+                    </li>
+                  </ul>
+                  <div className='funding_tableBody'>
+                    {
+                      fundRequestData && <>
+                        {
+                          fundRequestData.map(item => {
+                            return <ul key={item.id}>
+                              <li>
+                                {item.uuid}
+                              </li>
+                              <li>
+                                {item.amount}
+                              </li>
+                              <li>
+                                {item.reference}
+                              </li>
+                              <li className='funding_action'>
+                                {
+                                  isApproved ? <b style={{ color: 'green' }}>Approved</b> : approving ? <b style={{ color: 'gray' }}>Approving...</b> : <><img src="/images/done.png" alt="" onClick={approve_top_up} /><img src="/images/cancel.png" alt="" /></>
+                                }
+
+                              </li>
+                              <li>
+                                <Link to='' state={item.document}>
+                                  View Receipt
+                                </Link>
+                                <input type="file" value={item.document} readOnly />
+                              </li>
+                            </ul>
+                          })
+                        }
+                      </>
+                    }
+                    <ul>
+                      <li>
+                        Patrick Lekan
+                      </li>
+                      <li>
+                        50000.00
+                      </li>
+                      <li>
+                        hsdgwurwbwuc732jjash
+                      </li>
+                      <li className='funding_action'>
+                        {
+                          isApproved ? <b style={{ color: 'green' }}>Approved</b> : approving ? <b>Approving</b> : <><img src="/images/done.png" alt="" onClick={approve_top_up} /><img src="/images/cancel.png" alt="" /></>
+                        }
+                      </li>
+                      <li>
+                        <Link to='/fund_request_receipt' state={fundRequestData}>
+                          View Receipt
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
