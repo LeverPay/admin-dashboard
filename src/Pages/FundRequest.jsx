@@ -44,101 +44,15 @@ function FundRequest() {
       .get(apiUrl, { headers })
       .then((response) => {
         // Add a unique ID to each row
-        const rowsWithIds = response?.data?.data.map((row) => ({
-          ...row,
-          id: uuidv4(),
-        }));
-        setFundRequestData(rowsWithIds);
+        console.log(response.data)
+        setFundRequestData(response.data.data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
   }, []);
 
-  const columns = [
-    {
-      field: '#',
-      renderHeader: (params) => (
-        <h2 className="text-indigo-600 text-sm font-bold font-['Inter'] leading-3 tracking-tight">
-          {' '}
-        </h2>
-      ),
-      flex: 1,
-      headerAlign: 'left',
-    },
-    {
-      field: 'created_at',
-      renderHeader: () => (
-        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-          Date/Time{' '}
-        </h2>
-      ),
-      flex: 1,
-      headerAlign: 'left',
-      valueFormatter: (params) => formatDate(params.value), // Format the date
-    },
-    {
-      field: 'leverpayId',
-      renderHeader: () => (
-        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-          Leverpay ID{' '}
-        </h2>
-      ),
-      flex: 1,
-      headerAlign: 'left',
-    },
-    {
-      field: 'currency',
-      renderHeader: () => (
-        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-          Currency (Stable Coin/Naira)
-        </h2>
-      ),
-      flex: 1,
-      headerAlign: 'left',
-    },
-    {
-      field: 'source',
-      renderHeader: () => (
-        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-          Source{' '}
-        </h2>
-      ),
-      flex: 1,
-      headerAlign: 'left',
-    },
-    {
-      field: 'Amount',
-      renderHeader: () => (
-        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-          Amount{' '}
-        </h2>
-      ),
-      flex: 1,
-      headerAlign: 'left',
-    },
-    {
-      field: 'current_balance',
-      renderHeader: () => (
-        <h2 className="text-slate-900 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-          Current Balance{' '}
-        </h2>
-      ),
-      flex: 1,
-      headerAlign: 'left',
-    },
-    {
-      field: 'status',
-      renderHeader: () => (
-        <h2 className="text-orange-600 text-sm font-bold font-['Agrandir'] leading-3 tracking-tight">
-          {' '}
-          Status
-        </h2>
-      ),
-      flex: 1,
-      headerAlign: 'left',
-    },
-  ];
+
 
   return (
     <SidebarLayout>
@@ -300,88 +214,7 @@ function FundRequest() {
                   </div>
                 </div>
 
-                <div className="row">
-                  <div className="col-12 mt-5">
-                    <Tabs defaultActiveKey="first">
-                      <Tab eventKey="first" title={'Request'}>
-                        {fundRequestData ? (
-                          <DataGrid
-                            sx={{
-                              boxShadow: 2,
-                              border: 0,
-                              backgroundColor: 'white',
-                              '& .MuiDataGrid-cell:hover': {
-                                color: 'primary.main',
-                              },
-                            }}
-                            rows={fundRequestData}
-                            columns={columns}
-                            rowKeyField="id"
-                          />
-                        ) : (
-                          <p>Loading...</p> // You can replace this with a loading indicator
-                        )}
-                      </Tab>
-                      <Tab eventKey="second" title={'Approve'}>
-                        {fundRequestData ? (
-                          <DataGrid
-                            sx={{
-                              boxShadow: 2,
-                              border: 0,
-                              backgroundColor: 'white',
-                              '& .MuiDataGrid-cell:hover': {
-                                color: 'primary.main',
-                              },
-                            }}
-                            rows={fundRequestData}
-                            columns={columns}
-                            rowKeyField="id"
-                          />
-                        ) : (
-                          <p>Loading...</p> // You can replace this with a loading indicator
-                        )}
-                      </Tab>
-                      <Tab eventKey="third" title="Pending">
-                        {fundRequestData ? (
-                          <DataGrid
-                            sx={{
-                              boxShadow: 2,
-                              border: 0,
-                              backgroundColor: 'white',
-                              '& .MuiDataGrid-cell:hover': {
-                                color: 'primary.main',
-                              },
-                            }}
-                            rows={fundRequestData}
-                            columns={columns}
-                            rowKeyField="id"
-                          />
-                        ) : (
-                          <p>Loading...</p> // You can replace this with a loading indicator
-                        )}
-                      </Tab>
-                      <Tab eventKey="fourth" title="Fail">
-                         {fundRequestData ? (
-                          <DataGrid
-                            sx={{
-                              boxShadow: 2,
-                              border: 0,
-                              backgroundColor: 'white',
-                              '& .MuiDataGrid-cell:hover': {
-                                color: 'primary.main',
-                              },
-                            }}
-                            rows={fundRequestData}
-                            columns={columns}
-                            rowKeyField="id"
-                          />
-                        ) : (
-                          <p>Loading...</p> // You can replace this with a loading indicator
-                        )}
-                      </Tab>
-                    </Tabs>
-                  </div>
-                </div>
+               
               </div>
             </div>
           </div>

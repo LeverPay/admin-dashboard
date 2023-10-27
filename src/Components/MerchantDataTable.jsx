@@ -33,6 +33,7 @@ function MerchantDataTable() {
       .then((response) => {
         setData(response.data.data);
         setTotalCount(response.data.data.length);
+        console.log(response.data.data)
       })
       .catch((error) => {
         // Handle errors here
