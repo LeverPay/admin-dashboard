@@ -58,7 +58,8 @@ const AccountBalance = ({ userData }) => {
             Account Balance :
           </span>
           <span className="text-orange-700 text-[22px] font-bold leading-normal">
-            {userData.wallet ? userData.wallet.amount.ngn : ''}({userData.wallet ? userData.wallet.amount.usdt : ''})
+            {parseFloat(userData.wallet ? userData.wallet.amount.ngn : '').toFixed(3)}({parseFloat(userData.wallet ? userData.wallet.amount.usdt : '').toFixed(3)})
+            
             <br />
           </span>
         </p>
@@ -67,13 +68,13 @@ const AccountBalance = ({ userData }) => {
             Amount Spent :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            {userData.total_spending ? userData.total_spending.ngn: ''} ({userData.total_spending ? userData.total_spending.usdt: ''})
+            {parseFloat(userData.total_spending ? userData.total_spending.ngn: '').toFixed(3)} ({parseFloat(userData.total_spending ? userData.total_spending.usdt: '').toFixed(3)})
             <br />
           </span>
         </p>
       </div>
 
-      <div className="w-[1007px] h-[317px] bg-gray-900 rounded-[10px] p-5 my-5">
+      <div className="w-[1007px] h-[517px] bg-gray-900 rounded-[10px] p-5 my-5">
         <div className="flex items-center justify-between">
           <h2 className="w-[190px] text-white text-lg font-bold">
             Recent Transaction
@@ -127,7 +128,7 @@ const AccountBalance = ({ userData }) => {
                   {item.type}
                   </p>
                   <p className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
-                  {item.amount}
+                  {parseFloat(item.amount).toFixed(2)}
                   </p>
                   <p className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
                   {item.status && item.status===1 ?'Completed': 'Pending'}
