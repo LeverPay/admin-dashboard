@@ -29,15 +29,22 @@ function UserDataTable() {
           },
         }
       )
-      .then((response) => setUserData(response.data.data))
+      .then((response) => {
+        setUserData(response.data.data)
+        console.log(response.data)
+      })
       .catch((err) => console.log(err));
   }, [authToken]);
 
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
-    const lastPageIndex = firstPageIndex + PAGE_SIZE;
-    return details.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, details]);
+  // const currentTableData = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
+  //   const lastPageIndex = firstPageIndex + PAGE_SIZE;
+  //   return userData.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage, userData]);
+
+  const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
+  const lastPageIndex = firstPageIndex + PAGE_SIZE;
+  const currentTableData = userData.slice(firstPageIndex, lastPageIndex);
 
   return (
     <TableContainer className="table_container">
@@ -51,7 +58,7 @@ function UserDataTable() {
           </tr>
         </thead>
         <tbody>
-          {userData.map((item, index) => (
+          {currentTableData.map((item, index) => (
             <UserTableRowData key={item?.id} item={item} index={index} />
           ))}
         </tbody>
@@ -60,7 +67,7 @@ function UserDataTable() {
         <Pagination
           className="pagination-bar"
           currentPage={currentPage}
-          totalCount={details.length}
+          totalCount={userData.length}
           pageSize={PAGE_SIZE}
           onPageChange={(page) => setCurrentPage(page)}
         />

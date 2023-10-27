@@ -13,7 +13,6 @@ const ProfileData = ({ userData }) => {
 
   return (
     <>
-      {userData.map((item, index) => (
         <div>
           <div className="flex items-start gap-5">
             <div>
@@ -22,7 +21,7 @@ const ProfileData = ({ userData }) => {
                   First Name :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  {item.first_name}
+                  {userData.first_name}
                   <br />
                 </span>
               </p>
@@ -31,7 +30,7 @@ const ProfileData = ({ userData }) => {
                   Last Name :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  {item?.last_name}
+                  {userData.last_name}
                   <br />
                 </span>
               </p>
@@ -41,7 +40,7 @@ const ProfileData = ({ userData }) => {
                   Gender :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  {item?.gender}
+                  {userData.gender}
                   <br />
                 </span>
               </p>
@@ -51,7 +50,7 @@ const ProfileData = ({ userData }) => {
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
                   {' '}
-                  {formatDateString(item.dob)}
+                  {formatDateString(userData.dob)}
                   <br />
                 </span>
               </p>
@@ -69,7 +68,7 @@ const ProfileData = ({ userData }) => {
                   State :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  Abia
+                  {userData.state ? userData.state.state_name: ''}
                   <br />
                 </span>
               </p>
@@ -78,7 +77,7 @@ const ProfileData = ({ userData }) => {
                   City :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  Abai{' '}
+                  {/* Abai{' '} */}
                 </span>
               </p>
               <div className="w-[322px] flex items-center justify-center text-center my-5 h-12 bg-blue-600 rounded-[10px]">
@@ -93,7 +92,7 @@ const ProfileData = ({ userData }) => {
                     Primary Email :{' '}
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
-                    Neena002@gmail.com
+                  {userData.email}
                     <br />
                   </span>
                 </p>
@@ -103,7 +102,7 @@ const ProfileData = ({ userData }) => {
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
                     {' '}
-                    Neena002@gmail.com
+                    {userData.primary_email}
                     <br />
                   </span>
                 </p>
@@ -112,7 +111,7 @@ const ProfileData = ({ userData }) => {
                     Primary Phone :{' '}
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
-                    07068936345
+                  {userData.phone}
                     <br />
                   </span>
                 </p>
@@ -121,7 +120,7 @@ const ProfileData = ({ userData }) => {
                     Secondary Phone :{' '}
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
-                    08168936383
+                  {userData.primary_phone}
                     <br />
                   </span>
                 </p>
@@ -131,7 +130,7 @@ const ProfileData = ({ userData }) => {
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
                     {' '}
-                    N0 6 Umahia Street
+                    {userData.address}
                     <br />
                   </span>
                 </p>
@@ -147,14 +146,14 @@ const ProfileData = ({ userData }) => {
                   NIN :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  1156784935
+                  {/* 1156784935 */}
                   <br />
                 </span>
                 <span className="text-black text-[22px] font-normal leading-normal">
                   BVN :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  224509834
+                  {/* 224509834 */}
                 </span>
               </div>
             </div>
@@ -168,7 +167,7 @@ const ProfileData = ({ userData }) => {
             </div>
           </div>
         </div>
-      ))}
+      
     </>
   );
 };

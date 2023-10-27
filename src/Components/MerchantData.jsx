@@ -10,7 +10,7 @@ const MerchantData = ({ selectedMerchant }) => {
               First Name :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              {selectedMerchant?.first_name}
+              {selectedMerchant.first_name}
               <br />
             </span>
           </p>
@@ -18,15 +18,21 @@ const MerchantData = ({ selectedMerchant }) => {
             Last Name :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant?.last_name}
+            {selectedMerchant.last_name}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            Other Name :<br />
+            Other Name :{' '}
+          </span>
+          <span className="text-black text-[22px] font-bold leading-normal">
+            {selectedMerchant.other_name}
+            <br />
+          </span>
+          <span className="text-black text-[22px] font-light leading-normal">
             Gender :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant?.gender}
+            {selectedMerchant.gender}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
@@ -34,28 +40,28 @@ const MerchantData = ({ selectedMerchant }) => {
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
             {' '}
-            {selectedMerchant?.dob}
+            {selectedMerchant.dob}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
             Country :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Nigeria
+          {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].country.country_name: ''}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
             State :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Abia
+          {selectedMerchant.state}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
             City :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Abai{' '}
+          {selectedMerchant.city}
           </span>
           <div className="w-[322px] flex items-center justify-center text-center my-5 h-12 bg-blue-600 rounded-[10px]">
             <span className="text-white text-xl font-bold leading-normal">
@@ -68,29 +74,28 @@ const MerchantData = ({ selectedMerchant }) => {
               Primary Email :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              {selectedMerchant?.primary_email}
+              {selectedMerchant.email}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
               Secondary Email :
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              {' '}
-              Neena002@gmail.com
+            {selectedMerchant.primary_email}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
               Primary Phone :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              {selectedMerchant?.primary_phone}
+              {selectedMerchant.phone}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
               Secondary Phone :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              08168936383
+             {selectedMerchant.primary_phone}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
@@ -98,7 +103,7 @@ const MerchantData = ({ selectedMerchant }) => {
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
               {' '}
-              N0 6 Umahia Street
+              {selectedMerchant.address}
               <br />
             </span>
             <div className="w-[322px] flex items-center justify-center text-center my-5 h-12 bg-blue-600 rounded-[10px]">
@@ -113,14 +118,14 @@ const MerchantData = ({ selectedMerchant }) => {
               NIN :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              1156784935
+            {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].nin: ''}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
               BVN :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              224509834
+            {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].bvn: ''}
             </span>
           </div>
         </div>
@@ -128,8 +133,8 @@ const MerchantData = ({ selectedMerchant }) => {
         <div>
           <img
             className="w-[296px] h-[308px] rounded"
-            src="https://via.placeholder.com/296x308"
-            alt=""
+            src={selectedMerchant.picture}
+            alt="Profile_Picture"
           />{' '}
         </div>
       </div>

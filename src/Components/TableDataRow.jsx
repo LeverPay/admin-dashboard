@@ -21,7 +21,7 @@ const TableDataRow = ({ item, isShown }) => {
               Date|time:{' '}
             </span>
             <span className="text-black text-base font-bold leading-normal">
-              12/08/24 9:40pm
+              {item.created_at.slice(0, 10)} {item.created_at.slice(11, 16)}
               <br />
             </span>
           </p>
@@ -30,7 +30,7 @@ const TableDataRow = ({ item, isShown }) => {
               Transaction id :{' '}
             </span>
             <span className="text-black text-base font-bold leading-normal">
-              LVP4567LKO
+            {item.tnx_reference_no}
               <br />
             </span>
           </p>
@@ -39,7 +39,7 @@ const TableDataRow = ({ item, isShown }) => {
               UserId :{' '}
             </span>
             <span className="text-black text-base font-bold leading-normal">
-              lvp897583klp
+              {item.user_id}
               <br />
             </span>
           </p>
@@ -48,7 +48,7 @@ const TableDataRow = ({ item, isShown }) => {
               Email :{' '}
             </span>
             <span className="text-black text-base font-bold leading-normal">
-              Nina@gmail.com
+              {item.user.email}
               <br />
             </span>
           </p>
@@ -57,7 +57,7 @@ const TableDataRow = ({ item, isShown }) => {
               Phone :{' '}
             </span>
             <span className="text-black text-base font-bold leading-normal">
-              08068936383
+            {item.user.phone}
               <br />
             </span>
           </p>
@@ -66,7 +66,7 @@ const TableDataRow = ({ item, isShown }) => {
               First name :{' '}
             </span>
             <span className="text-black text-base font-bold leading-normal">
-              Nina
+            {item.user.first_name}
               <br />
             </span>
           </p>
@@ -76,7 +76,7 @@ const TableDataRow = ({ item, isShown }) => {
             </span>
             <span className="text-black text-base font-bold leading-normal">
               {' '}
-              Okoye
+              {item.user.last_name}
               <br />
             </span>
           </p>
@@ -85,7 +85,7 @@ const TableDataRow = ({ item, isShown }) => {
               Amount :{' '}
             </span>
             <span className="text-green-900 text-base font-bold leading-normal">
-              N 200,000
+            {item.amount}
               <br />
             </span>
           </p>
@@ -106,7 +106,7 @@ const TableDataRow = ({ item, isShown }) => {
               Vendor :{' '}
             </span>
             <span className="text-red-600 text-base font-bold leading-normal">
-              Netflix
+            {item.transaction_details}
               <br />
             </span>
           </p>
@@ -115,7 +115,7 @@ const TableDataRow = ({ item, isShown }) => {
               Status :{' '}
             </span>
             <span className="text-green-900 text-base font-bold leading-normal">
-              Successful
+              {item.status===1 ? 'Successful': 'pending'}
             </span>
           </p>
         </div>
@@ -129,9 +129,10 @@ const TableDataRow = ({ item, isShown }) => {
           </div>
         </div>
       </AppModal>
-      <td>{item.customerName}</td>
-      {isShown && <td>#{item.id}</td>}
-      <td>${item.amount}.00</td>
+      <td>{item.user.first_name} {item.user.last_name}</td>
+      {isShown && <td>{item.user_id}</td>}
+      <td>${item.amount}</td>
+      <td>{item.type}</td>
       <td>{item.status}</td>
       <td>
         <div className="view-more-btn" onClick={() => setShow(true)}>

@@ -1,47 +1,47 @@
 import React from 'react';
 
-const AccountBalance = () => {
+const AccountBalance = ({ userData }) => {
   return (
     <div>
       <div>
-        <p className="flex justify-between w-[27%] items-center gap-2 my-2">
+        <p className="flex justify-between w-[70%] items-center gap-2 my-2">
           <span className="text-black text-[22px] font-light leading-normal">
             First Name :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Nina
+            {userData.first_name}
             <br />
           </span>
         </p>
-        <p className="flex justify-between w-[27%] items-center gap-2 my-2">
+        <p className="flex justify-between w-[70%] items-center gap-2 my-2">
           <span className="text-black text-[22px] font-light leading-normal">
             Last Name :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Okoye
+            {userData.last_name}
             <br />
           </span>
         </p>
-        <p className="flex justify-between w-[27%] items-center gap-2 my-2">
+        <p className="flex justify-between w-[70%] items-center gap-2 my-2">
           <span className="text-black text-[22px] font-light leading-normal">
             LeverPay User ID :
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
             {' '}
-            Lvpx342123zp
+            {userData.uuid}
             <br />
           </span>
         </p>
-        <p className="flex justify-between w-[27%] items-center gap-2 my-2">
+        <p className="flex justify-between w-[70%] items-center gap-2 my-2">
           <span className="text-black text-[22px] font-light leading-normal">
             Card Type :{' '}
           </span>
           <span className="text-amber-700 text-[22px] font-bold leading-normal">
-            Gold Card
+            {userData.card ? userData.card.type : ''}
             <br />
           </span>
         </p>
-        <p className="flex justify-between w-[27%] items-center gap-2 my-2">
+        <p className="flex justify-between w-[70%] items-center gap-2 my-2">
           <span className="text-black text-[22px] font-light leading-normal">
             Status :
           </span>
@@ -53,21 +53,21 @@ const AccountBalance = () => {
             <br />
           </span>
         </p>
-        <p className="flex justify-between w-[27%] items-center gap-2 my-2">
+        <p className="flex justify-between w-[70%] items-center gap-2 my-2">
           <span className="text-black text-[22px] font-light leading-normal">
             Account Balance :
           </span>
           <span className="text-orange-700 text-[22px] font-bold leading-normal">
-            N 900,000
+            {userData.wallet ? userData.wallet.amount.ngn : ''}({userData.wallet ? userData.wallet.amount.usdt : ''})
             <br />
           </span>
         </p>
-        <p className="flex justify-between w-[27%] items-center gap-2 my-2">
+        <p className="flex justify-between w-[70%] items-center gap-2 my-2">
           <span className="text-black text-[22px] font-light leading-normal">
             Amount Spent :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            N 300,000
+            {userData.total_spending ? userData.total_spending.ngn: ''} ({userData.total_spending ? userData.total_spending.usdt: ''})
             <br />
           </span>
         </p>
@@ -85,132 +85,61 @@ const AccountBalance = () => {
           </span>
         </div>
         <div className="grid grid-cols-5">
-          <div>
-            <h2 className="w-[216.27px] text-stone-400 text-[13px] font-medium my-3">
-              NAME/BUSINESS
-            </h2>
-            <div>
-              <h2 className="w-[216.27px] text-white text-sm font-medium">
-                Iphone 13 ProMax
-              </h2>
-              <span className="w-[216.27px] text-stone-400 text-sm font-medium">
-                Apple. Inc
-              </span>
-            </div>
-            <div>
-              <h2 className="w-[216.27px] text-white text-sm font-medium">
-                Netflix Subscription{' '}
-              </h2>
-              <span className="w-[216.27px] text-stone-400 text-sm font-medium">
-                Netflix{' '}
-              </span>
-            </div>
-            <div>
-              <h2 className="w-[216.27px] text-white text-sm font-medium">
-                Nike Emax{' '}
-              </h2>
-              <span className="w-[216.27px] text-stone-400 text-sm font-medium">
-                Nike{' '}
-              </span>
-            </div>
-          </div>
+
+          <h2 className="w-[216.27px] text-stone-200 text-[16px] font-medium my-3">
+            NAME/BUSINESS
+          </h2>
 
           {/* Type */}
-          <div>
-            <h2 className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
-              TYPE
-            </h2>
-            <div className="flex items-start flex-col ">
-              <div className="h-[60px]">
-                <span className="w-[69.42px]  text-stone-400 text-[13px] font-medium">
-                  Mobile
-                </span>
-              </div>
-              <div className="h-[60px]">
-                <span className="w-[69.42px] text-stone-400 text-[13px] font-medium">
-                  Mobile
-                </span>
-              </div>
-              <div className="h-[60px]">
-                <span className="w-[69.42px] text-stone-400 text-[13px] font-medium">
-                  Mobile
-                </span>
-              </div>
-            </div>
-          </div>
+
+          <h2 className="w-[69.42px] text-stone-200 text-[16px] font-medium my-3">
+            TYPE
+          </h2>
+
 
           {/* Amount */}
-          <div>
-            <h2 className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
-              AMOUNT
-            </h2>
-            <div className="flex items-start flex-col ">
-              <div className="h-[60px]">
-                <div className="w-[69.42px] text-white text-sm font-bold">
-                  $420.84
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[69.42px] text-white text-sm font-bold">
-                  $420.84
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[69.42px] text-white text-sm font-bold">
-                  $420.84
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <h2 className="w-[69.42px] text-stone-200 text-[16px] font-medium my-3">
+            AMOUNT
+          </h2>
 
           {/* Status */}
-          <div>
-            <h2 className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
-              Status
-            </h2>
-            <div className="flex items-start flex-col ">
-              <div className="h-[60px]">
-                <div className="w-[85.80px] text-lime-700 text-sm font-bold">
-                  Completed
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[85.80px] text-amber-500 text-sm font-bold">
-                  Pending
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[85.80px] text-lime-700 text-sm font-bold">
-                  Completed
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <h2 className="w-[69.42px] text-stone-200 text-[16px] font-medium my-3">
+            Status
+          </h2>
 
           {/* Date */}
-          <div>
-            <h2 className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
-              Date
-            </h2>
-            <div className="flex items-start flex-col ">
-              <div className="h-[60px]">
-                <div className="w-[86.84px] text-stone-400 text-[13px] font-medium">
-                  14 Mar 2023
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[86.84px] text-stone-400 text-[13px] font-medium">
-                  14 Mar 2023
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[86.84px] text-stone-400 text-[13px] font-medium">
-                  14 Mar 2023
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <h2 className="w-[69.42px] text-stone-200 text-[16px] font-medium my-3">
+            Date
+          </h2>
         </div>
+        {
+          userData.transaction_history && <>
+            {
+              userData.transaction_history.map(item => {
+                return <div className="grid grid-cols-5" key={item.id}>
+                  <p className="w-[216.27px] text-stone-400 text-[13px] font-medium my-3">
+                    {item.merchant}
+                  </p>
+                  <p className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
+                  {item.type}
+                  </p>
+                  <p className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
+                  {item.amount}
+                  </p>
+                  <p className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
+                  {item.status && item.status===1 ?'Completed': 'Pending'}
+                  </p>
+                  <p className="w-[69.42px] text-stone-400 text-[13px] font-medium my-3">
+                  {item.created_at ? item.created_at.slice(0,10): ''}
+                  </p>
+                </div>
+              })
+            }
+          </>
+        }
       </div>
     </div>
   );

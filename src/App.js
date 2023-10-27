@@ -14,7 +14,7 @@ import AddUserPage from './Pages/AddUserPage';
 import EditCard from './Pages/EditCard';
 import DebitCard from './Pages/DebitCard';
 import CardUpgradePage from './Pages/CardUpgradePage';
-import FundRequest from './Pages/FundRequest';
+import FundRequest from './Pages/Funding/FundRequest';
 import AppproveRequestPage from './Pages/ApproveRequesPage';
 import ApproveConfirmationPage from './Pages/ApproveConfirmationPage';
 import CancelFormPage from './Pages/CancelFormPage';
@@ -38,6 +38,7 @@ import SetRates from './Pages/SetRates';
 import SetCardLimit from './Pages/SetCardLimit';
 import NotFoundPage from './Pages/NotFoundPage';
 import BankDetails from './Pages/BankDetails';
+import ViewReceipt from './Pages/Funding/ViewReceipt';
 
 export default function App() {
   return (
@@ -80,6 +81,7 @@ export default function App() {
             <Route path="/debit-card" element={<DebitCard />} />
             <Route path="/card-upgraade" element={<CardUpgradePage />} />
             <Route path="/fund_request" element={<FundRequest />} />
+            <Route path="/fund_request_receipt" element={<ViewReceipt />} />
             <Route path="/user-to-user-request" element={<UserToUser />} />
             <Route
               path="/merchant-subscription"
