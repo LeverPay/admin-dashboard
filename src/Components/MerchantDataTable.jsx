@@ -8,7 +8,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { baseUrl } from '../utils/constants';
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 12;
 
 function MerchantDataTable() {
   const [currentPage, setCurrentPage] = useState(1);
