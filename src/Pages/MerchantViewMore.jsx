@@ -16,6 +16,7 @@ import axios from 'axios';
 import MerchantApprove from '../Components/MerchantApprove';
 import { useLocation } from 'react-router-dom';
 import { tr } from 'date-fns/locale';
+import { Link } from 'react-router-dom';
 
 const onChange = (key) => {
   console.log(key);
@@ -86,7 +87,7 @@ const MerchantViewMore = () => {
           Director’s Data
         </h2>
       ),
-      children: <MerchantData selectedMerchant={data ? merchantData: ''} />,
+      children: <MerchantData selectedMerchant={merchantData} />,
     },
     {
       key: '2',
@@ -95,7 +96,7 @@ const MerchantViewMore = () => {
           Upload files & ID Cards
         </h2>
       ),
-      children: <MerchantUpload merchantData={data ? merchantData: ''} />,
+      children: <MerchantUpload merchantData={merchantData} />,
     },
     {
       key: '3',
@@ -104,7 +105,7 @@ const MerchantViewMore = () => {
           Business Profile
         </h2>
       ),
-      children: <MerchantBusinessData merchantData={data ? merchantData: ''} />,
+      children: <MerchantBusinessData merchantData={merchantData} />,
     },
     {
       key: '4',
@@ -113,7 +114,7 @@ const MerchantViewMore = () => {
           Bank Details
         </h2>
       ),
-      children: <MerchantBankDetails merchantData={data ? merchantData: ''} />,
+      children: <MerchantBankDetails merchantData={merchantData} />,
     },
     {
       key: '5',
@@ -122,26 +123,37 @@ const MerchantViewMore = () => {
           Wallet Address
         </h2>
       ),
-      children: <MerchantWalletAdress merchantData={data ? merchantData: ''} />,
+      children: <MerchantWalletAdress merchantData={merchantData} />,
     },
     {
       key: '6',
       label: (
         <h2 className="text-center text-white text-sm font-bold">Message</h2>
       ),
-      children: <MerchantMessage merchantData={data ? merchantData: ''} />,
+      children: <MerchantMessage merchantData={merchantData} />,
     },
     {
       key: '7',
       label: (
         <h2 className="text-center text-white text-sm font-bold">Approve</h2>
       ),
-      children: <MerchantApprove merchantData={data ? merchantData: ''} uuid={uuid} />,
+      children: <MerchantApprove merchantData={merchantData} uuid={uuid} />,
     },
   ];
   return (
     <div className="bg-slate-900 p-0">
-      <div className="p-10">
+      <p>
+        <Link to='/merchant' style={{
+        display: 'flex',
+        alignItems: 'center',
+        padding: '2rem',
+        color: 'white',
+        fontWeight: '600'
+      }}>
+        <img src="/images/back.png" alt="" width={25} /> Go back
+        </Link>
+      </p>
+      <div style={{padding: "0 2rem"}}>
         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
       </div>
     </div>

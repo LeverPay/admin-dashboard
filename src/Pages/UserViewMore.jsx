@@ -8,6 +8,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useLocation } from 'react-router-dom';
 import UserApprove from '../Components/UserApproval';
+import { Link } from 'react-router-dom';
 
 const onChange = (key) => {
   console.log(key);
@@ -85,6 +86,17 @@ const UserViewMore = () => {
 
   return (
     <div className="p-10">
+            <p>
+        <Link to='/users' style={{
+        display: 'flex',
+        gap:'5px',
+        alignItems: 'center',
+        color: 'black',
+        fontWeight: '600'
+      }}>
+        <img src="/images/back1.png" alt="" width={20} /> Go back
+        </Link>
+      </p>
       <h2 className="text-neutral-700 text-2xl font-bold leading-normal">
         User Profile
       </h2>

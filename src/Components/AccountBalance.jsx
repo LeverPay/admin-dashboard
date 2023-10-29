@@ -73,14 +73,14 @@ const AccountBalance = ({ userData }) => {
         </p>
       </div>
 
-      <div className="w-[1007px] h-[317px] bg-gray-900 rounded-[10px] p-5 my-5">
+      <div className="w-[1007px] bg-gray-900 rounded-[10px] p-5 my-5">
         <div className="flex items-center justify-between">
           <h2 className="w-[190px] text-white text-lg font-bold">
             Recent Transaction
           </h2>
           <span>
             <div className="text-right text-lime-700 text-sm font-semibold">
-              View All
+              {/* View All */}
             </div>
           </span>
         </div>

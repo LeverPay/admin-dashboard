@@ -47,7 +47,7 @@ const MerchantData = ({ selectedMerchant }) => {
             Country :{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-          {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].country.country_name: ''}
+          {/* {selectedMerchant.kyc_details[0].country.country_name ? selectedMerchant.kyc_details[0].country.country_name: ''} */}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
@@ -114,19 +114,31 @@ const MerchantData = ({ selectedMerchant }) => {
           </div>
 
           <div>
-            <span className="text-black text-[22px] font-normal leading-normal">
+            {
+              selectedMerchant.kyc_details && <>
+                 <span className="text-black text-[22px] font-normal leading-normal">
               NIN :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].nin: ''}
+            {selectedMerchant.kyc_details && selectedMerchant.kyc_details[0].nin}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
               BVN :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].bvn: ''}
+            {selectedMerchant.kyc_details && selectedMerchant.kyc_details[0].bvn}
             </span>
+              </>
+            }
+            {
+              !selectedMerchant.kyc_details && <>
+                <h3>
+                  This merchant has not done KYC 
+                </h3>
+              </>
+            }
+           
           </div>
         </div>
 
