@@ -27,7 +27,7 @@ const MerchantTableRowData = ({ item, index }) => {
       </td>
       <td>
         <Link to={`/merchant-view-more/${item.uuid}`} state={item.uuid} className="view-more-btn">
-          View More
+          View
         </Link>
         {/* <div onClick={handleViewMoreClick} className="view-more-btn">
           View More

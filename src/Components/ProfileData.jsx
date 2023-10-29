@@ -18,7 +18,7 @@ const ProfileData = ({ userData }) => {
             <div>
               <p className="flex justify-between w-[70%] items-center gap-2 my-2">
                 <span className="text-black text-[22px] font-light leading-normal">
-                  First Name :{' '}
+                  First Name:{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
                   {userData.first_name}
@@ -27,7 +27,7 @@ const ProfileData = ({ userData }) => {
               </p>
               <p className="flex justify-between w-[70%] items-center gap-2 my-2">
                 <span className="text-black text-[22px] font-light leading-normal">
-                  Last Name :{' '}
+                  Last Name:{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
                   {userData.last_name}
@@ -37,7 +37,7 @@ const ProfileData = ({ userData }) => {
               <p className="flex justify-between w-[70%] items-center gap-2 my-2">
                 <span className="text-black text-[22px] font-light leading-normal">
                   {/* Other Name :<br /> */}
-                  Gender :{' '}
+                  Gender:{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
                   {userData.gender}
@@ -46,7 +46,7 @@ const ProfileData = ({ userData }) => {
               </p>
               <p className="flex justify-between w-[70%] items-center gap-2 my-2">
                 <span className="text-black text-[22px] font-light leading-normal">
-                  Date of Birth :
+                  DOB:
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
                   {' '}
@@ -56,16 +56,16 @@ const ProfileData = ({ userData }) => {
               </p>
               <p className="flex justify-between w-[70%] items-center gap-2 my-2">
                 <span className="text-black text-[22px] font-light leading-normal">
-                  Country :{' '}
+                  Country:{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  Nigeria
+                {userData.country ? userData.country.country_name: ''}
                   <br />
                 </span>
               </p>
               <p className="flex justify-between w-[70%] items-center gap-2 my-2">
                 <span className="text-black text-[22px] font-light leading-normal">
-                  State :{' '}
+                  State:{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
                   {userData.state ? userData.state.state_name: ''}
@@ -74,10 +74,10 @@ const ProfileData = ({ userData }) => {
               </p>
               <p className="flex justify-between w-[70%] items-center gap-2 my-2">
                 <span className="text-black text-[22px] font-light leading-normal">
-                  City :{' '}
+                  City:{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  {/* Abai{' '} */}
+                {userData.city ? userData.city.city_name: ''}
                 </span>
               </p>
               <div className="w-[322px] flex items-center justify-center text-center my-5 h-12 bg-blue-600 rounded-[10px]">
@@ -89,7 +89,7 @@ const ProfileData = ({ userData }) => {
               <div>
                 <p className="flex justify-between  items-center gap-2 my-2">
                   <span className="text-black text-[22px] font-normal leading-normal">
-                    Primary Email :{' '}
+                    Primary Email:{' '}
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
                   {userData.email}
@@ -98,7 +98,7 @@ const ProfileData = ({ userData }) => {
                 </p>
                 <p className="flex justify-between  items-center gap-2 my-2">
                   <span className="text-black text-[22px] font-normal leading-normal">
-                    Secondary Email :
+                    Secondary Email:
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
                     {' '}
@@ -108,7 +108,7 @@ const ProfileData = ({ userData }) => {
                 </p>
                 <p className="flex justify-between  items-center gap-2 my-2">
                   <span className="text-black text-[22px] font-normal leading-normal">
-                    Primary Phone :{' '}
+                    Primary Phone:{' '}
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
                   {userData.phone}
@@ -117,7 +117,7 @@ const ProfileData = ({ userData }) => {
                 </p>
                 <p className="flex justify-between  items-center gap-2 my-2">
                   <span className="text-black text-[22px] font-normal leading-normal">
-                    Secondary Phone :{' '}
+                    Secondary Phone:{' '}
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
                   {userData.primary_phone}
@@ -126,7 +126,7 @@ const ProfileData = ({ userData }) => {
                 </p>
                 <p className="flex justify-between  items-center gap-2 my-2">
                   <span className="text-black text-[22px] font-normal leading-normal">
-                    Address :
+                    Address:
                   </span>
                   <span className="text-black text-[22px] font-bold leading-normal">
                     {' '}
@@ -146,14 +146,14 @@ const ProfileData = ({ userData }) => {
                   NIN :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  {/* 1156784935 */}
+                {userData.nin}
                   <br />
                 </span>
                 <span className="text-black text-[22px] font-normal leading-normal">
                   BVN :{' '}
                 </span>
                 <span className="text-black text-[22px] font-bold leading-normal">
-                  {/* 224509834 */}
+                {userData.bvn}
                 </span>
               </div>
             </div>
@@ -161,7 +161,7 @@ const ProfileData = ({ userData }) => {
             <div>
               <img
                 className="w-[296px] h-[308px] rounded"
-                src="https://via.placeholder.com/296x308"
+                src="{userData.picture}"
                 alt=""
               />{' '}
             </div>
