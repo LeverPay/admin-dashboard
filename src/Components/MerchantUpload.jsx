@@ -4,7 +4,9 @@ const MerchantUpload = ({merchantData}) => {
   console.log(merchantData)
   return (
     <div className="p-5 bg-white">
-      <div className="w-[100%] relative flex align-items-center">
+      {
+        merchantData.kyc_details && <>
+              <div className="w-[100%] relative flex align-items-center">
       <h3>ID Type : </h3>  <h4>  {merchantData.kyc_details && merchantData.kyc_details[0].document_type.name}</h4>
       </div>
       <br />
@@ -32,6 +34,16 @@ const MerchantUpload = ({merchantData}) => {
         width:'300px'
       }}/>
       </div>
+        </>
+      }
+      {
+        !merchantData.kyc_details && <>
+          <h1>
+            This Merchant has not done KYC 
+          </h1>
+        </>
+      }
+    
     </div>
   );
 };

@@ -58,7 +58,7 @@ const MerchantBusinessData = ({merchantData}) => {
           {' '}
         </span>
         <span className="text-green-900 text-[22px] font-bold leading-normal">
-          N{merchantData.wallet? merchantData.wallet.amount : ''}
+          N{merchantData.wallet ? merchantData.wallet.amount : ''}
           <br />
         </span>
         <span className="text-black text-[22px] font-light">
@@ -66,7 +66,7 @@ const MerchantBusinessData = ({merchantData}) => {
         </span>
       </div>
 
-      <div className="w-[1007px] h-[317px] bg-white rounded-[10px] p-5 my-5 shadow">
+      <div className="w-[1007px] bg-white rounded-[10px] p-5 my-5 shadow">
         <div className="flex items-center justify-between">
           <h2 className="w-[190px] text-slate-900 text-lg font-bold">
             Recent Transaction

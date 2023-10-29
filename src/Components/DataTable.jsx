@@ -9,7 +9,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie';
 
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 12;
 
 function DataTable({ isShown }) {
   const [currentPage, setCurrentPage] = useState(1);
