@@ -1,21 +1,22 @@
 import React from 'react';
 
-const MerchantBusinessData = () => {
+const MerchantBusinessData = ({merchantData}) => {
+  console.log(merchantData)
   return (
-    <div className="bg-white p-5">
+    <div className="bg-white p-5" >
       <div>
         <span className="text-black text-[22px] font-light leading-normal">
           Company Name :{' '}
         </span>
         <span className="text-black text-[22px] font-bold leading-normal">
-          Nina
+          {merchantData.merchant && merchantData.merchant.business_name}
           <br />
         </span>
         <span className="text-black text-[22px] font-light leading-normal">
           Incorporation Date :{' '}
         </span>
         <span className="text-black text-[22px] font-bold leading-normal">
-          Okoye
+          {/* Okoye */}
           <br />
         </span>
         <span className="text-black text-[22px] font-light leading-normal">
@@ -23,39 +24,49 @@ const MerchantBusinessData = () => {
         </span>
         <span className="text-black text-[22px] font-bold leading-normal">
           {' '}
-          Lvpx342123zp
+          {/* Lvpx342123zp */}
           <br />
         </span>
         <span className="text-black text-[22px] font-light leading-normal">
           Operational License :{' '}
         </span>
         <span className="text-amber-700 text-[22px] font-bold leading-normal">
-          Gold Card
+          {/* Gold Card */}
           <br />
         </span>
         <span className="text-black text-[22px] font-light leading-normal">
-          RC No :
+          RC number :{' '}
+        </span>
+        <span className="text-amber-700 text-[22px] font-bold leading-normal">
+        {merchantData.kyc_details ? merchantData.kyc_details[0].rc_number : ''}
+          <br />
+        </span>
+        <span className="text-black text-[22px] font-light leading-normal">
+          Business Address :
         </span>
         <span className="text-black text-[22px] font-bold leading-normal">
           {' '}
         </span>
         <span className="text-green-900 text-[22px] font-bold leading-normal">
-          Active
+          {merchantData.kyc_details ? merchantData.kyc_details[0].business_address : ''}
           <br />
         </span>
         <span className="text-black text-[22px] font-light leading-normal">
-          Business Certificate :
+          Total balance :
         </span>
-        <span className="w-[156px] px-2 ml-2 py-2 bg-blue-600 rounded-[10px]">
+        <span className="text-black text-[22px] font-bold leading-normal">
           {' '}
-          <span className="text-white text-base font-bold leading-normal">
-            Bank Details
-          </span>{' '}
+        </span>
+        <span className="text-green-900 text-[22px] font-bold leading-normal">
+          N{merchantData.wallet ? merchantData.wallet.amount : ''}
           <br />
+        </span>
+        <span className="text-black text-[22px] font-light">
+          Business Certificate : <img src={merchantData.kyc_details ? merchantData.kyc_details[0].business_certificate : ''} alt="Business certificate" style={{width:'300px', border:'1px solid', borderRadius:'10px'}} /> 
         </span>
       </div>
 
-      <div className="w-[1007px] h-[317px] bg-white rounded-[10px] p-5 my-5 shadow">
+      <div className="w-[1007px] bg-white rounded-[10px] p-5 my-5 shadow">
         <div className="flex items-center justify-between">
           <h2 className="w-[190px] text-slate-900 text-lg font-bold">
             Recent Transaction
@@ -67,132 +78,61 @@ const MerchantBusinessData = () => {
           </span>
         </div>
         <div className="grid grid-cols-5">
-          <div>
-            <h2 className="w-[216.27px] text-black text-[13px] font-medium my-3">
-              NAME/BUSINESS
-            </h2>
-            <div>
-              <h2 className="w-[216.27px] text-black text-sm font-medium">
-                Iphone 13 ProMax
-              </h2>
-              <span className="w-[216.27px] text-stone-400 text-sm font-medium">
-                Apple. Inc
-              </span>
-            </div>
-            <div>
-              <h2 className="w-[216.27px] text-black text-sm font-medium">
-                Netflix Subscription{' '}
-              </h2>
-              <span className="w-[216.27px] text-stone-400 text-sm font-medium">
-                Netflix{' '}
-              </span>
-            </div>
-            <div>
-              <h2 className="w-[216.27px] text-black text-sm font-medium">
-                Nike Emax{' '}
-              </h2>
-              <span className="w-[216.27px] text-stone-400 text-sm font-medium">
-                Nike{' '}
-              </span>
-            </div>
-          </div>
+         
+        <h2 className="w-[216.27px] text-stone-1200 text-[16px] font-bold my-3">
+            NAME/BUSINESS
+          </h2>
 
           {/* Type */}
-          <div>
-            <h2 className="w-[69.42px] text-black text-[13px] font-medium my-3">
-              TYPE
-            </h2>
-            <div className="flex items-start flex-col ">
-              <div className="h-[60px]">
-                <span className="w-[69.42px]  text-black text-[13px] font-medium">
-                  Mobile
-                </span>
-              </div>
-              <div className="h-[60px]">
-                <span className="w-[69.42px] text-black text-[13px] font-medium">
-                  Mobile
-                </span>
-              </div>
-              <div className="h-[60px]">
-                <span className="w-[69.42px] text-black text-[13px] font-medium">
-                  Mobile
-                </span>
-              </div>
-            </div>
-          </div>
+
+          <h2 className="w-[69.42px] text-stone-1200 text-[16px] font-bold my-3">
+            TYPE
+          </h2>
+
 
           {/* Amount */}
-          <div>
-            <h2 className="w-[69.42px] text-black text-[13px] font-medium my-3">
-              AMOUNT
-            </h2>
-            <div className="flex items-start flex-col ">
-              <div className="h-[60px]">
-                <div className="w-[69.42px] text-green-900 text-sm font-bold">
-                  $420.84
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[69.42px] text-green-900 text-sm font-bold">
-                  $420.84
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[69.42px] text-green-900 text-sm font-bold">
-                  $420.84
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <h2 className="w-[69.42px] text-stone-1200 text-[16px] font-bold my-3">
+            AMOUNT
+          </h2>
 
           {/* Status */}
-          <div>
-            <h2 className="w-[69.42px] text-black text-[13px] font-medium my-3">
-              STATUS
-            </h2>
-            <div className="flex items-start flex-col ">
-              <div className="h-[60px]">
-                <div className="w-[85.80px] text-lime-700 text-sm font-bold">
-                  Completed
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[85.80px] text-amber-500 text-sm font-bold">
-                  Pending
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[85.80px] text-lime-700 text-sm font-bold">
-                  Completed
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <h2 className="w-[69.42px] text-stone-1200 text-[16px] font-bold my-3">
+            Status
+          </h2>
 
           {/* Date */}
-          <div>
-            <h2 className="w-[69.42px] text-black text-[13px] font-medium my-3">
-              Date
-            </h2>
-            <div className="flex items-start flex-col ">
-              <div className="h-[60px]">
-                <div className="w-[86.84px] text-black text-[13px] font-medium">
-                  14 Mar 2023
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[86.84px] text-black text-[13px] font-medium">
-                  14 Mar 2023
-                </div>
-              </div>
-              <div className="h-[60px]">
-                <div className="w-[86.84px] text-black text-[13px] font-medium">
-                  14 Mar 2023
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <h2 className="w-[69.42px] text-stone-1200 text-[16px] font-bold my-3">
+            Date
+          </h2>
         </div>
+        {
+          merchantData.transaction_history && <>
+            {
+              merchantData.transaction_history.map(item => {
+                return <div className="grid grid-cols-5" key={item.id}>
+                  <p className="w-[216.27px] text-stone-800 text-[13px] font-medium my-3">
+                    {item.merchant}
+                  </p>
+                  <p className="w-[69.42px] text-stone-800 text-[13px] font-medium my-3">
+                  {item.type}
+                  </p>
+                  <p className="w-[69.42px] text-stone-800 text-[13px] font-medium my-3">
+                  {item.amount}
+                  </p>
+                  <p className="w-[69.42px] text-stone-800 text-[13px] font-medium my-3">
+                  {item.status && item.status===1 ?'Completed': 'Pending'}
+                  </p>
+                  <p className="w-[69.42px] text-stone-800 text-[13px] font-medium my-3">
+                  {item.created_at ? item.created_at.slice(0,10): ''}
+                  </p>
+                </div>
+              })
+            }
+          </>
+        }
       </div>
     </div>
   );

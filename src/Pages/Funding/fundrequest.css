@@ -1,0 +1,46 @@
+.funding-table{
+    border: 1px solid gainsboro;
+    padding-block: 10px;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.funding-table ul{
+    display: flex;
+    gap: 2%;
+}
+.funding-table ul li{
+    width: calc(92%/5);
+}
+.funding-table .tableHead{
+    font-size: 20px;
+    font-weight: 800;
+}
+.funding-table .funding_tableBody{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.funding-table .funding_action{
+    display: flex;
+    gap: 1.5rem;
+}
+.funding-table .funding_action img{
+    border: 1px solid gainsboro;
+    padding: 5px 5px;
+    width: 50px;
+}
+.view_receipt{
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.view_receipt span a{
+    color: black;
+    text-decoration: underline;
+    font-size: 18px;
+    font-weight: 700;
+}

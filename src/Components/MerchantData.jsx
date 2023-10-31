@@ -7,55 +7,61 @@ const MerchantData = ({ selectedMerchant }) => {
         <div>
           <p className="flex justify-between w-1/2 items-center gap-2 my-2">
             <span className="text-black text-[22px] font-light leading-normal">
-              First Name :{' '}
+              First Name:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              {selectedMerchant?.first_name}
+              {selectedMerchant.first_name}
               <br />
             </span>
           </p>
           <span className="text-black text-[22px] font-light leading-normal">
-            Last Name :{' '}
+            Last Name:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant?.last_name}
+            {selectedMerchant.last_name}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            Other Name :<br />
-            Gender :{' '}
+            Other Name:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant?.gender}
+            {selectedMerchant.other_name}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            Date of Birth :
+            Gender:{' '}
+          </span>
+          <span className="text-black text-[22px] font-bold leading-normal">
+            {selectedMerchant.gender}
+            <br />
+          </span>
+          <span className="text-black text-[22px] font-light leading-normal">
+            DOB:
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
             {' '}
-            {selectedMerchant?.dob}
+            {selectedMerchant.dob}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            Country :{' '}
+            Country:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Nigeria
+          {/* {selectedMerchant.kyc_details[0].country.country_name ? selectedMerchant.kyc_details[0].country.country_name: ''} */}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            State :{' '}
+            State:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Abia
+          {selectedMerchant.state}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            City :{' '}
+            City:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
-            Abai{' '}
+          {selectedMerchant.city}
           </span>
           <div className="w-[322px] flex items-center justify-center text-center my-5 h-12 bg-blue-600 rounded-[10px]">
             <span className="text-white text-xl font-bold leading-normal">
@@ -65,32 +71,31 @@ const MerchantData = ({ selectedMerchant }) => {
 
           <div>
             <span className="text-black text-[22px] font-normal leading-normal">
-              Primary Email :{' '}
+              Primary Email:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              {selectedMerchant?.primary_email}
+              {selectedMerchant.email}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
-              Secondary Email :
+              Secondary Email:
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              {' '}
-              Neena002@gmail.com
+            {selectedMerchant.primary_email}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
-              Primary Phone :{' '}
+              Primary Phone:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              {selectedMerchant?.primary_phone}
+              {selectedMerchant.phone}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
-              Secondary Phone :{' '}
+              Secondary Phone:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              08168936383
+             {selectedMerchant.primary_phone}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
@@ -98,7 +103,7 @@ const MerchantData = ({ selectedMerchant }) => {
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
               {' '}
-              N0 6 Umahia Street
+              {selectedMerchant.address}
               <br />
             </span>
             <div className="w-[322px] flex items-center justify-center text-center my-5 h-12 bg-blue-600 rounded-[10px]">
@@ -109,27 +114,39 @@ const MerchantData = ({ selectedMerchant }) => {
           </div>
 
           <div>
-            <span className="text-black text-[22px] font-normal leading-normal">
+            {
+              selectedMerchant.kyc_details && <>
+                 <span className="text-black text-[22px] font-normal leading-normal">
               NIN :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              1156784935
+            {selectedMerchant.kyc_details && selectedMerchant.kyc_details[0].nin}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
-              BVN :{' '}
+              BVN:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-              224509834
+            {selectedMerchant.kyc_details && selectedMerchant.kyc_details[0].bvn}
             </span>
+              </>
+            }
+            {
+              !selectedMerchant.kyc_details && <>
+                <h3>
+                  This merchant has not done KYC 
+                </h3>
+              </>
+            }
+           
           </div>
         </div>
 
         <div>
           <img
             className="w-[296px] h-[308px] rounded"
-            src="https://via.placeholder.com/296x308"
-            alt=""
+            src={selectedMerchant.picture}
+            alt="Profile_Picture"
           />{' '}
         </div>
       </div>

@@ -13,6 +13,10 @@ import MerchantWalletAdress from '../Components/MerchantWalletAdress';
 import { baseUrl } from '../utils/constants';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import MerchantApprove from '../Components/MerchantApprove';
+import { useLocation } from 'react-router-dom';
+import { tr } from 'date-fns/locale';
+import { Link } from 'react-router-dom';
 
 const onChange = (key) => {
   console.log(key);
@@ -22,26 +26,32 @@ const authToken = Cookies.get('authToken');
 
 const MerchantViewMore = () => {
   const [merchantData, setMerchantData] = useState([]);
+  const [data, setData] = useState(false)
+  const location = useLocation()
+  const {state} = location
+  const uuid = state
+  console.log(uuid)
+  // function extractIdFromCurrentURL() {
+  //   // Get the current URL
+  //   const currentURL = window.location.href;
 
-  function extractIdFromCurrentURL() {
-    // Get the current URL
-    const currentURL = window.location.href;
+  //   // Split the URL by '/'
+  //   const parts = currentURL.split('/');
 
-    // Split the URL by '/'
-    const parts = currentURL.split('/');
+  //   // Get the last part of the URL (the UUID-like string)
+  //   const id = parts[parts.length - 1];
 
-    // Get the last part of the URL (the UUID-like string)
-    const id = parts[parts.length - 1];
-
-    return id;
-  }
+  //   return id;
+  // }
 
   // Call the function to extract the ID from the current URL
-  const extractedId = extractIdFromCurrentURL();
+  // const extractedId = extractIdFromCurrentURL();
+  // console.log(extractedId)
 
   useEffect(() => {
     // Define your API URL and headers
-    const apiUrl = `${baseUrl}/v1/admin/get-all-merchants`;
+    // const apiUrl = `${baseUrl}/v1/admin/get-user/${uuid}`;
+    const apiUrl = `${baseUrl}v1/admin/get-merchant-details/${uuid}`;
     const headers = {
       accept: '*/*',
       Authorization: `Bearer ${authToken}`,
@@ -54,17 +64,20 @@ const MerchantViewMore = () => {
       .get(apiUrl, { headers })
       .then((response) => {
         setMerchantData(response.data.data);
+        setData(true)
+        console.log(response)
+        // setData(response.data.data.filter(user => user.uuid === uuid))
       })
       .catch((error) => {
-        // Handle errors here
         console.error('Error:', error);
+        setData(false)
       });
   }, []);
-  console.log('merchantData', merchantData);
+    console.log(merchantData)
 
-  const selectedMerchant =
-    merchantData &&
-    merchantData?.find((merchant) => merchant.uuid === extractedId);
+  // const selectedMerchant =
+  //   merchantData &&
+  //   merchantData?.find((merchant) => merchant.uuid === extractedId);
 
   const items = [
     {
@@ -74,7 +87,7 @@ const MerchantViewMore = () => {
           Director’s Data
         </h2>
       ),
-      children: <MerchantData selectedMerchant={selectedMerchant} />,
+      children: <MerchantData selectedMerchant={merchantData} />,
     },
     {
       key: '2',
@@ -83,7 +96,7 @@ const MerchantViewMore = () => {
           Upload files & ID Cards
         </h2>
       ),
-      children: <MerchantUpload />,
+      children: <MerchantUpload merchantData={merchantData} />,
     },
     {
       key: '3',
@@ -92,7 +105,7 @@ const MerchantViewMore = () => {
           Business Profile
         </h2>
       ),
-      children: <MerchantBusinessData />,
+      children: <MerchantBusinessData merchantData={merchantData} />,
     },
     {
       key: '4',
@@ -101,7 +114,7 @@ const MerchantViewMore = () => {
           Bank Details
         </h2>
       ),
-      children: <MerchantBankDetails />,
+      children: <MerchantBankDetails merchantData={merchantData} />,
     },
     {
       key: '5',
@@ -110,19 +123,37 @@ const MerchantViewMore = () => {
           Wallet Address
         </h2>
       ),
-      children: <MerchantWalletAdress />,
+      children: <MerchantWalletAdress merchantData={merchantData} />,
     },
     {
       key: '6',
       label: (
         <h2 className="text-center text-white text-sm font-bold">Message</h2>
       ),
-      children: <MerchantMessage />,
+      children: <MerchantMessage merchantData={merchantData} />,
+    },
+    {
+      key: '7',
+      label: (
+        <h2 className="text-center text-white text-sm font-bold">Approve</h2>
+      ),
+      children: <MerchantApprove merchantData={merchantData} uuid={uuid} />,
     },
   ];
   return (
-    <div className="bg-slate-900 p-10">
-      <div className="p-10">
+    <div className="bg-slate-900 p-0">
+      <p>
+        <Link to='/merchant' style={{
+        display: 'flex',
+        alignItems: 'center',
+        padding: '2rem',
+        color: 'white',
+        fontWeight: '600'
+      }}>
+        <img src="/images/back.png" alt="" width={25} /> Go back
+        </Link>
+      </p>
+      <div style={{padding: "0 2rem"}}>
         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
       </div>
     </div>

@@ -8,9 +8,10 @@ const UserTableRowData = ({ item, index }) => {
     navigate('/user-view-more');
   };
   return (
-    <tr key={item?.id}>
-      <td>{item?.first_name}</td> {/**Name */}
-      <td>{item?.email}</td> {/**email */}
+    <tr key={item?.id} style={{marginBottom:'1rem !important'}} className='user-table-row'>
+      <td>{item?.first_name} {item?.last_name}</td>
+
+      <td>{item?.email}</td> 
       <td>
         {item?.status === 0 ? (
           <span className="suspended-user">Suspended</span>
@@ -18,16 +19,13 @@ const UserTableRowData = ({ item, index }) => {
           <span className="active-user">Active</span>
         )}
       </td>
-      <td onClick={navigateToViewMore}>
-        <div className="view-more-btn">View More</div>
-      </td>
-      {/* 
       <td>
-        <div className='edit-delete-btn'>
-          <p>Edit</p>
-          <p>Delete</p>
-        </div>
-      </td> */}
+        <div className="view-more-btn">
+          <Link to='/user-view-more' style={{color:'white'}} state={item.uuid}>
+          View
+          </Link>
+          </div>
+      </td>
     </tr>
   );
 };

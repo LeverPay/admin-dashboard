@@ -33,7 +33,7 @@ const Transaction = () => {
             </div>
           </div>
 
-          <div className=" bg-white p-5 rounded m-5">
+          <div className=" bg-white rounded m-5">
             <DataTable isShown={true} />{' '}
           </div>
         </div>
