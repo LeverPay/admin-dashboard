@@ -22,7 +22,8 @@ const MerchantMessage = ({merchantData}) => {
   }
   function sendMail(){
     setSend('Sending..')
-    axios.post('https://leverpay-api.azurewebsites.net/api/v1/contact-us',
+    axios.post('https://leverpay-api.azurewebsites.net/api/v1/admin/send-mail-to-user',
+    
     formData,
     {
       headers: {
