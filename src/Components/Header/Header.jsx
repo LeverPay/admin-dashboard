@@ -19,7 +19,7 @@ const Header = ({ data }) => {
       <div className="greeting-container md:flex-row flex-col items-start">
         <div className="greeting">
           <h3 className="text-slate-500 text-sm font-bold leading-normal">
-            Hi {data?.first_name} ,
+            Hi {data?.first_name},
           </h3>{' '}
           <h2 className="text-indigo-900 text-[34px] font-bold leading-[42px]">
             Welcome!
