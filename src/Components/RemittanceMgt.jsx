@@ -137,6 +137,10 @@ const RemittanceMgt = () => {
                   </div>
                 </div>
                 <div className="users__tab__padding">
+                  <div className="flex justify-between text-decoration-underline">
+                    <Link>List</Link>
+                    <Link>Scheduled for Payment</Link>
+                  </div>
                   <table className="table table-borderless">
                     <thead>
                       <tr>
