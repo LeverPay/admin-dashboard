@@ -153,8 +153,12 @@ const RemittanceMgt = () => {
                         <th scope="col">Merchants</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
-                        <th scope="col">Wallet Bal</th>
-                        <th scope="col">Last Remitd</th>
+                        <th className="!text-[#378804]" scope="col">
+                          Wallet Bal
+                        </th>
+                        <th className="!text-[#700AA0]" scope="col">
+                          Last Remitd
+                        </th>
                         <th scope="col">View</th>
                       </tr>
                     </thead>
@@ -164,19 +168,19 @@ const RemittanceMgt = () => {
                         <td>Lvphhdhd01</td>
                         <td>Naira</td>
                         <td>Binance</td>
-                        <td className="font__approved">
+                        <td className="!text-[#06AE21]">
                           <Link
                             to={{
                               pathname: `/approve_request/1`,
                               state: { users: "" },
                             }}
-                            className="view-more-btn"
+                            className="view-more-btn !text-[#06AE21]"
                           >
                             {" "}
                             Received
                           </Link>
                         </td>
-                        <td className="font__approved">
+                        <td className="!text-[#700AA0]">
                           <div className="view-more-btn"> View</div>
                         </td>
                         <td className="font__pending" scope="col">
@@ -188,19 +192,19 @@ const RemittanceMgt = () => {
                         <td>Lvphhdhd01</td>
                         <td>Stable Coin</td>
                         <td>Binance</td>
-                        <td className="font__pending">
+                        <td className="!text-[#06AE21]">
                           <Link
                             to={{
                               pathname: `/approve_request/1`,
                               state: { users: "" },
                             }}
-                            className="view-more-btn"
+                            className="view-more-btn !text-[#06AE21]"
                           >
                             {" "}
                             Failed
                           </Link>
                         </td>
-                        <td className="font__approved">
+                        <td className="!text-[#700AA0]">
                           <div className="view-more-btn"> View</div>
                         </td>
                         <td className="font__pending" scope="col">
@@ -224,7 +228,7 @@ const RemittanceMgt = () => {
                             FAILED
                           </Link>
                         </td>
-                        <td className="font__approved">
+                        <td className="!text-[#700AA0]">
                           <div className="view-more-btn"> View</div>
                         </td>
                         <td className="font__pending" scope="col">
@@ -249,7 +253,7 @@ const RemittanceMgt = () => {
                             Received
                           </Link>
                         </td>
-                        <td className="font__approved">
+                        <td className="!text-[#700AA0]">
                           <div className="view-more-btn"> View</div>
                         </td>
                         <td className="font__pending" scope="col">
