@@ -4,7 +4,12 @@ import SidebarLayout from "../Layouts/SidebarLayout";
 import { DashboardNavView, DashboardView } from "../css/DashboardPageStyles";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLongArrowRight,
+  faLongArrowLeft,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
+
 import { FundRequestStyle } from "../css/FundrequestStyle";
 
 import Tabs from "react-bootstrap/Tabs";
@@ -136,13 +141,13 @@ const RemittanceMgt = () => {
                     </div>
                   </div>
                 </div>
-                <div className="users__tab__padding">
-                  <div className="flex justify-between text-decoration-underline">
+                <div className="users__tab__padding border-top">
+                  <div className="flex justify-between text-decoration-underline my-[10px]">
                     <Link>List</Link>
                     <Link>Scheduled for Payment</Link>
                   </div>
                   <table className="table table-borderless">
-                    <thead>
+                    <thead className="border border-black ">
                       <tr>
                         <th scope="col">Date/Time</th>
                         <th scope="col">Merchants</th>
@@ -159,7 +164,6 @@ const RemittanceMgt = () => {
                         <td>Lvphhdhd01</td>
                         <td>Naira</td>
                         <td>Binance</td>
-
                         <td className="font__approved">
                           <Link
                             to={{
@@ -175,13 +179,15 @@ const RemittanceMgt = () => {
                         <td className="font__approved">
                           <div className="view-more-btn"> View</div>
                         </td>
+                        <td className="font__pending" scope="col">
+                          <Link>more</Link>
+                        </td>{" "}
                       </tr>
                       <tr>
                         <td>02/08/2023 12:53</td>
                         <td>Lvphhdhd01</td>
                         <td>Stable Coin</td>
                         <td>Binance</td>
-
                         <td className="font__pending">
                           <Link
                             to={{
@@ -197,6 +203,9 @@ const RemittanceMgt = () => {
                         <td className="font__approved">
                           <div className="view-more-btn"> View</div>
                         </td>
+                        <td className="font__pending" scope="col">
+                          <Link>more</Link>
+                        </td>{" "}
                       </tr>
                       <tr>
                         <td>02/08/2023 12:53</td>
@@ -218,6 +227,9 @@ const RemittanceMgt = () => {
                         <td className="font__approved">
                           <div className="view-more-btn"> View</div>
                         </td>
+                        <td className="font__pending" scope="col">
+                          <Link>more</Link>
+                        </td>{" "}
                       </tr>
                       <tr>
                         <td>02/08/2023 12:53</td>
@@ -240,9 +252,28 @@ const RemittanceMgt = () => {
                         <td className="font__approved">
                           <div className="view-more-btn"> View</div>
                         </td>
+                        <td className="font__pending" scope="col">
+                          <Link>more</Link>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
+                  <div className="flex text-[#A3AED0] justify-end">
+                    <span className="flex items-center px-3">
+                      Previous
+                      <FontAwesomeIcon
+                        icon={faLongArrowLeft}
+                        className="w-3 h-3 p-0 ml-2"
+                      />
+                    </span>
+                    <span className="flex items-center">
+                      Next
+                      <FontAwesomeIcon
+                        icon={faLongArrowRight}
+                        className="w-3 h-3 p-0 ml-2"
+                      />
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
