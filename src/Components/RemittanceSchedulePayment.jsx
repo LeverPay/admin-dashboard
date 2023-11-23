@@ -4,6 +4,12 @@ import { DashboardView } from "../css/DashboardPageStyles";
 import close from "../assets/close.svg";
 import minilogo from "../assets/mini-logo.svg";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLongArrowUp,
+  faLongArrowDown,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
 const RemittanceSchedulePayment = () => {
   const navigate = useNavigate();
@@ -41,10 +47,10 @@ const RemittanceSchedulePayment = () => {
 
             {/* Contact Details  */}
             <div>
-              <span className="bg-[#E7F1FA] border p-1 rounded-lg text-xs font-bold">
+              <span className="bg-[#E7F1FA] border p-2 rounded-lg text-xs font-bold">
                 Contact Details
               </span>
-              <div className="bg-[#E7F1FA] border p-3 rounded-lg text-xs font-bold mt-1">
+              <div className="bg-[#E7F1FA] border p-3 rounded-lg text-xs font-bold mt-2">
                 <div className="w-[338.89px] my-2 ">
                   <div className="w-[250.14px] flex items-center justify-between my-2">
                     <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
@@ -90,10 +96,10 @@ const RemittanceSchedulePayment = () => {
 
             {/* BANK & CRYPTO WALLET DETAIL  */}
             <div className="my-5">
-              <span className="bg-[#E7F1FA] border p-1 rounded-lg text-xs font-bold">
+              <span className="bg-[#E7F1FA] border p-2 rounded-lg text-xs font-bold">
                 Bank & Crypto Wallet Details
               </span>
-              <div className="bg-[#E7F1FA] border p-3 rounded-lg text-xs font-bold mt-1">
+              <div className="bg-[#E7F1FA] border p-3 rounded-lg text-xs font-bold mt-2">
                 <div className="w-[338.89px] my-2 ">
                   <div className="w-[250.14px] flex items-center justify-between my-2">
                     <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
@@ -114,7 +120,7 @@ const RemittanceSchedulePayment = () => {
                     </span>
                   </div>
                 </div>
-                <span></span>{" "}
+                <hr className="text-[#690303] h-1"></hr>
                 <div className="w-[338.89px] my-2 ">
                   <div className="w-[370.14px] flex items-center justify-between my-2">
                     <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
@@ -127,7 +133,7 @@ const RemittanceSchedulePayment = () => {
                 </div>
                 <div className="w-[338.89px] my-2 ">
                   <div className="w-[300.14px] flex items-center justify-between my-2">
-                    <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
+                    <span className="text-black text-base mr-7 font-normal font-['Montserrat'] leading-normal">
                       Address:
                     </span>
                     <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
@@ -147,7 +153,7 @@ const RemittanceSchedulePayment = () => {
                 </div>
                 <div className="w-[338.89px] my-2 ">
                   <div className="w-[300.14px] flex items-center justify-between my-2">
-                    <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
+                    <span className="text-black text-base mr-7 font-normal font-['Montserrat'] leading-normal">
                       Address:
                     </span>
                     <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
@@ -160,18 +166,29 @@ const RemittanceSchedulePayment = () => {
 
             {/* REVENUW  */}
             <div className="my-5">
-              <span className="bg-[#E7F1FA] border p-1 rounded-lg text-xs font-bold">
+              <span className="bg-[#E7F1FA] border p-2 rounded-lg text-xs font-bold">
                 Revenue
               </span>
-              <div className="bg-[#E7F1FA] border p-3 rounded-lg text-xs font-bold mt-1">
+              <div className="bg-[#E7F1FA] border p-3 rounded-lg text-xs font-bold mt-2">
                 <div className="w-[338.89px] my-2 ">
                   <div className="w-[250.14px] flex items-center justify-between my-2">
                     <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
                       Wallet balance :
                     </span>
-                    <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
+                    <span className="font-bold ml-[50px] font-['Montserrat'] leading-normal text-xl text-[#6A0898]">
                       10, 200
                     </span>
+                    <br />
+                  </div>
+                  <div className="ml-[200px]">
+                    <FontAwesomeIcon
+                      icon={faLongArrowUp}
+                      className="w-3 h-15 p-0 ml-2"
+                    />
+                    <FontAwesomeIcon
+                      icon={faLongArrowDown}
+                      className="w-3 h-15 p-0 ml-2"
+                    />
                   </div>
                 </div>
                 <div className="w-[338.89px] my-2 ">
@@ -180,7 +197,7 @@ const RemittanceSchedulePayment = () => {
                       Amount to be remitted:
                     </span>
                     <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
-                      Aboki{" "}
+                      Aboki
                     </span>
                   </div>
                 </div>
@@ -191,7 +208,7 @@ const RemittanceSchedulePayment = () => {
               <div className="w-[202.91px] h-[51px] cursor-pointer">
                 <div className="px-5 py-3 text-center  bg-blue-600 rounded-[10px]">
                   <div className=" text-neutral-50 text-base font-bold font-['Montserrat']">
-                    Approve
+                    Send
                   </div>
                 </div>
               </div>
@@ -199,7 +216,7 @@ const RemittanceSchedulePayment = () => {
               <div className="w-[202.91px] h-[51px]  cursor-pointer">
                 <div className="px-5 py-3 text-center  bg-red-600 rounded-[10px]">
                   <div className=" text-neutral-50 text-base font-bold font-['Montserrat']">
-                    Deny
+                    Cancel
                   </div>
                 </div>
               </div>
