@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Logo from '../assets/LeverPayGold.png';
+import React, { useState } from "react";
+import Logo from "../assets/LeverPayGold.png";
 
-import { SideBarView, LogoView, ListView } from '../css/SidebarStyles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { SideBarView, LogoView, ListView } from "../css/SidebarStyles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartPie,
   faCreditCard,
@@ -16,9 +16,9 @@ import {
   faArrowTrendUp,
   faPercent,
   faMoneyCheckAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import Cookies from 'js-cookie';
-import { Link, useNavigate } from 'react-router-dom';
+} from "@fortawesome/free-solid-svg-icons";
+import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SideBar = () => {
@@ -31,13 +31,15 @@ const SideBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    axios.get('https://leverpay-api.azurewebsites.net/api/v1/admin/admin-logout')
+    axios.get(
+      "https://leverpay-api.azurewebsites.net/api/v1/admin/admin-logout"
+    );
 
     // Remove the authentication token (or any other session-related data)
-    Cookies.remove('authToken');
+    Cookies.remove("authToken");
 
     // Redirect the user to the login page (or any other desired page)
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -51,7 +53,7 @@ const SideBar = () => {
         <ListView>
           <li
             onClick={() => handleListItemClick(0)}
-            className={activeIndex === 0 ? 'active' : ''}
+            className={activeIndex === 0 ? "active" : ""}
           >
             <Link to="/" className=" text-base nav__link">
               <FontAwesomeIcon icon={faChartPie} />
@@ -60,40 +62,40 @@ const SideBar = () => {
           </li>
           <li
             onClick={() => handleListItemClick(1)}
-            className={activeIndex === 1 ? 'active' : ''}
+            className={activeIndex === 1 ? "active" : ""}
           >
             <Link to="/transaction" className="text-base nav__link">
-              <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+              <FontAwesomeIcon icon={faArrowTrendUp} />{" "}
               <span>Transactions</span>
             </Link>
           </li>
           <li
             onClick={() => handleListItemClick(2)}
-            className={activeIndex === 2 ? 'active' : ''}
+            className={activeIndex === 2 ? "active" : ""}
           >
             <Link to="/card-center" className="text-base nav__link">
               <FontAwesomeIcon icon={faCreditCard} /> <span>Card Center</span>
             </Link>
           </li>
           <li
-            className={activeIndex === 3 ? 'active' : ''}
+            className={activeIndex === 3 ? "active" : ""}
             onClick={() => handleListItemClick(3)}
           >
             <Link to="/users" className="text-base nav__link">
-              <FontAwesomeIcon icon={faUserGroup} /> <span>Users</span>{' '}
+              <FontAwesomeIcon icon={faUserGroup} /> <span>Users</span>{" "}
             </Link>
           </li>
           <li
-            className={activeIndex === 3 ? 'active' : ''}
+            className={activeIndex === 3 ? "active" : ""}
             onClick={() => handleListItemClick(3)}
           >
             <Link to="/merchant" className="text-base nav__link">
-              <FontAwesomeIcon icon={faUserGroup} /> <span>Merchants</span>{' '}
+              <FontAwesomeIcon icon={faUserGroup} /> <span>Merchants</span>{" "}
             </Link>
           </li>
           <li
             onClick={() => handleListItemClick(4)}
-            className={activeIndex === 4 ? 'active' : ''}
+            className={activeIndex === 4 ? "active" : ""}
           >
             <Link to="/messages" className="text-base nav__link">
               <FontAwesomeIcon icon={faMessage} />
@@ -102,57 +104,65 @@ const SideBar = () => {
           </li>
           <li
             onClick={() => handleListItemClick(5)}
-            className={activeIndex === 5 ? 'active' : ''}
+            className={activeIndex === 5 ? "active" : ""}
           >
             <Link to="/contact" className="text-base nav__link">
-              <FontAwesomeIcon icon={faAddressBook} /> <span>Contact</span>{' '}
+              <FontAwesomeIcon icon={faAddressBook} /> <span>Contact</span>{" "}
             </Link>
           </li>
           <li
             onClick={() => handleListItemClick(6)}
-            className={activeIndex === 6 ? 'active' : ''}
+            className={activeIndex === 6 ? "active" : ""}
           >
-            <FontAwesomeIcon icon={faChartSimple} /> <span>Reports</span>{' '}
+            <FontAwesomeIcon icon={faChartSimple} /> <span>Reports</span>{" "}
           </li>
           <li
             onClick={() => handleListItemClick(7)}
-            className={activeIndex === 7 ? 'active' : ''}
+            className={activeIndex === 7 ? "active" : ""}
           >
-            <Link to="/settings" className="text-base nav__link">
-              <FontAwesomeIcon icon={faGear} /> <span>Settings</span>{' '}
-            </Link>
+            <Link to="/remittance-mgt" className="text-base nav__link">
+              <FontAwesomeIcon icon={faAddressBook} /> <span>Remittance</span>{" "}
+            </Link>{" "}
           </li>
           <li
             onClick={() => handleListItemClick(8)}
-            className={activeIndex === 8 ? 'active' : ''}
+            className={activeIndex === 8 ? "active" : ""}
+          >
+            <Link to="/settings" className="text-base nav__link">
+              <FontAwesomeIcon icon={faGear} /> <span>Settings</span>{" "}
+            </Link>
+          </li>
+          <li
+            onClick={() => handleListItemClick(9)}
+            className={activeIndex === 9 ? "active" : ""}
           >
             <Link to="/fund_request" className="nav__link">
-              <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+              <FontAwesomeIcon icon={faArrowTrendUp} />{" "}
               <span>Fund Request</span>
             </Link>
           </li>
 
           <li
             onClick={() => handleListItemClick(10)}
-            className={activeIndex === 10 ? 'active' : ''}
+            className={activeIndex === 10 ? "active" : ""}
           >
             <Link to="/user-to-user-request" className="nav__link">
-              <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+              <FontAwesomeIcon icon={faArrowTrendUp} />{" "}
               <span>User to User Transfer</span>
             </Link>
           </li>
           <li
             onClick={() => handleListItemClick(11)}
-            className={activeIndex === 11 ? 'active' : ''}
+            className={activeIndex === 11 ? "active" : ""}
           >
             <Link to="/merchant-subscription" className="nav__link">
-              <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+              <FontAwesomeIcon icon={faArrowTrendUp} />{" "}
               <span>Merchant Subscription</span>
             </Link>
           </li>
           <li
             onClick={() => handleListItemClick(12)}
-            className={activeIndex === 12 ? 'active' : ''}
+            className={activeIndex === 12 ? "active" : ""}
           >
             <Link to="/basic_information" className="nav__link">
               <FontAwesomeIcon icon={faArrowTrendUp} /> <span>Profile</span>
@@ -160,7 +170,7 @@ const SideBar = () => {
           </li>
           <li
             onClick={() => handleListItemClick(13)}
-            className={activeIndex === 13 ? 'active' : ''}
+            className={activeIndex === 13 ? "active" : ""}
           >
             <Link to="/investors" className="nav__link">
               <FontAwesomeIcon icon={faArrowTrendUp} /> <span>Investors</span>
@@ -168,7 +178,7 @@ const SideBar = () => {
           </li>
           <li
             onClick={() => handleListItemClick(14)}
-            className={activeIndex === 14 ? 'active' : ''}
+            className={activeIndex === 14 ? "active" : ""}
           >
             <Link to="/set-rates" className="nav__link">
               <FontAwesomeIcon icon={faPercent} /> <span>Set Rates</span>
@@ -176,19 +186,19 @@ const SideBar = () => {
           </li>
           <li
             onClick={() => handleListItemClick(15)}
-            className={activeIndex === 15 ? 'active' : ''}
+            className={activeIndex === 15 ? "active" : ""}
           >
             <Link to="/set-card-limit" className="nav__link">
-              <FontAwesomeIcon icon={faArrowTrendUp} />{' '}
+              <FontAwesomeIcon icon={faArrowTrendUp} />{" "}
               <span>Set Card Limit</span>
             </Link>
           </li>
           <li
             onClick={() => handleListItemClick(16)}
-            className={activeIndex === 16 ? 'active' : ''}
+            className={activeIndex === 16 ? "active" : ""}
           >
             <Link to="/bank-details" className="nav__link">
-              <FontAwesomeIcon icon={faMoneyCheckAlt} />{' '}
+              <FontAwesomeIcon icon={faMoneyCheckAlt} />{" "}
               <span>Bank Details</span>
             </Link>
           </li>
@@ -197,12 +207,12 @@ const SideBar = () => {
         <ListView>
           <li
             onClick={() => handleListItemClick(17)}
-            className={activeIndex === 17 ? 'active' : ''}
+            className={activeIndex === 17 ? "active" : ""}
           >
             <FontAwesomeIcon icon={faCircleQuestion} /> <span>Help Center</span>
           </li>
           <li
-            className={activeIndex === 18 ? 'active' : ''}
+            className={activeIndex === 18 ? "active" : ""}
             onClick={handleLogout}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
