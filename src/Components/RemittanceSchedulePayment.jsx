@@ -10,8 +10,13 @@ import {
   faLongArrowDown,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import phoneLock from "../assets/ph_lock-simple-fill.svg";
+
+import AppModal from "./Modal";
 
 const RemittanceSchedulePayment = () => {
+  const [show, setShow] = React.useState(false);
+  const [deny, setDeny] = React.useState(false);
   const navigate = useNavigate();
 
   return (
@@ -205,7 +210,10 @@ const RemittanceSchedulePayment = () => {
             </div>
 
             <div className="flex items-center justify-between my-2">
-              <div className="w-[202.91px] h-[51px] cursor-pointer">
+              <div
+                onClick={() => setShow(true)}
+                className="w-[202.91px] h-[51px] cursor-pointer"
+              >
                 <div className="px-5 py-3 text-center  bg-blue-600 rounded-[10px]">
                   <div className=" text-neutral-50 text-base font-bold font-['Montserrat']">
                     Send
@@ -223,6 +231,54 @@ const RemittanceSchedulePayment = () => {
             </div>
           </div>
         </div>
+
+        <AppModal
+          visible={show}
+          closable={true}
+          handleCancel={() => setShow(false)}
+        >
+          <div className="flex h-[300px] items-center justify-center gap-5 flex-col">
+            <p className="text-center text-black text-base font-bold font-['Montserrat'] leading-normal">
+              Are you Sure you want to <br />
+              process this remittance?
+            </p>
+
+            <div className="w-[277.55px] flex items-center justify-between">
+              <div className="w-[134.75px]">
+                <div className="flex items-center justify-center text-center w-[100px] py-2  bg-blue-600 rounded-[10px]">
+                  {" "}
+                  <div className="  text-neutral-50 text-base font-bold font-['Montserrat']">
+                    Yes
+                  </div>
+                </div>
+              </div>
+              <div className="w-[134.75px]">
+                <div className="flex items-center justify-center text-center w-[100px] py-2 bg-red-600 rounded-[10px]">
+                  {" "}
+                  <div className="  text-neutral-50 text-base font-bold font-['Montserrat']">
+                    No
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-center gap-1 w-full">
+              <img
+                src={phoneLock}
+                alt="all-request"
+                className="w-[20.33px] h-auto"
+              />
+              <div className="">
+                <small className="text-black text-base font-medium">
+                  Secured by
+                </small>
+                <small className="text-blue-900 text-base font-bold">
+                  {" "}
+                  LeverPay
+                </small>
+              </div>
+            </div>
+          </div>
+        </AppModal>
       </DashboardView>
     </SidebarLayout>
   );
