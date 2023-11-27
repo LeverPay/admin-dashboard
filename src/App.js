@@ -41,6 +41,7 @@ import BankDetails from "./Pages/BankDetails";
 import ViewReceipt from "./Pages/Funding/ViewReceipt";
 import RemittanceMgt from "./Components/RemittanceMgt";
 import RemittanceSchedulePayment from "./Components/RemittanceSchedulePayment";
+import MerchantScheduleList from "./Components/MerchantScheduleList";
 
 export default function App() {
   return (
@@ -67,6 +68,10 @@ export default function App() {
             <Route
               path="/remittance-schedule-payment"
               element={<RemittanceSchedulePayment />}
+            />
+            <Route
+              path="/merchant-schedule-list"
+              element={<MerchantScheduleList />}
             />
 
             <Route path="/messages" element={<MessagesPage />} />
