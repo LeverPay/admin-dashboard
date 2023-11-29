@@ -38,7 +38,7 @@ import SetRates from './Pages/SetRates';
 import SetCardLimit from './Pages/SetCardLimit';
 import NotFoundPage from './Pages/NotFoundPage';
 import BankDetails from './Pages/BankDetails';
-import ViewReceipt from './Pages/Funding/ViewReceipt';
+import TopupRequestMore from './Pages/Funding/TopupRequestMore';
 
 export default function App() {
   return (
@@ -81,7 +81,7 @@ export default function App() {
             <Route path="/debit-card" element={<DebitCard />} />
             <Route path="/card-upgraade" element={<CardUpgradePage />} />
             <Route path="/fund_request" element={<FundRequest />} />
-            <Route path="/fund_request_receipt" element={<ViewReceipt />} />
+            <Route path="/fund_request_more" element={<TopupRequestMore />} />
             <Route path="/user-to-user-request" element={<UserToUser />} />
             <Route
               path="/merchant-subscription"
