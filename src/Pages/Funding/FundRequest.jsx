@@ -14,7 +14,7 @@ import { format } from 'date-fns';
 
 function FundRequest() {
   const [fundRequestData, setFundRequestData] = useState(null);
-  const [pending, setPending] = useState(false)
+  const [pending, setPending] = useState(true)
   const authToken = Cookies.get('authToken');
 
   // Define a function to format the transactionDate
