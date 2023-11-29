@@ -7,7 +7,7 @@ const MerchantData = ({ selectedMerchant }) => {
         <div>
           <p className="flex justify-between w-1/2 items-center gap-2 my-2">
             <span className="text-black text-[22px] font-light leading-normal">
-              First Name :{' '}
+              First Name:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
               {selectedMerchant.first_name}
@@ -15,28 +15,28 @@ const MerchantData = ({ selectedMerchant }) => {
             </span>
           </p>
           <span className="text-black text-[22px] font-light leading-normal">
-            Last Name :{' '}
+            Last Name:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
             {selectedMerchant.last_name}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            Other Name :{' '}
+            Other Name:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
             {selectedMerchant.other_name}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            Gender :{' '}
+            Gender:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
             {selectedMerchant.gender}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            Date of Birth :
+            DOB:
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
             {' '}
@@ -44,21 +44,21 @@ const MerchantData = ({ selectedMerchant }) => {
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            Country :{' '}
+            Country:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
           {/* {selectedMerchant.kyc_details[0].country.country_name ? selectedMerchant.kyc_details[0].country.country_name: ''} */}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            State :{' '}
+            State:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
           {selectedMerchant.state}
             <br />
           </span>
           <span className="text-black text-[22px] font-light leading-normal">
-            City :{' '}
+            City:{' '}
           </span>
           <span className="text-black text-[22px] font-bold leading-normal">
           {selectedMerchant.city}
@@ -71,28 +71,28 @@ const MerchantData = ({ selectedMerchant }) => {
 
           <div>
             <span className="text-black text-[22px] font-normal leading-normal">
-              Primary Email :{' '}
+              Primary Email:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
               {selectedMerchant.email}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
-              Secondary Email :
+              Secondary Email:
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
             {selectedMerchant.primary_email}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
-              Primary Phone :{' '}
+              Primary Phone:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
               {selectedMerchant.phone}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
-              Secondary Phone :{' '}
+              Secondary Phone:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
              {selectedMerchant.primary_phone}
@@ -124,7 +124,7 @@ const MerchantData = ({ selectedMerchant }) => {
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
-              BVN :{' '}
+              BVN:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
             {selectedMerchant.kyc_details && selectedMerchant.kyc_details[0].bvn}

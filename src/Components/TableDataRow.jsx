@@ -85,7 +85,9 @@ const TableDataRow = ({ item, isShown }) => {
               Amount :{' '}
             </span>
             <span className="text-green-900 text-base font-bold leading-normal">
-            {item.amount}
+            
+            {parseFloat(item.amount).toFixed(2)}
+            
               <br />
             </span>
           </p>
@@ -97,13 +99,22 @@ const TableDataRow = ({ item, isShown }) => {
               {' '}
             </span>
             <span className="text-green-900 text-base font-bold leading-normal">
-              N10.00
+            {item.tnx_charges}
               <br />
             </span>
           </p>
           <p className="flex justify-between items-center gap-2 my-2">
             <span className="text-black text-base font-light leading-normal">
-              Vendor :{' '}
+              Transaction Type:{' '}
+            </span>
+            <span className="text-red-600 text-base font-bold leading-normal">
+            {item.type}
+              <br />
+            </span>
+          </p>
+          <p className="flex justify-between items-center gap-2 my-2">
+            <span className="text-black text-base font-light leading-normal">
+              Vendor:{' '}
             </span>
             <span className="text-red-600 text-base font-bold leading-normal">
             {item.transaction_details}
@@ -131,9 +142,13 @@ const TableDataRow = ({ item, isShown }) => {
       </AppModal>
       <td>{item.user.first_name} {item.user.last_name}</td>
       {isShown && <td>{item.user_id}</td>}
-      <td>${item.amount}</td>
+      <td> {parseFloat(item.amount).toFixed(2)}</td>
       <td>{item.type}</td>
-      <td>{item.status}</td>
+      <td> {item?.status === 0 ? (
+          <span className="suspended-user">Failed</span>
+        ) : (
+          <span className="active-user">Successful</span>
+        )}</td>
       <td>
         <div className="view-more-btn" onClick={() => setShow(true)}>
           View

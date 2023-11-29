@@ -9,7 +9,8 @@ const UserTableRowData = ({ item, index }) => {
   };
   return (
     <tr key={item?.id} style={{marginBottom:'1rem !important'}} className='user-table-row'>
-      <td>{item?.first_name}</td>
+      <td>{item?.first_name} {item?.last_name}</td>
+
       <td>{item?.email}</td> 
       <td>
         {item?.status === 0 ? (
@@ -21,7 +22,7 @@ const UserTableRowData = ({ item, index }) => {
       <td>
         <div className="view-more-btn">
           <Link to='/user-view-more' style={{color:'white'}} state={item.uuid}>
-          View More 
+          View
           </Link>
           </div>
       </td>
