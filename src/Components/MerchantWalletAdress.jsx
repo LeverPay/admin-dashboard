@@ -10,7 +10,7 @@ const MerchantWalletAdress = () => {
       </div>
 
       <div className="my-2">
-        <h2 className="text-amber-500 text-[22px] font-bold leading-normal">
+             <h2 className="text-amber-500 text-[22px] font-bold leading-normal">
           Binance :
         </h2>
         <div className="w-[513px] h-[130px]">

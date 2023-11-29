@@ -1,19 +1,19 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import SidebarLayout from '../Layouts/SidebarLayout';
-import { DashboardNavView, DashboardView } from '../css/DashboardPageStyles';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { FundRequestStyle } from '../css/FundrequestStyle';
-import allRequest from '../assets/all-request.svg';
-import approvedRequest from '../assets/check.svg';
-import pendingRequest from '../assets/pending.svg';
-import failedRequest from '../assets/failed.svg';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import SidebarLayout from "../Layouts/SidebarLayout";
+import { DashboardNavView, DashboardView } from "../css/DashboardPageStyles";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FundRequestStyle } from "../css/FundrequestStyle";
+import allRequest from "../assets/all-request.svg";
+import approvedRequest from "../assets/check.svg";
+import pendingRequest from "../assets/pending.svg";
+import failedRequest from "../assets/failed.svg";
 
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
-import AppModal from '../Components/Modal';
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import AppModal from "../Components/Modal";
 
 function UserToUser() {
   const [show, setShow] = React.useState(false);
@@ -78,7 +78,7 @@ function UserToUser() {
                             <p>
                               <span className="text-white text-base font-bold leading-normal">
                                 2000
-                              </span>{' '}
+                              </span>{" "}
                             </p>
                           </div>
                         </div>
@@ -151,7 +151,7 @@ function UserToUser() {
                 <div className="row">
                   <div className="col-12 mt-5">
                     <Tabs defaultActiveKey="first">
-                      <Tab eventKey="first" title={'Sent'}>
+                      <Tab eventKey="first" title={"Sent"}>
                         <div className="users__tab__padding">
                           <table className="table table-borderless">
                             <thead>
@@ -176,11 +176,11 @@ function UserToUser() {
                                   <Link
                                     to={{
                                       pathname: `/approve_request/1`,
-                                      state: { users: '' },
+                                      state: { users: "" },
                                     }}
                                     className="view-more-btn"
                                   >
-                                    {' '}
+                                    {" "}
                                     Received
                                   </Link>
                                 </td>
@@ -189,7 +189,7 @@ function UserToUser() {
                                     onClick={() => setShow(true)}
                                     className="view-more-btn"
                                   >
-                                    {' '}
+                                    {" "}
                                     View
                                   </div>
                                 </td>
@@ -205,11 +205,11 @@ function UserToUser() {
                                   <Link
                                     to={{
                                       pathname: `/approve_request/1`,
-                                      state: { users: '' },
+                                      state: { users: "" },
                                     }}
                                     className="view-more-btn"
                                   >
-                                    {' '}
+                                    {" "}
                                     Failed
                                   </Link>
                                 </td>
@@ -218,7 +218,7 @@ function UserToUser() {
                                     onClick={() => setShow(true)}
                                     className="view-more-btn"
                                   >
-                                    {' '}
+                                    {" "}
                                     View
                                   </div>
                                 </td>
@@ -233,11 +233,11 @@ function UserToUser() {
                                   <Link
                                     to={{
                                       pathname: `/approve_request/1`,
-                                      state: { users: '' },
+                                      state: { users: "" },
                                     }}
                                     className="view-more-btn"
                                   >
-                                    {' '}
+                                    {" "}
                                     FAILED
                                   </Link>
                                 </td>
@@ -246,7 +246,7 @@ function UserToUser() {
                                     onClick={() => setShow(true)}
                                     className="view-more-btn"
                                   >
-                                    {' '}
+                                    {" "}
                                     View
                                   </div>
                                 </td>
@@ -262,11 +262,11 @@ function UserToUser() {
                                   <Link
                                     to={{
                                       pathname: `/approve_request/1`,
-                                      state: { users: '' },
+                                      state: { users: "" },
                                     }}
                                     className="view-more-btn"
                                   >
-                                    {' '}
+                                    {" "}
                                     Received
                                   </Link>
                                 </td>
@@ -275,7 +275,7 @@ function UserToUser() {
                                     onClick={() => setShow(true)}
                                     className="view-more-btn"
                                   >
-                                    {' '}
+                                    {" "}
                                     View
                                   </div>
                                 </td>
@@ -284,7 +284,7 @@ function UserToUser() {
                           </table>
                         </div>
                       </Tab>
-                      <Tab eventKey="second" title={'Received'}>
+                      <Tab eventKey="second" title={"Received"}>
                         <div className="users__tab__padding">
                           <table className="table table-borderless">
                             <thead>
@@ -392,7 +392,7 @@ function UserToUser() {
                         <div className="w-[278px] h-44">
                           <p className="flex justify-between items-center gap-2 my-2">
                             <span className="text-black text-base font-light leading-normal">
-                              First Name :{' '}
+                              First Name :{" "}
                             </span>
                             <span className="text-black text-base font-bold leading-normal">
                               Ned <br />
@@ -403,7 +403,7 @@ function UserToUser() {
                               Last Name :
                             </span>
                             <span className="text-black text-base font-bold leading-normal">
-                              {' '}
+                              {" "}
                               Okonkwo
                               <br />
                             </span>
@@ -413,14 +413,14 @@ function UserToUser() {
                               Email :
                             </span>
                             <span className="text-black text-base font-bold leading-normal">
-                              {' '}
+                              {" "}
                               NedNkwo@gmail.com
                               <br />
                             </span>
                           </p>
                           <p className="flex justify-between items-center gap-2 my-2">
                             <span className="text-black text-base font-light leading-normal">
-                              User ID :{' '}
+                              User ID :{" "}
                             </span>
                             <span className="text-amber-700 text-base font-bold leading-normal">
                               LVP23X76640yjL
@@ -432,7 +432,7 @@ function UserToUser() {
                               Phone:
                             </span>
                             <span className="text-black text-base font-bold leading-normal">
-                              {' '}
+                              {" "}
                             </span>
                             <span className="text-green-900 text-base font-bold leading-normal">
                               0807859456744
@@ -459,13 +459,13 @@ function UserToUser() {
                             </div>
                             <div className="flex items-center w-full justify-between">
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                             </div>
                           </div>
@@ -483,13 +483,13 @@ function UserToUser() {
                             </div>
                             <div className="flex items-center w-full justify-between">
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                             </div>
                           </div>
@@ -504,7 +504,7 @@ function UserToUser() {
                         <div className="w-[278px] h-44">
                           <p className="flex justify-between items-center gap-2 my-2">
                             <span className="text-black text-base font-light leading-normal">
-                              First Name :{' '}
+                              First Name :{" "}
                             </span>
                             <span className="text-black text-base font-bold leading-normal">
                               Ned <br />
@@ -515,7 +515,7 @@ function UserToUser() {
                               Last Name :
                             </span>
                             <span className="text-black text-base font-bold leading-normal">
-                              {' '}
+                              {" "}
                               Okonkwo
                               <br />
                             </span>
@@ -525,14 +525,14 @@ function UserToUser() {
                               Email :
                             </span>
                             <span className="text-black text-base font-bold leading-normal">
-                              {' '}
+                              {" "}
                               NedNkwo@gmail.com
                               <br />
                             </span>
                           </p>
                           <p className="flex justify-between items-center gap-2 my-2">
                             <span className="text-black text-base font-light leading-normal">
-                              User ID :{' '}
+                              User ID :{" "}
                             </span>
                             <span className="text-amber-700 text-base font-bold leading-normal">
                               LVP23X76640yjL
@@ -544,7 +544,7 @@ function UserToUser() {
                               Phone:
                             </span>
                             <span className="text-black text-base font-bold leading-normal">
-                              {' '}
+                              {" "}
                             </span>
                             <span className="text-green-900 text-base font-bold leading-normal">
                               0807859456744
@@ -572,13 +572,13 @@ function UserToUser() {
                             </div>
                             <div className="flex items-center w-full justify-between">
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                             </div>
                           </div>
@@ -596,13 +596,13 @@ function UserToUser() {
                             </div>
                             <div className="flex items-center w-full justify-between">
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                               <span className="text-stone-300 text-xs font-bold leading-normal">
-                                N300,000{' '}
+                                N300,000{" "}
                               </span>
                             </div>
                           </div>

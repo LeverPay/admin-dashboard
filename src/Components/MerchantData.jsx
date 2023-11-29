@@ -120,14 +120,14 @@ const MerchantData = ({ selectedMerchant }) => {
               NIN :{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant.kyc_details && selectedMerchant.kyc_details[0].nin}
+            {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].nin: ''}
               <br />
             </span>
             <span className="text-black text-[22px] font-normal leading-normal">
               BVN:{' '}
             </span>
             <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant.kyc_details && selectedMerchant.kyc_details[0].bvn}
+            {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].bvn: ''}
             </span>
               </>
             }

@@ -49,7 +49,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          
+
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/change-password" element={<ChangePassword />} />
@@ -63,6 +63,12 @@ export default function App() {
             />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/remittance-mgt" element={<RemittanceMgt />} />
+            <Route
+              path="/remittance-schedule-payment"
+              element={<RemittanceSchedulePayment />}
+            />
+
             <Route path="/messages" element={<MessagesPage />} />
             <Route path="/card-center" element={<CardPage />} />
             <Route path="/users" element={<UsersPage />} />

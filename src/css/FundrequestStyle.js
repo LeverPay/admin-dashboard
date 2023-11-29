@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FundRequestStyle = styled.section`
   padding: 50px 20px 50px 20px;
@@ -34,12 +34,12 @@ export const FundRequestStyle = styled.section`
   }
 
   th {
-    color: #0b0230 !important;
+    color: #0b0230;
     font-weight: 700 !important;
   }
 
   tr td {
-    color: #0b0230 !important;
+    color: #0b0230;
   }
 
   .font__approved a {
@@ -100,7 +100,7 @@ export const FundRequestStyle = styled.section`
 
   .transaction__table {
     .TransactionTitle {
-      font-family: 'Open Sans', sans-serif;
+      font-family: "Open Sans", sans-serif;
       font-size: 18px;
       font-weight: 500;
       line-height: 23px;
@@ -182,7 +182,7 @@ export const FundRequestStyle = styled.section`
 `;
 
 export const HeaderCell = styled.th`
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;

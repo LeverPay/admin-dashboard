@@ -22,7 +22,8 @@ const MerchantMessage = ({merchantData}) => {
   }
   function sendMail(){
     setSend('Sending..')
-    axios.post('https://leverpay-api.azurewebsites.net/api/v1/contact-us',
+    axios.post('https://leverpay-api.azurewebsites.net/api/v1/admin/send-mail-to-user',
+
     formData,
     {
       headers: {
@@ -66,13 +67,13 @@ const MerchantMessage = ({merchantData}) => {
           <div className="w-[568px] h-[227px] left-0 top-[114px] absolute flex-col justify-start items-start gap-3 inline-flex">
           <label className="text-gray-800 text-base font-normal leading-tight">
               MESSAGE: 
-              <input 
+              <textarea
               type='text'
               name='message'
               onChange={handlechange}
               className="w-[568px] h-[195px] pl-2.5 rounded-[10px] border border-gray-800 border-opacity-50 mt-5" 
               style={{wordWrap: 'break-word'}}
-               />
+               ></textarea>
             </label>
           </div>
         </div>
