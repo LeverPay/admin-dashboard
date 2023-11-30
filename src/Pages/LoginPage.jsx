@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import logo from '../assets/logo.png';
-import '../css/LoginStyles.css'; // Assuming you have a Login.css file for styling
-import male_user from '../assets/male user.png';
-import { toast } from 'react-hot-toast';
-import login_logo from '../assets/login-logo.svg';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { baseUrl } from '../utils/constants';
+import React, { useState } from "react";
+import logo from "../assets/logo.png";
+import "../css/LoginStyles.css"; // Assuming you have a Login.css file for styling
+import male_user from "../assets/male user.png";
+import { toast } from "react-hot-toast";
+import login_logo from "../assets/login-logo.svg";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { baseUrl } from "../utils/constants";
+import { useLocalState } from "../utils/useLocalStorage";
 
 const PasswordIcon = ({ showPassword, togglePassword }) =>
   showPassword ? (
@@ -19,7 +20,7 @@ const PasswordIcon = ({ showPassword, togglePassword }) =>
       stroke="currentColor"
       className=" password_eye"
       onClick={togglePassword}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: "pointer" }}
     >
       <path
         strokeLinecap="round"
@@ -41,7 +42,7 @@ const PasswordIcon = ({ showPassword, togglePassword }) =>
       stroke="currentColor"
       className=" password_eye"
       onClick={togglePassword}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: "pointer" }}
     >
       <path
         strokeLinecap="round"
@@ -52,11 +53,12 @@ const PasswordIcon = ({ showPassword, togglePassword }) =>
   );
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   // Function to handle changes in the username input
   const handleUsernameChange = (e) => {
@@ -78,7 +80,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const navigateToForgotPassword = () => {
-    navigate('/forgot-password');
+    navigate("/forgot-password");
   };
 
   // Function to handle form submission
@@ -87,7 +89,7 @@ const LoginPage = () => {
 
     // Basic form validation
     if (!validateEmail(username) || !password) {
-      toast.error('Please provide a valid details to continue.');
+      toast.error("Please provide a valid details to continue.");
       return;
     }
 
@@ -102,26 +104,31 @@ const LoginPage = () => {
         },
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
-            'X-CSRF-TOKEN': 'NkqJL4ZZ3uo7Sp489LDOLWwx1Ocx13vZIfpVEzNo',
+            "Content-Type": "multipart/form-data",
+            "X-CSRF-TOKEN": "NkqJL4ZZ3uo7Sp489LDOLWwx1Ocx13vZIfpVEzNo",
           },
         }
       );
       const token = response.data.data.token;
+      setJwt(token);
+      localStorage.setItem("_jwt", response.data.data.token);
+
       console.log(token);
       // Calculate the expiration time for the cookie (24 hours from now)
       const expirationTime = new Date();
       expirationTime.setTime(expirationTime.getTime() + 24 * 60 * 60 * 1000);
 
       // Set the cookie with the expiration time
-      Cookies.set('authToken', token, {
+      Cookies.set("authToken", token, {
         expires: expirationTime,
         secure: true,
       });
-      navigate('/');
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
       toast.success(response.message);
     } catch (error) {
-      toast.error(error?.response?.data.message || 'Login failed');
+      toast.error(error?.response?.data.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -133,7 +140,7 @@ const LoginPage = () => {
   };
 
   React.useEffect(() => {
-    document.title = 'Login  | LeverPay Admin';
+    document.title = "Login  | LeverPay Admin";
   }, []);
 
   return (
@@ -192,7 +199,7 @@ const LoginPage = () => {
                           />
                         </svg>
                         <input
-                          type={showPassword ? 'text' : 'password'}
+                          type={showPassword ? "text" : "password"}
                           placeholder="**********"
                           required
                           value={password}
@@ -202,7 +209,7 @@ const LoginPage = () => {
                       <PasswordIcon
                         showPassword={showPassword}
                         togglePassword={togglePassword}
-                      />{' '}
+                      />{" "}
                     </div>
 
                     <div className="checkbox-container">
@@ -232,7 +239,7 @@ const LoginPage = () => {
                       disabled={loading}
                     >
                       <div className="login-btn-link">
-                        {loading ? 'Logging in...' : 'LOGIN'}
+                        {loading ? "Logging in..." : "LOGIN"}
                       </div>
                     </button>
                   </form>
@@ -284,7 +291,7 @@ const LoginPage = () => {
             alt="logo"
             srcSet=""
             className="w-[150px] h-auto"
-          />{' '}
+          />{" "}
         </div>
       </div>
     </div>
