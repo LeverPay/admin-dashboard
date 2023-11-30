@@ -20,7 +20,7 @@
 .funding-table .funding_tableBody{
     display: flex;
     gap: 10px;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 .funding-table .funding_action{
     display: flex;

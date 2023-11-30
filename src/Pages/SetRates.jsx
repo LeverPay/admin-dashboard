@@ -4,7 +4,7 @@ import { DashboardView } from '../css/DashboardPageStyles';
 import CardFinanceOptions from '../Components/CardFinanceOptions';
 import minilogo from '../assets/mini-logo.svg';
 import { baseUrl } from '../utils/constants';
-
+import Loading from '../Components/loading';
 import { format } from 'date-fns';
 import { DataGrid } from '@mui/x-data-grid';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,7 +24,7 @@ const SetRates = () => {
   const [intTransRate, setIntTransRate] = useState('');
   const [convsnRate, setConvsnRate] = useState('');
   const [fundingRate, setFundingRate] = useState('');
-  const [exchangeResponse, setExchangeResponse] = useState([]);
+  const [exchangeHistory, setExchangeHistory] = useState([]);
 
   const handleRateChange = (value, setter) => {
     setter(value);
@@ -94,37 +94,22 @@ const SetRates = () => {
   };
 
   useEffect(() => {
-    const getExchangeRatesHistory = async () => {
-      setIsLoading(true);
-      try {
-        const response = await axios.get(
-          `${baseUrl}/v1/admin/get-exchange-rates-history`,
-          {
-            headers: {
-              accept: '*/*',
-              Authorization: `Bearer ${authToken}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-
-        // Add a unique ID to each row
-        const rowsWithIds = response?.data?.data.map((row) => ({
-          ...row,
-          id: uuidv4(), // Generate a unique ID
-        }));
-
-        // Update the state with rows containing unique IDs
-        setExchangeResponse(rowsWithIds);
-      } catch (error) {
-        // Handle errors here
-        toast.error('Error:', error);
-        console.error('Error:', error);
-      } finally {
-        setIsLoading(false);
+    axios.get(`${baseUrl}/v1/admin/get-exchange-rates-history`, {
+      headers : {
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': 'SKMKbJYHs1nugaO4DNb4K4f1DMFzsGTKY2RSEoYt',
+        accept: 'application/json'
       }
-    };
-  }, []);
+    })
+    .then(res=>{
+      console.log(res.data)
+      setExchangeHistory(res.data.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+}, []);
 
   const columns = [
     {
@@ -260,32 +245,6 @@ const SetRates = () => {
               </button>
             </div>
           </div>
-
-          <div className="row">
-            <div className="col-12 mt-5">
-              <div className="users__tab__padding">
-                {isLoading ? (
-                  <div className="text-slate-500 text-sm font-normal font-['Agrandir'] leading-normal flex items-center justify-center">
-                    Loading Set Rates History...{' '}
-                  </div>
-                ) : (
-                  <DataGrid
-                    sx={{
-                      boxShadow: 2,
-                      border: 0,
-                      backgroundColor: 'white',
-                      '& .MuiDataGrid-cell:hover': {
-                        color: 'primary.main',
-                      },
-                    }}
-                    rows={exchangeResponse}
-                    columns={columns}
-                    rowKeyField="id"
-                  />
-                )}
-              </div>
-            </div>
-          </div>
         </div>
         <AppModal
           visible={show}
@@ -404,6 +363,65 @@ const SetRates = () => {
             </div>
           </div>
         </AppModal>
+        <div className="row">
+            <div className="col-12 mt-5">
+            <div className='funding-table'>
+                  <ul className='tableHead' style={{color:'black'}}>
+                    <li>
+                      Rate
+                    </li>
+                    <li>
+                      Conversion <br /> Rate 
+                    </li>
+                    <li>
+                      Funding <br /> Rate
+                    </li>
+                    <li>
+                      Int. Rate 
+                    </li>
+                    <li>
+                      Local Rate
+                    </li>
+                    <li>
+                      Date  
+                    </li>
+                  </ul>
+                  <div className='funding_tableBody'>
+                      {
+                        exchangeHistory && <>
+                        {
+                          exchangeHistory.map(item=>{
+                            return <ul key={item.created_at}>
+                              <li>
+                                {item.rate}
+                              </li>
+                              <li>
+                                {item.conversion_rate}
+                              </li>
+                              <li>
+                                {item.funding_rate}
+                              </li>
+                              <li>
+                                {item.international_transaction_rate}
+                              </li>
+                              <li>
+                                {item.local_transaction_rate}
+                              </li>
+                              <li>
+                                {formatDate(item.created_at)}
+                              </li>
+                            </ul>
+                          })
+                        }
+                        </>
+                      }
+                      {
+                        !exchangeHistory && <Loading/>
+                      }
+                  </div>
+                </div>
+            </div>
+          </div>
       </DashboardView>
     </SidebarLayout>
   );

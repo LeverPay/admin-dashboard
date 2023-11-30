@@ -10,11 +10,10 @@ import { baseUrl } from '../utils/constants';
 
 const PAGE_SIZE = 12;
 
-function MerchantDataTable() {
+function MerchantDataTable(){
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
-
   const authToken = Cookies.get('authToken');
 
   useEffect(() => {
