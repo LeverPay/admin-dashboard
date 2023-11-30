@@ -14,7 +14,7 @@ import { format } from 'date-fns';
 
 function FundRequest() {
   const [fundRequestData, setFundRequestData] = useState(null);
-  const [pending, setPending] = useState(true)
+  const [pending, setPending] = useState('pending')
   const authToken = Cookies.get('authToken');
 
   // Define a function to format the transactionDate
@@ -54,6 +54,7 @@ function FundRequest() {
 }
 const pendingRequest = fundRequestData && fundRequestData.filter(item => item.status === 0)
 const approvedRequest = fundRequestData && fundRequestData.filter(item => item.status === 1)
+const declinedRequest = fundRequestData && fundRequestData.filter(item => item.status === 2)
 
   return (
     <SidebarLayout>
@@ -92,8 +93,8 @@ const approvedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     </div>
                   </div>
                   <div className="col" onClick={()=>{
-                      setPending(true)
-                    }}>
+                      setPending('pending')
+                    }} style={{cursor:'pointer'}}>
                     <div className="card bg__custom__blue">
                       <div className="card-body">
                         <div className="row flex items-center gap-2">
@@ -126,8 +127,8 @@ const approvedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     </div>
                   </div>
                   <div className="col" onClick={()=>{
-                      setPending(false)
-                    }}>
+                      setPending('approved')
+                    }} style={{cursor:'pointer'}}>
                     <div className="card bg__custom__green">
                       <div className="card-body">
                         <div className="row flex items-center justify-center gap-2">
@@ -157,9 +158,39 @@ const approvedRequest = fundRequestData && fundRequestData.filter(item => item.s
                       </div>
                     </div>
                   </div>
-
+                  <div className="col" onClick={()=>{
+                      setPending('declined')
+                    }} style={{cursor:'pointer'}}>
+                    <div className="card bg__custom__red">
+                      <div className="card-body">
+                        <div className="row flex items-center justify-center gap-2">
+                          <div className="col-3">
+                            <svg
+                              width="40"
+                              height="40"
+                              viewBox="0 0 40 40"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M21.7675 23.75L27.07 18.4475L25.3025 16.68L20.0025 21.9825L14.6975 16.6825L12.93 18.4475L18.2325 23.75L12.9325 29.05L14.6975 30.82L20 25.5175L25.3025 30.82L27.07 29.0525L21.77 23.75H21.7675ZM27.5 7.5H33.75V36.25H6.25V7.5H12.5V10H27.5V7.5ZM15 7.5V3.75H25V7.5H15Z"
+                                fill="white"
+                              />
+                            </svg>
+                          </div>
+                          <div className="col">
+                            <span>
+                              <b>FAILED</b>
+                            </span>
+                            <p>
+                              <b>{declinedRequest && declinedRequest.length}</b>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
                 <div className='funding-table'>
                   <ul className='tableHead'>
                     <li>
@@ -180,7 +211,7 @@ const approvedRequest = fundRequestData && fundRequestData.filter(item => item.s
                   </ul>
                   <div className='funding_tableBody'>
                     {
-                      pending && <>
+                      pending==='pending' && <>
                           {
                       fundRequestData && <>
                         {
@@ -220,11 +251,51 @@ const approvedRequest = fundRequestData && fundRequestData.filter(item => item.s
                       </>
                     }
                     {
-                      !pending && <>
+                      pending==='approved' && <>
                         {
                       fundRequestData && <>
                         {
                           approvedRequest.map(item => {
+                            return <ul key={item.created_at}>
+                              <li>
+                                {item.user.first_name} {item.user.last_name}
+                              </li>
+                              <li>
+                                {amountformat(item.amount)}
+                              </li>
+                              <li>
+                                {item.reference}
+                              </li>
+                              <li>
+                                {formatDate(item.created_at)}
+                              </li>
+                              {/* <li className='funding_action'>
+                                {
+                                  isApproved ? <b style={{ color: 'green' }}>Approved</b> : approving ? <b style={{ color: 'gray' }}>Approving...</b> : <><img src="/images/done.png" alt="" onClick={approve_top_up} /><img src="/images/cancel.png" alt="" /></>
+                                }
+
+                              </li> */}
+                              <li>
+                                <Link to='/fund_request_more' state={item}>
+                                  View More
+                                </Link>
+                              </li>
+                            </ul>
+                          })
+                        }
+                      </>
+                    }
+                     {
+                      !fundRequestData && <Loading/>
+                    }
+                      </>
+                    }
+                    {
+                      pending==='declined' && <>
+                        {
+                      fundRequestData && <>
+                        {
+                          declinedRequest.map(item => {
                             return <ul key={item.created_at}>
                               <li>
                                 {item.user.first_name} {item.user.last_name}
