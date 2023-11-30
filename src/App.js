@@ -1,5 +1,5 @@
 import "../src/css/app.css";
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardPage from "./Pages/DashboardPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TransactionPage from "./Pages/TransactionPage";
@@ -44,6 +44,10 @@ import TopupRequestMore from "./Pages/Funding/TopupRequestMore";
 import MerchantScheduleList from "./Components/MerchantScheduleList";
 
 export default function App() {
+  useEffect(() => {
+    return () => {};
+  }, []);
+
   return (
     <div>
       <Toaster position="top-right" reverseOrder={false} />
