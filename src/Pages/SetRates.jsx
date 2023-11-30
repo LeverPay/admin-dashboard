@@ -36,6 +36,11 @@ const SetRates = () => {
     return format(date, 'yyyy-MM-dd'); // Format date to 'yyyy-MM-dd'
   };
 
+  const amountformat = (request_amt) =>{
+    const amt = parseFloat(request_amt).toFixed(1)
+    return amt
+}
+
   React.useEffect(() => {
     document.title = 'Set Rates  | LeverPay Admin';
   }, []);
@@ -393,19 +398,19 @@ const SetRates = () => {
                           exchangeHistory.map(item=>{
                             return <ul key={item.created_at}>
                               <li>
-                                {item.rate}
+                                {amountformat(item.rate)}
                               </li>
                               <li>
-                                {item.conversion_rate}
+                                {amountformat(item.conversion_rate)}
                               </li>
                               <li>
-                                {item.funding_rate}
+                                {amountformat(item.funding_rate)}
                               </li>
                               <li>
-                                {item.international_transaction_rate}
+                                {amountformat(item.international_transaction_rate)}
                               </li>
                               <li>
-                                {item.local_transaction_rate}
+                                {amountformat(item.local_transaction_rate)}
                               </li>
                               <li>
                                 {formatDate(item.created_at)}
