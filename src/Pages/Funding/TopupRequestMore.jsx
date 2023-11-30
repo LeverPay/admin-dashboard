@@ -10,6 +10,8 @@ const TopupRequestMore = () => {
     const authToken = Cookies.get('authToken');
     const [approving, setApproving] = useState(false)
     const [isApproved, setIsApproved] = useState(false)
+    const [declining, setDeclining] = useState(false)
+    const [isDeclined, setIsDeclined] = useState(false)
     const location = useLocation()
     const {state} = location
     const fund_data = state
@@ -47,6 +49,28 @@ const TopupRequestMore = () => {
         setApproving(false)
       })
   }
+  function decline_top_up() {
+    setDeclining(true)
+    axios.post(`${baseUrl}v1/admin/cancel-topup-request`,
+      {uuid: fund_data.uuid},
+      {
+        headers: {
+          accept: '*/*',
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': 'VAjFe3gR4N6VeLZWsLPozlm4ttYquPC13KfprAim',
+        }
+      }
+    )
+      .then(res => {
+        console.log(res)
+        setIsDeclined(true)
+      })
+      .catch(err => {
+        console.log(err)
+        setIsDeclined(false)
+      })
+  }
 
 
   return (
@@ -75,7 +99,11 @@ const TopupRequestMore = () => {
                     isApproved ? 'Approved' : approving ? 'Approving...' : 'Approve Topup' 
                 }
             </button>
-            <button>Decline Topup</button>
+            <button onClick={decline_top_up}>
+                {
+                    isDeclined ? 'Declined' : declining ? 'Declining...' : 'Decline Topup' 
+                }
+            </button>
         </span>
                 </>
             }
@@ -84,6 +112,15 @@ const TopupRequestMore = () => {
                     <span>
                         <button style={{width: '100%'}}>
                             Transaction Approved
+                        </button>
+                    </span>
+                </>
+            }
+            {
+                fund_data.status === 2 && <>
+                    <span>
+                        <button style={{width: '100%', background: 'red'}}>
+                            Transaction Declined
                         </button>
                     </span>
                 </>
