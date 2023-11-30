@@ -6,17 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FundRequestStyle } from '../../css/FundrequestStyle';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 import './fundrequest.css'
-
+import Loading from '../../Components/loading';
 import Cookies from 'js-cookie';
 import { baseUrl } from '../../utils/constants';
 import { format } from 'date-fns';
 
 function FundRequest() {
   const [fundRequestData, setFundRequestData] = useState(null);
-  const [isApproved, setIsApproved] = useState(false)
-  const [approving, setApproving] = useState(false)
+  const [pending, setPending] = useState(true)
   const authToken = Cookies.get('authToken');
 
   // Define a function to format the transactionDate
@@ -42,7 +40,7 @@ function FundRequest() {
       .get(apiUrl, { headers })
       .then((response) => {
         // Add a unique ID to each row
-        console.log(response.data)
+        console.log(response.data.data)
         setFundRequestData(response.data.data);
       })
       .catch((error) => {
@@ -50,30 +48,12 @@ function FundRequest() {
       });
   }, []);
 
-  function approve_top_up() {
-    setApproving(true)
-    axios.post(`${baseUrl}v1/admin/approve-topup-request`,
-      fundRequestData.uuid,
-      {
-        headers: {
-          accept: '*/*',
-          Authorization: `Bearer ${authToken}`,
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': 'VAjFe3gR4N6VeLZWsLPozlm4ttYquPC13KfprAim',
-        }
-      }
-    )
-      .then(res => {
-        console.log(res)
-        setIsApproved(true)
-      })
-      .catch(err => {
-        console.log(err)
-        setApproving(false)
-      })
-  }
-
-
+  const amountformat = (request_amt) =>{
+    const amt = parseFloat(request_amt).toFixed(2)
+    return amt
+}
+const pendingRequest = fundRequestData && fundRequestData.filter(item => item.status === 0)
+const approvedRequest = fundRequestData && fundRequestData.filter(item => item.status === 1)
 
   return (
     <SidebarLayout>
@@ -111,7 +91,9 @@ function FundRequest() {
                       </div>
                     </div>
                   </div>
-                  <div className="col">
+                  <div className="col" onClick={()=>{
+                      setPending(true)
+                    }}>
                     <div className="card bg__custom__blue">
                       <div className="card-body">
                         <div className="row flex items-center gap-2">
@@ -135,7 +117,7 @@ function FundRequest() {
                             </span>
                             <p>
                               <span className="text-white text-xl font-bold leading-normal">
-                                {fundRequestData && fundRequestData.length}
+                                {pendingRequest && pendingRequest.length}
                               </span>{' '}
                             </p>
                           </div>
@@ -143,7 +125,9 @@ function FundRequest() {
                       </div>
                     </div>
                   </div>
-                  <div className="col">
+                  <div className="col" onClick={()=>{
+                      setPending(false)
+                    }}>
                     <div className="card bg__custom__green">
                       <div className="card-body">
                         <div className="row flex items-center justify-center gap-2">
@@ -166,73 +150,14 @@ function FundRequest() {
                               <b>APPROVED</b>
                             </span>
                             <p>
-                              <b>2</b>
+                              <b>{approvedRequest && approvedRequest.length}</b>
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="col">
-                    <div className="card bg__custom__yellow">
-                      <div className="card-body">
-                        <div className="row flex items-center justify-center gap-2">
-                          <div className="col-3">
-                            <svg
-                              width="42"
-                              height="42"
-                              viewBox="0 0 42 42"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M10.4167 23.9583C11.2847 23.9583 12.0229 23.6542 12.6313 23.0458C13.2396 22.4375 13.5431 21.7 13.5417 20.8333C13.5417 19.9653 13.2375 19.2271 12.6292 18.6188C12.0208 18.0104 11.2833 17.7069 10.4167 17.7083C9.54861 17.7083 8.81042 18.0125 8.20208 18.6208C7.59375 19.2292 7.29028 19.9667 7.29167 20.8333C7.29167 21.7014 7.59583 22.4396 8.20417 23.0479C8.8125 23.6563 9.55 23.9597 10.4167 23.9583ZM20.8333 23.9583C21.7014 23.9583 22.4396 23.6542 23.0479 23.0458C23.6563 22.4375 23.9597 21.7 23.9583 20.8333C23.9583 19.9653 23.6542 19.2271 23.0458 18.6188C22.4375 18.0104 21.7 17.7069 20.8333 17.7083C19.9653 17.7083 19.2271 18.0125 18.6188 18.6208C18.0104 19.2292 17.7069 19.9667 17.7083 20.8333C17.7083 21.7014 18.0125 22.4396 18.6208 23.0479C19.2292 23.6563 19.9667 23.9597 20.8333 23.9583ZM31.25 23.9583C32.1181 23.9583 32.8563 23.6542 33.4646 23.0458C34.0729 22.4375 34.3764 21.7 34.375 20.8333C34.375 19.9653 34.0708 19.2271 33.4625 18.6188C32.8542 18.0104 32.1167 17.7069 31.25 17.7083C30.3819 17.7083 29.6438 18.0125 29.0354 18.6208C28.4271 19.2292 28.1236 19.9667 28.125 20.8333C28.125 21.7014 28.4292 22.4396 29.0375 23.0479C29.6458 23.6563 30.3833 23.9597 31.25 23.9583ZM20.8333 41.6667C17.9514 41.6667 15.2431 41.1194 12.7083 40.025C10.1736 38.9306 7.96875 37.4465 6.09375 35.5729C4.21875 33.6979 2.73472 31.4931 1.64167 28.9583C0.548611 26.4236 0.00138889 23.7153 0 20.8333C0 17.9514 0.547222 15.2431 1.64167 12.7083C2.73611 10.1736 4.22014 7.96875 6.09375 6.09375C7.96875 4.21875 10.1736 2.73472 12.7083 1.64167C15.2431 0.548611 17.9514 0.00138889 20.8333 0C23.7153 0 26.4236 0.547222 28.9583 1.64167C31.4931 2.73611 33.6979 4.22014 35.5729 6.09375C37.4479 7.96875 38.9326 10.1736 40.0271 12.7083C41.1215 15.2431 41.6681 17.9514 41.6667 20.8333C41.6667 23.7153 41.1194 26.4236 40.025 28.9583C38.9306 31.4931 37.4465 33.6979 35.5729 35.5729C33.6979 37.4479 31.4931 38.9326 28.9583 40.0271C26.4236 41.1215 23.7153 41.6681 20.8333 41.6667ZM20.8333 37.5C25.4861 37.5 29.4271 35.8854 32.6562 32.6562C35.8854 29.4271 37.5 25.4861 37.5 20.8333C37.5 16.1806 35.8854 12.2396 32.6562 9.01042C29.4271 5.78125 25.4861 4.16667 20.8333 4.16667C16.1806 4.16667 12.2396 5.78125 9.01042 9.01042C5.78125 12.2396 4.16667 16.1806 4.16667 20.8333C4.16667 25.4861 5.78125 29.4271 9.01042 32.6562C12.2396 35.8854 16.1806 37.5 20.8333 37.5Z"
-                                fill="white"
-                              />
-                            </svg>
-                          </div>
-                          <div className="col">
-                            <span>
-                              <b>PENDING</b>
-                            </span>
-                            <p>
-                              <b>1</b>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card bg__custom__red">
-                      <div className="card-body">
-                        <div className="row flex items-center justify-center gap-2">
-                          <div className="col-3">
-                            <svg
-                              width="40"
-                              height="40"
-                              viewBox="0 0 40 40"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M21.7675 23.75L27.07 18.4475L25.3025 16.68L20.0025 21.9825L14.6975 16.6825L12.93 18.4475L18.2325 23.75L12.9325 29.05L14.6975 30.82L20 25.5175L25.3025 30.82L27.07 29.0525L21.77 23.75H21.7675ZM27.5 7.5H33.75V36.25H6.25V7.5H12.5V10H27.5V7.5ZM15 7.5V3.75H25V7.5H15Z"
-                                fill="white"
-                              />
-                            </svg>
-                          </div>
-                          <div className="col">
-                            <span>
-                              <b>FAILED</b>
-                            </span>
-                            <p>
-                              <b>1</b>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
 
                 <div className='funding-table'>
@@ -247,65 +172,94 @@ function FundRequest() {
                       Reference
                     </li>
                     <li>
-                      Action
+                      Date
                     </li>
                     <li>
-                      Receipt
+                      More 
                     </li>
                   </ul>
                   <div className='funding_tableBody'>
                     {
+                      pending && <>
+                          {
                       fundRequestData && <>
                         {
-                          fundRequestData.map(item => {
-                            return <ul key={item.id}>
+                          pendingRequest.map(item => {
+                            return <ul key={item.created_at}>
                               <li>
-                                {item.uuid}
+                                {item.user.first_name} {item.user.last_name}
                               </li>
                               <li>
-                                {item.amount}
+                                {amountformat(item.amount)}
                               </li>
                               <li>
                                 {item.reference}
                               </li>
-                              <li className='funding_action'>
+                              <li>
+                                {formatDate(item.created_at)}
+                              </li>
+                              {/* <li className='funding_action'>
                                 {
                                   isApproved ? <b style={{ color: 'green' }}>Approved</b> : approving ? <b style={{ color: 'gray' }}>Approving...</b> : <><img src="/images/done.png" alt="" onClick={approve_top_up} /><img src="/images/cancel.png" alt="" /></>
                                 }
 
-                              </li>
+                              </li> */}
                               <li>
-                                <Link to='' state={item.document}>
-                                  View Receipt
+                                <Link to='/fund_request_more' state={item}>
+                                  View More
                                 </Link>
-                                <input type="file" value={item.document} readOnly />
                               </li>
                             </ul>
                           })
                         }
                       </>
                     }
-                    <ul>
-                      <li>
-                        Patrick Lekan
-                      </li>
-                      <li>
-                        50000.00
-                      </li>
-                      <li>
-                        hsdgwurwbwuc732jjash
-                      </li>
-                      <li className='funding_action'>
+                     {
+                      !fundRequestData && <Loading/>
+                    }
+                      </>
+                    }
+                    {
+                      !pending && <>
                         {
-                          isApproved ? <b style={{ color: 'green' }}>Approved</b> : approving ? <b>Approving</b> : <><img src="/images/done.png" alt="" onClick={approve_top_up} /><img src="/images/cancel.png" alt="" /></>
+                      fundRequestData && <>
+                        {
+                          approvedRequest.map(item => {
+                            return <ul key={item.created_at}>
+                              <li>
+                                {item.user.first_name} {item.user.last_name}
+                              </li>
+                              <li>
+                                {amountformat(item.amount)}
+                              </li>
+                              <li>
+                                {item.reference}
+                              </li>
+                              <li>
+                                {formatDate(item.created_at)}
+                              </li>
+                              {/* <li className='funding_action'>
+                                {
+                                  isApproved ? <b style={{ color: 'green' }}>Approved</b> : approving ? <b style={{ color: 'gray' }}>Approving...</b> : <><img src="/images/done.png" alt="" onClick={approve_top_up} /><img src="/images/cancel.png" alt="" /></>
+                                }
+
+                              </li> */}
+                              <li>
+                                <Link to='/fund_request_more' state={item}>
+                                  View More
+                                </Link>
+                              </li>
+                            </ul>
+                          })
                         }
-                      </li>
-                      <li>
-                        <Link to='/fund_request_receipt' state={fundRequestData}>
-                          View Receipt
-                        </Link>
-                      </li>
-                    </ul>
+                      </>
+                    }
+                     {
+                      !fundRequestData && <Loading/>
+                    }
+                      </>
+                    }
+                   
                   </div>
                 </div>
 
