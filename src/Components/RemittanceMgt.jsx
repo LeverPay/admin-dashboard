@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SidebarLayout from "../Layouts/SidebarLayout";
 import { DashboardNavView, DashboardView } from "../css/DashboardPageStyles";
@@ -15,8 +15,27 @@ import { FundRequestStyle } from "../css/FundrequestStyle";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import AppModal from "../Components/Modal";
+import { getMerchantForRemittance } from "../services/apiService";
+
+function getDate() {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  return `${month}/${date}/${year}`;
+}
 
 const RemittanceMgt = () => {
+  const [merchants, setMerchants] = useState([]);
+  const [currentDate, setCurrentDate] = useState(getDate());
+  useEffect(() => {
+    getRemittanceMerchants();
+  }, []);
+
+  const getRemittanceMerchants = () => {
+    getMerchantForRemittance(merchants, setMerchants);
+  };
+
   return (
     <SidebarLayout>
       <DashboardView>
@@ -143,10 +162,8 @@ const RemittanceMgt = () => {
                 </div>
                 <div className="users__tab__padding border-top">
                   <div className="flex justify-between text-decoration-underline my-[10px]">
-                    <Link>List</Link>
-                    <Link to="/remittance-schedule-payment">
-                      Scheduled for Payment
-                    </Link>
+                    <Link to="/merchant-schedule-list">List</Link>
+                    <Link>Scheduled for Payment</Link>
                   </div>
                   <table className="table table-borderless">
                     <thead className="border border-black ">
@@ -165,103 +182,23 @@ const RemittanceMgt = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>02/08/2023 12:53</td>
-                        <td>Lvphhdhd01</td>
-                        <td>Naira</td>
-                        <td>Binance</td>
-                        <td className="!text-[#06AE21]">
-                          <Link
-                            to={{
-                              pathname: `/approve_request/1`,
-                              state: { users: "" },
-                            }}
-                            className="view-more-btn !text-[#06AE21]"
-                          >
-                            {" "}
-                            Received
-                          </Link>
-                        </td>
-                        <td className="!text-[#700AA0]">
-                          <div className="view-more-btn"> View</div>
-                        </td>
-                        <td className="font__pending" scope="col">
-                          <Link>more</Link>
-                        </td>{" "}
-                      </tr>
-                      <tr>
-                        <td>02/08/2023 12:53</td>
-                        <td>Lvphhdhd01</td>
-                        <td>Stable Coin</td>
-                        <td>Binance</td>
-                        <td className="!text-[#06AE21]">
-                          <Link
-                            to={{
-                              pathname: `/approve_request/1`,
-                              state: { users: "" },
-                            }}
-                            className="view-more-btn !text-[#06AE21]"
-                          >
-                            {" "}
-                            Failed
-                          </Link>
-                        </td>
-                        <td className="!text-[#700AA0]">
-                          <div className="view-more-btn"> View</div>
-                        </td>
-                        <td className="font__pending" scope="col">
-                          <Link>more</Link>
-                        </td>{" "}
-                      </tr>
-                      <tr>
-                        <td>02/08/2023 12:53</td>
-                        <td>Lvphhdhd01</td>
-                        <td>Stable Coin</td>
-                        <td>Binance</td>
-                        <td className="font__failed">
-                          <Link
-                            to={{
-                              pathname: `/approve_request/1`,
-                              state: { users: "" },
-                            }}
-                            className="view-more-btn"
-                          >
-                            {" "}
-                            FAILED
-                          </Link>
-                        </td>
-                        <td className="!text-[#700AA0]">
-                          <div className="view-more-btn"> View</div>
-                        </td>
-                        <td className="font__pending" scope="col">
-                          <Link>more</Link>
-                        </td>{" "}
-                      </tr>
-                      <tr>
-                        <td>02/08/2023 12:53</td>
-                        <td>Lvphhdhd01</td>
-                        <td>Naira</td>
-                        <td>Binance</td>
-
-                        <td className="font__approved">
-                          <Link
-                            to={{
-                              pathname: `/approve_request/1`,
-                              state: { users: "" },
-                            }}
-                            className="view-more-btn"
-                          >
-                            {" "}
-                            Received
-                          </Link>
-                        </td>
-                        <td className="!text-[#700AA0]">
-                          <div className="view-more-btn"> View</div>
-                        </td>
-                        <td className="font__pending" scope="col">
-                          <Link>more</Link>
-                        </td>
-                      </tr>
+                      {merchants.map((merchant) => (
+                        <tr>
+                          <td>{currentDate}</td>
+                          <td>{merchant.business_name}</td>
+                          <td>{merchant.email}</td>
+                          <td>{merchant.contact_person_phone}</td>
+                          <td className="!text-[#06AE21]">
+                            {merchant.withdrawable_amount}
+                          </td>
+                          <td className="!text-[#700AA0]">
+                            {merchant.last_remitted}
+                          </td>
+                          <td className="font__pending" scope="col">
+                            <Link to="/remittance-schedule-payment">more</Link>
+                          </td>{" "}
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                   <div className="flex text-[#A3AED0] justify-end">

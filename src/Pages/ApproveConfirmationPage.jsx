@@ -1,12 +1,12 @@
-import React from 'react';
-import { DashboardNavView, DashboardView } from '../css/DashboardPageStyles';
-import SidebarLayout from '../Layouts/SidebarLayout';
-import { Link } from 'react-router-dom';
-import { FundRequestStyle } from '../css/FundrequestStyle';
-import phoneLock from '../assets/ph_lock-simple-fill.svg';
-import approveIcon from '../assets/approve__icon.svg';
-import circleCheck from '../assets/circle-check-solid.svg';
-import success from '../assets/success.jpg';
+import React from "react";
+import { DashboardNavView, DashboardView } from "../css/DashboardPageStyles";
+import SidebarLayout from "../Layouts/SidebarLayout";
+import { Link } from "react-router-dom";
+import { FundRequestStyle } from "../css/FundrequestStyle";
+import phoneLock from "../assets/ph_lock-simple-fill.svg";
+import approveIcon from "../assets/approve__icon.svg";
+import circleCheck from "../assets/circle-check-solid.svg";
+import success from "../assets/success.jpg";
 
 function ApproveConfirmationPage() {
   return (
@@ -108,7 +108,7 @@ function ApproveConfirmationPage() {
                             Secured by
                           </small>
                           <small className="text-blue-900 text-base font-bold">
-                            {' '}
+                            {" "}
                             LeverPay
                           </small>
                         </div>

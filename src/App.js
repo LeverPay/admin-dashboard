@@ -1,5 +1,5 @@
 import "../src/css/app.css";
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardPage from "./Pages/DashboardPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TransactionPage from "./Pages/TransactionPage";
@@ -40,9 +40,14 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import BankDetails from "./Pages/BankDetails";
 import RemittanceMgt from "./Components/RemittanceMgt";
 import RemittanceSchedulePayment from "./Components/RemittanceSchedulePayment";
-import TopupRequestMore from './Pages/Funding/TopupRequestMore';
+import TopupRequestMore from "./Pages/Funding/TopupRequestMore";
+import MerchantScheduleList from "./Components/MerchantScheduleList";
 
 export default function App() {
+  useEffect(() => {
+    return () => {};
+  }, []);
+
   return (
     <div>
       <Toaster position="top-right" reverseOrder={false} />
@@ -67,6 +72,10 @@ export default function App() {
             <Route
               path="/remittance-schedule-payment"
               element={<RemittanceSchedulePayment />}
+            />
+            <Route
+              path="/merchant-schedule-list"
+              element={<MerchantScheduleList />}
             />
 
             <Route path="/messages" element={<MessagesPage />} />
