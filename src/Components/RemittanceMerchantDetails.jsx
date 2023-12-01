@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SidebarLayout from "../Layouts/SidebarLayout";
 import { DashboardView } from "../css/DashboardPageStyles";
 import close from "../assets/close.svg";
 import minilogo from "../assets/mini-logo.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLongArrowUp,
@@ -11,15 +11,23 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import phoneLock from "../assets/ph_lock-simple-fill.svg";
-
 import AppModal from "./Modal";
+import { getMerchantRemittanceDetails } from "../services/apiService";
 
-const RemittanceSchedulePayment = () => {
+const RemittanceMerchantDetails = () => {
   const [show, setShow] = React.useState(false);
-  const [deny, setDeny] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-
   const navigate = useNavigate();
+  const { merchantId } = useParams();
+  const [merchant, setMerchant] = React.useState({});
+
+  const getRemittanceMerchantDetails = () => {
+    getMerchantRemittanceDetails(merchantId, setMerchant);
+  };
+
+  useEffect(() => {
+    getRemittanceMerchantDetails();
+  }, []);
 
   return (
     <SidebarLayout>
@@ -47,7 +55,7 @@ const RemittanceSchedulePayment = () => {
                   Business Name :{" "}
                 </span>
                 <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
-                  Drive Stores{" "}
+                  {merchant.merchant.business_name}
                 </span>
               </div>
             </div>
@@ -64,7 +72,7 @@ const RemittanceSchedulePayment = () => {
                       First Name :
                     </span>
                     <span className="ml-[90px] text-black text-base font-bold font-['Montserrat'] leading-normal">
-                      OKOYE
+                      {merchant.first_name}
                     </span>
                   </div>
                 </div>
@@ -74,7 +82,7 @@ const RemittanceSchedulePayment = () => {
                       Last Name :{" "}
                     </span>
                     <span className="ml-[90px] text-black text-base font-bold font-['Montserrat'] leading-normal">
-                      Aboki
+                      {merchant.last_name}
                     </span>
                   </div>
                 </div>
@@ -84,7 +92,7 @@ const RemittanceSchedulePayment = () => {
                       Email :
                     </span>
                     <span className="ml-10 text-black text-base font-bold font-['Montserrat'] leading-normal">
-                      Nina001@gmail.com
+                      {merchant.email}
                     </span>
                   </div>
                 </div>
@@ -94,7 +102,7 @@ const RemittanceSchedulePayment = () => {
                       Phone Number :{" "}
                     </span>
                     <span className="ml-[50px] text-black text-base font-bold font-['Montserrat'] leading-normal">
-                      09060898687
+                      {merchant.phone}
                     </span>
                   </div>
                 </div>
@@ -178,12 +186,12 @@ const RemittanceSchedulePayment = () => {
               </span>
               <div className="bg-[#E7F1FA] border p-3 rounded-lg text-xs font-bold mt-2">
                 <div className="w-[338.89px] my-2 ">
-                  <div className="w-[250.14px] flex items-center justify-between my-2">
+                  <div className="w-full flex items-center justify-between my-2">
                     <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
                       Wallet balance :
                     </span>
                     <span className="font-bold ml-[50px] font-['Montserrat'] leading-normal text-xl text-[#6A0898]">
-                      10, 200
+                      {merchant.wallet.withdrawable_amount}
                     </span>
                     <br />
                   </div>
@@ -375,4 +383,4 @@ const RemittanceSchedulePayment = () => {
   );
 };
 
-export default RemittanceSchedulePayment;
+export default RemittanceMerchantDetails;

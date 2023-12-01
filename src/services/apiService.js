@@ -20,3 +20,16 @@ export const getMerchantForRemittance = async (merchants, setMerchants) => {
       console.log(`${err}`);
     });
 };
+
+export const getMerchantRemittanceDetails = async (merchantId, setMerchant) => {
+  httpClient
+    .get(`v1/admin/get-merchant-details/${merchantId}`)
+    .then((response) => {
+      console.log("Merchant found successfully", response);
+      setMerchant(response.data.data);
+      localStorage.setItem("Merchant", JSON.stringify(response.data.data));
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};

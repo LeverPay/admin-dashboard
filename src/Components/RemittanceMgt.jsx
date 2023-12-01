@@ -182,8 +182,8 @@ const RemittanceMgt = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {merchants.map((merchant) => (
-                        <tr>
+                      {merchants.map((merchant, i) => (
+                        <tr key={merchant.uuid}>
                           <td>{currentDate}</td>
                           <td>{merchant.business_name}</td>
                           <td>{merchant.email}</td>
@@ -195,8 +195,12 @@ const RemittanceMgt = () => {
                             {merchant.last_remitted}
                           </td>
                           <td className="font__pending" scope="col">
-                            <Link to="/remittance-schedule-payment">more</Link>
-                          </td>{" "}
+                            <Link
+                              to={`/remittance-merchant-details/${merchant.uuid}`}
+                            >
+                              more
+                            </Link>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
