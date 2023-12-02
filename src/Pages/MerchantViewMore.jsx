@@ -31,26 +31,9 @@ const MerchantViewMore = () => {
   const {state} = location
   const uuid = state
   console.log(uuid)
-  // function extractIdFromCurrentURL() {
-  //   // Get the current URL
-  //   const currentURL = window.location.href;
 
-  //   // Split the URL by '/'
-  //   const parts = currentURL.split('/');
-
-  //   // Get the last part of the URL (the UUID-like string)
-  //   const id = parts[parts.length - 1];
-
-  //   return id;
-  // }
-
-  // Call the function to extract the ID from the current URL
-  // const extractedId = extractIdFromCurrentURL();
-  // console.log(extractedId)
 
   useEffect(() => {
-    // Define your API URL and headers
-    // const apiUrl = `${baseUrl}/v1/admin/get-user/${uuid}`;
     const apiUrl = `${baseUrl}v1/admin/get-merchant-details/${uuid}`;
     const headers = {
       accept: '*/*',
@@ -87,13 +70,13 @@ const MerchantViewMore = () => {
           Director’s Data
         </h2>
       ),
-      children: <MerchantData selectedMerchant={merchantData} />,
+      children: <MerchantData selectedMerchant={merchantData ? merchantData : ''} />,
     },
     {
       key: '2',
       label: (
         <h2 className="w-[155px] text-center text-white text-sm font-bold">
-          Upload files & ID Cards
+          KYC
         </h2>
       ),
       children: <MerchantUpload merchantData={merchantData} />,
@@ -102,7 +85,7 @@ const MerchantViewMore = () => {
       key: '3',
       label: (
         <h2 className="w-[155px] text-center text-white text-sm font-bold">
-          Business Profile
+         Business Profile
         </h2>
       ),
       children: <MerchantBusinessData merchantData={merchantData} />,
@@ -142,7 +125,9 @@ const MerchantViewMore = () => {
   ];
   return (
     <div className="bg-slate-900 p-0">
-      <p>
+      {
+        merchantData && <>
+          <p>
         <Link to='/merchant' style={{
         display: 'flex',
         alignItems: 'center',
@@ -153,9 +138,12 @@ const MerchantViewMore = () => {
         <img src="/images/back.png" alt="" width={25} /> Go back
         </Link>
       </p>
-      <div style={{padding: "0 2rem"}}>
+      <div style={{padding: "0 2rem", minHeight: '100vh'}} >
         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
       </div>
+        </>
+      }
+      
     </div>
   );
 };

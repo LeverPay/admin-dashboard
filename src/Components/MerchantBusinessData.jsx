@@ -4,7 +4,9 @@ const MerchantBusinessData = ({merchantData}) => {
   console.log(merchantData)
   return (
     <div className="bg-white p-5" >
-      <div>
+      {
+        merchantData && <>
+        <div>
         <span className="text-black text-[22px] font-light leading-normal">
           Company Name :{' '}
         </span>
@@ -13,44 +15,20 @@ const MerchantBusinessData = ({merchantData}) => {
           <br />
         </span>
         <span className="text-black text-[22px] font-light leading-normal">
-          Incorporation Date :{' '}
+          Company Address :{' '}
         </span>
         <span className="text-black text-[22px] font-bold leading-normal">
-          {/* Okoye */}
+          {merchantData.merchant && merchantData.merchant.business_address}
           <br />
         </span>
         <span className="text-black text-[22px] font-light leading-normal">
-          Type Of Business :
+          Company Phone :{' '}
         </span>
         <span className="text-black text-[22px] font-bold leading-normal">
-          {' '}
-          {/* Lvpx342123zp */}
+          {merchantData.merchant && merchantData.merchant.business_phone}
           <br />
         </span>
-        <span className="text-black text-[22px] font-light leading-normal">
-          Operational License :{' '}
-        </span>
-        <span className="text-amber-700 text-[22px] font-bold leading-normal">
-          {/* Gold Card */}
-          <br />
-        </span>
-        <span className="text-black text-[22px] font-light leading-normal">
-          RC number :{' '}
-        </span>
-        <span className="text-amber-700 text-[22px] font-bold leading-normal">
-        {merchantData.kyc_details ? merchantData.kyc_details[0].rc_number : ''}
-          <br />
-        </span>
-        <span className="text-black text-[22px] font-light leading-normal">
-          Business Address :
-        </span>
-        <span className="text-black text-[22px] font-bold leading-normal">
-          {' '}
-        </span>
-        <span className="text-green-900 text-[22px] font-bold leading-normal">
-          {merchantData.kyc_details ? merchantData.kyc_details[0].business_address : ''}
-          <br />
-        </span>
+       
         <span className="text-black text-[22px] font-light leading-normal">
           Total balance :
         </span>
@@ -61,9 +39,7 @@ const MerchantBusinessData = ({merchantData}) => {
           N{merchantData.wallet ? merchantData.wallet.amount : ''}
           <br />
         </span>
-        <span className="text-black text-[22px] font-light">
-          Business Certificate : <img src={merchantData.kyc_details ? merchantData.kyc_details[0].business_certificate : ''} alt="Business certificate" style={{width:'300px', border:'1px solid', borderRadius:'10px'}} /> 
-        </span>
+       
       </div>
 
       <div className="w-[1007px] bg-white rounded-[10px] p-5 my-5 shadow">
@@ -134,7 +110,10 @@ const MerchantBusinessData = ({merchantData}) => {
           </>
         }
       </div>
-    </div>
+
+        </>
+      }
+          </div>
   );
 };
 
