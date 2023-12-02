@@ -1,9 +1,13 @@
 import React from 'react';
+import Loading from './loading';
 
 const MerchantData = ({ selectedMerchant }) => {
+  console.log(selectedMerchant)
   return (
     <div className="bg-white p-5">
-      <div className="flex items-start gap-5">
+      {
+        selectedMerchant.uuid && <>
+            <div className="flex items-start gap-5">
         <div>
           <p className="flex justify-between w-1/2 items-center gap-2 my-2">
             <span className="text-black text-[22px] font-light leading-normal">
@@ -106,42 +110,9 @@ const MerchantData = ({ selectedMerchant }) => {
               {selectedMerchant.address}
               <br />
             </span>
-            <div className="w-[322px] flex items-center justify-center text-center my-5 h-12 bg-blue-600 rounded-[10px]">
-              <span className="text-white text-xl font-bold leading-normal">
-                Government Verification{' '}
-              </span>
-            </div>
           </div>
-
-          <div>
-            {
-              selectedMerchant.kyc_details && <>
-                 <span className="text-black text-[22px] font-normal leading-normal">
-              NIN :{' '}
-            </span>
-            <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].nin: ''}
-              <br />
-            </span>
-            <span className="text-black text-[22px] font-normal leading-normal">
-              BVN:{' '}
-            </span>
-            <span className="text-black text-[22px] font-bold leading-normal">
-            {selectedMerchant.kyc_details ? selectedMerchant.kyc_details[0].bvn: ''}
-            </span>
-              </>
-            }
-            {
-              !selectedMerchant.kyc_details && <>
-                <h3>
-                  This merchant has not done KYC 
-                </h3>
-              </>
-            }
-           
-          </div>
+          
         </div>
-
         <div>
           <img
             className="w-[296px] h-[308px] rounded"
@@ -150,6 +121,12 @@ const MerchantData = ({ selectedMerchant }) => {
           />{' '}
         </div>
       </div>
+        </>
+      }
+      {
+        !selectedMerchant.uuid && <Loading/>
+      }
+      
     </div>
   );
 };
