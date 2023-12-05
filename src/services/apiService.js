@@ -13,8 +13,38 @@ export const getMerchantForRemittance = async (merchants, setMerchants) => {
     .get("v1/admin/get-merchants-for-remittance")
     .then((response) => {
       setMerchants(response.data.data);
-      localStorage.setItem("Merchant", JSON.stringify(response.data.data));
+      localStorage.setItem("Merchants", JSON.stringify(response.data.data));
       console.log("Merchant found successfully", response);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const getMerchantRemittanceDetails = async (
+  merchantId,
+  setMerchant,
+  setWalletBal
+) => {
+  httpClient
+    .get(`v1/admin/get-merchant-details/${merchantId}`)
+    .then((response) => {
+      console.log("Merchant Details Gotten successfully", response);
+      setMerchant(response.data.data);
+      setWalletBal(response.data.data.wallet.withdrawable_amount);
+      localStorage.setItem("Merchant", JSON.stringify(response.data.data));
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const completeRemittanceConfirmation = async (setConfirm) => {
+  httpClient
+    .post(`v1/admin/complete-remittance/`)
+    .then((response) => {
+      console.log("Remittance Completed successfully", response);
+      // setConfirm(true);
     })
     .catch((err) => {
       console.log(`${err}`);

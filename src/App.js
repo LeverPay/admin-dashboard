@@ -39,9 +39,9 @@ import SetCardLimit from "./Pages/SetCardLimit";
 import NotFoundPage from "./Pages/NotFoundPage";
 import BankDetails from "./Pages/BankDetails";
 import RemittanceMgt from "./Components/RemittanceMgt";
-import RemittanceSchedulePayment from "./Components/RemittanceSchedulePayment";
 import TopupRequestMore from "./Pages/Funding/TopupRequestMore";
 import MerchantScheduleList from "./Components/MerchantScheduleList";
+import RemittanceMerchantDetails from "./Components/RemittanceMerchantDetails";
 
 export default function App() {
   useEffect(() => {
@@ -70,9 +70,15 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/remittance-mgt" element={<RemittanceMgt />} />
             <Route
-              path="/remittance-schedule-payment"
-              element={<RemittanceSchedulePayment />}
+              path="/remittance-merchant-details"
+              element={<RemittanceMerchantDetails />}
             />
+
+            <Route
+              path="/remittance-merchant-details/:merchantId"
+              element={<RemittanceMerchantDetails />}
+            />
+
             <Route
               path="/merchant-schedule-list"
               element={<MerchantScheduleList />}
