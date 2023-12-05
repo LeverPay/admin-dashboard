@@ -3,26 +3,41 @@ import SidebarLayout from "../Layouts/SidebarLayout";
 import { DashboardView } from "../css/DashboardPageStyles";
 import close from "../assets/close.svg";
 import minilogo from "../assets/mini-logo.svg";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLongArrowUp,
   faLongArrowDown,
-  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import phoneLock from "../assets/ph_lock-simple-fill.svg";
 import AppModal from "./Modal";
-import { getMerchantRemittanceDetails } from "../services/apiService";
+import {
+  getMerchantRemittanceDetails,
+  completeRemittanceConfirmation,
+} from "../services/apiService";
 
 const RemittanceMerchantDetails = () => {
   const [show, setShow] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
+  const [balance, setBal] = React.useState();
+  const [walletBal, setWalletBal] = React.useState();
+
   const navigate = useNavigate();
   const { merchantId } = useParams();
   const [merchant, setMerchant] = React.useState({});
 
   const getRemittanceMerchantDetails = () => {
-    getMerchantRemittanceDetails(merchantId, setMerchant);
+    getMerchantRemittanceDetails(merchantId, setMerchant, setWalletBal);
+  };
+
+  const completeRemittance = () => {
+    completeRemittanceConfirmation(setConfirm);
+  };
+
+  const calculateBal = (e, i) => {
+    const { name, value } = e.target;
+    console.log(value);
+    document.getElementById("walletBal").innerHTML = walletBal - value;
   };
 
   useEffect(() => {
@@ -55,7 +70,7 @@ const RemittanceMerchantDetails = () => {
                   Business Name :{" "}
                 </span>
                 <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
-                  {merchant.merchant.business_name}
+                  {merchant?.merchant?.business_name}
                 </span>
               </div>
             </div>
@@ -186,12 +201,15 @@ const RemittanceMerchantDetails = () => {
               </span>
               <div className="bg-[#E7F1FA] border p-3 rounded-lg text-xs font-bold mt-2">
                 <div className="w-[338.89px] my-2 ">
-                  <div className="w-full flex items-center justify-between my-2">
-                    <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
+                  <div className="w-full flex items-center my-2">
+                    <span className="text-black mr-5 text-base font-normal font-['Montserrat'] leading-normal">
                       Wallet balance :
                     </span>
-                    <span className="font-bold ml-[50px] font-['Montserrat'] leading-normal text-xl text-[#6A0898]">
-                      {merchant.wallet.withdrawable_amount}
+                    <span
+                      id="walletBal"
+                      className="font-bold ml-[50px] font-['Montserrat'] leading-normal text-xl text-[#6A0898]"
+                    >
+                      {walletBal}
                     </span>
                     <br />
                   </div>
@@ -206,13 +224,19 @@ const RemittanceMerchantDetails = () => {
                     />
                   </div>
                 </div>
-                <div className="w-[338.89px] my-2 ">
-                  <div className="w-[250.14px] flex items-center justify-between my-2">
-                    <span className="text-black text-base font-normal font-['Montserrat'] leading-normal">
+                <div className="my-2 ">
+                  <div className="flex items-center my-2">
+                    <span className="text-black mr-3 text-base font-normal font-['Montserrat'] leading-normal">
                       Amount to be remitted:
                     </span>
                     <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
-                      Aboki
+                      <input
+                        className="h-[40px] w-[120px] border rounded-lg"
+                        id="balance"
+                        value={balance}
+                        onKeyUp={calculateBal}
+                        type="number"
+                      />
                     </span>
                   </div>
                 </div>
@@ -256,7 +280,7 @@ const RemittanceMerchantDetails = () => {
             <div className="w-[277.55px] flex items-center justify-between">
               <div className="w-[134.75px]">
                 <div
-                  onClick={() => setConfirm(true)}
+                  onClick={completeRemittanceConfirmation}
                   className="flex items-center justify-center text-center w-[100px] py-2  bg-blue-600 rounded-[10px]"
                 >
                   {" "}
