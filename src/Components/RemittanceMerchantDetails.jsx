@@ -3,7 +3,7 @@ import SidebarLayout from "../Layouts/SidebarLayout";
 import { DashboardView } from "../css/DashboardPageStyles";
 import close from "../assets/close.svg";
 import minilogo from "../assets/mini-logo.svg";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLongArrowUp,
@@ -21,6 +21,7 @@ const RemittanceMerchantDetails = () => {
   const [confirm, setConfirm] = React.useState(false);
   const [balance, setBal] = React.useState();
   const [walletBal, setWalletBal] = React.useState();
+  const [inputedVal, setInputedVal] = React.useState();
 
   const navigate = useNavigate();
   const { merchantId } = useParams();
@@ -35,9 +36,21 @@ const RemittanceMerchantDetails = () => {
   };
 
   const calculateBal = (e, i) => {
-    const { name, value } = e.target;
-    console.log(value);
-    document.getElementById("walletBal").innerHTML = walletBal - value;
+    let { name, value } = e.target;
+    setInputedVal(value);
+    value = Number(value);
+    console.log(parseFloat(value));
+    if (typeof value == "number") {
+      let finalVal =
+        (Math.round(walletBal * 100) / 100).toFixed(2) -
+        (Math.round(value * 100) / 100).toFixed(2);
+
+      document.getElementById("walletBal").innerHTML = (
+        Math.round(finalVal * 100) / 100
+      ).toFixed(2);
+    } else {
+      return;
+    }
   };
 
   useEffect(() => {
@@ -209,7 +222,9 @@ const RemittanceMerchantDetails = () => {
                       id="walletBal"
                       className="font-bold ml-[50px] font-['Montserrat'] leading-normal text-xl text-[#6A0898]"
                     >
-                      {walletBal}
+                      {walletBal
+                        ? (Math.round(walletBal * 100) / 100).toFixed(2)
+                        : ""}
                     </span>
                     <br />
                   </div>
@@ -231,12 +246,21 @@ const RemittanceMerchantDetails = () => {
                     </span>
                     <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
                       <input
-                        className="h-[40px] w-[120px] border rounded-lg"
+                        className="h-[40px] w-[120px] border rounded-lg p-2"
                         id="balance"
                         value={balance}
                         onKeyUp={calculateBal}
                         type="number"
                       />
+                      <div
+                        style={{
+                          display:
+                            Number(inputedVal) > walletBal ? "block" : "none",
+                        }}
+                        className="text-red-500 font-thin text-sm"
+                      >
+                        Amount exceeds your wallet balance
+                      </div>
                     </span>
                   </div>
                 </div>
@@ -244,22 +268,26 @@ const RemittanceMerchantDetails = () => {
             </div>
 
             <div className="flex items-center justify-between my-2">
-              <div
-                onClick={() => setShow(true)}
-                className="w-[202.91px] h-[51px] cursor-pointer"
-              >
-                <div className="px-5 py-3 text-center  bg-blue-600 rounded-[10px]">
-                  <div className=" text-neutral-50 text-base font-bold font-['Montserrat']">
+              <div className=" h-[51px] cursor-pointer">
+                <div className=" text-center bg-blue-600 rounded-[10px]">
+                  <button
+                    onClick={() => setShow(true)}
+                    disabled={Number(inputedVal) > walletBal ? true : false}
+                    className=" text-neutral-50 w-[202.91px] px-5 py-3 text-base font-bold font-['Montserrat']"
+                  >
                     Send
-                  </div>
+                  </button>
                 </div>
               </div>
 
               <div className="w-[202.91px] h-[51px]  cursor-pointer">
                 <div className="px-5 py-3 text-center  bg-red-600 rounded-[10px]">
-                  <div className=" text-neutral-50 text-base font-bold font-['Montserrat']">
+                  <Link
+                    to="/remittance-mgt"
+                    className=" text-neutral-50 text-base font-bold font-['Montserrat']"
+                  >
                     Cancel
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
