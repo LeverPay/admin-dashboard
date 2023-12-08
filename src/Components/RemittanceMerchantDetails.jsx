@@ -42,12 +42,12 @@ const RemittanceMerchantDetails = () => {
     console.log(parseFloat(value));
     if (typeof value == "number") {
       let finalVal =
-        (Math.round(walletBal * 100) / 100).toFixed(2) -
-        (Math.round(value * 100) / 100).toFixed(2);
+        (Math.round(walletBal * 100) / 100).toFixed(3) -
+        (Math.round(value * 100) / 100).toFixed(3);
 
       document.getElementById("walletBal").innerHTML = (
         Math.round(finalVal * 100) / 100
-      ).toFixed(2);
+      ).toFixed(3);
     } else {
       return;
     }
@@ -223,7 +223,7 @@ const RemittanceMerchantDetails = () => {
                       className="font-bold ml-[50px] font-['Montserrat'] leading-normal text-xl text-[#6A0898]"
                     >
                       {walletBal
-                        ? (Math.round(walletBal * 100) / 100).toFixed(2)
+                        ? (Math.round(walletBal * 100) / 100).toFixed(3)
                         : ""}
                     </span>
                     <br />
