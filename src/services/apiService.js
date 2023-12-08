@@ -50,3 +50,30 @@ export const completeRemittanceConfirmation = async (setConfirm) => {
       console.log(`${err}`);
     });
 };
+
+export const getPaymentScheduleList = async (
+  setPaymentScheduleList,
+  codeno
+) => {
+  httpClient
+    .get(`/v1/admin/get-payment-schedule-list/${codeno}`)
+    .then((response) => {
+      console.log("Remittance Completed successfully", response);
+      setPaymentScheduleList(response);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const add = async (setPaymentScheduleList, codeno) => {
+  httpClient
+    .get(`/v1/admin/get-payment-schedule-list/${codeno}`)
+    .then((response) => {
+      console.log("Remittance Completed successfully", response);
+      setPaymentScheduleList(response);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
