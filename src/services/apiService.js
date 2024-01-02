@@ -39,12 +39,36 @@ export const getMerchantRemittanceDetails = async (
     });
 };
 
-export const completeRemittanceConfirmation = async (setConfirm) => {
+export const add = async (setPaymentScheduleList, codeno) => {
   httpClient
-    .post(`v1/admin/complete-remittance/`)
+    .get(`/v1/admin/get-payment-schedule-list/${codeno}`)
     .then((response) => {
       console.log("Remittance Completed successfully", response);
-      // setConfirm(true);
+      setPaymentScheduleList(response);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const getActiveVoucher = async (setActiveVouchers) => {
+  httpClient
+    .get(`/v1/admin/get-active-voucher`)
+    .then((response) => {
+      console.log("Active vouchers gotten successfully", response);
+      setActiveVouchers(response.data.data);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const completeRemittanceConfirmation = async (setConfirm, reqBody) => {
+  httpClient
+    .post(`/v1/admin/schedule-merchant-for-payment`, reqBody)
+    .then((response) => {
+      console.log("Remittance Completed successfully", response);
+      setConfirm(true);
     })
     .catch((err) => {
       console.log(`${err}`);
@@ -58,20 +82,20 @@ export const getPaymentScheduleList = async (
   httpClient
     .get(`/v1/admin/get-payment-schedule-list/${codeno}`)
     .then((response) => {
-      console.log("Remittance Completed successfully", response);
-      setPaymentScheduleList(response);
+      console.log("Remittance Completed successfully", response.data.data);
+      setPaymentScheduleList(response.data.data);
     })
     .catch((err) => {
       console.log(`${err}`);
     });
 };
 
-export const add = async (setPaymentScheduleList, codeno) => {
+export const completeRemittance = async (reqBody, setConfirm) => {
   httpClient
-    .get(`/v1/admin/get-payment-schedule-list/${codeno}`)
+    .post(`/v1/admin/complete-remittance`, reqBody)
     .then((response) => {
-      console.log("Remittance Completed successfully", response);
-      setPaymentScheduleList(response);
+      console.log("Complete Remittance Sucessful", response.data.data);
+      setConfirm(true);
     })
     .catch((err) => {
       console.log(`${err}`);

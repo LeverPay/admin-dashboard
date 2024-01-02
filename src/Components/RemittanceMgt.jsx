@@ -162,8 +162,10 @@ const RemittanceMgt = () => {
                 </div>
                 <div className="users__tab__padding border-top">
                   <div className="flex justify-between text-decoration-underline my-[10px]">
-                    <Link to="/merchant-schedule-list">List</Link>
-                    <Link>Scheduled for Payment</Link>
+                    <Link>List</Link>
+                    <Link to="/merchant-schedule-list">
+                      Scheduled for Payment
+                    </Link>
                   </div>
                   <table className="table table-borderless">
                     <thead className="border border-black ">
