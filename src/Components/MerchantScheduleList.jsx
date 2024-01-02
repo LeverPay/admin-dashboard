@@ -4,7 +4,10 @@ import { DashboardView } from "../css/DashboardPageStyles";
 import close from "../assets/close.svg";
 import minilogo from "../assets/mini-logo.svg";
 import { useNavigate } from "react-router-dom";
-import { getPaymentScheduleList } from "../services/apiService";
+import {
+  completeRemittance,
+  getPaymentScheduleList,
+} from "../services/apiService";
 import phoneLock from "../assets/ph_lock-simple-fill.svg";
 
 import AppModal from "./Modal";
@@ -21,7 +24,36 @@ const MerchantScheduleList = () => {
     getPaymentScheduleList(setPaymentScheduleList, codeNo);
   };
 
-  const completeRemittanceConfirmation = () => {};
+  const completeRemittanceConfirmation = () => {
+    let uuids = [];
+    let body = {};
+    paymentScheduleList.forEach((merchant) => {
+      if (merchant.isChecked === true) {
+        uuids.push(merchant.uuid);
+      }
+    });
+    body.uuid = uuids;
+    body.voucher_id = paymentScheduleList[0].voucher_id;
+    console.log(body);
+    completeRemittance(body, setConfirm);
+  };
+
+  const handleChange = (e) => {
+    const { name, checked } = e.target;
+    if (name === "allSelect") {
+      let tempList = paymentScheduleList.map((merchant) => {
+        return { ...merchant, isChecked: checked };
+      });
+      setPaymentScheduleList(tempList);
+    } else {
+      let tempList = paymentScheduleList.map((merchant) =>
+        merchant.business_name === name
+          ? { ...merchant, isChecked: checked }
+          : merchant
+      );
+      setPaymentScheduleList(tempList);
+    }
+  };
 
   useEffect(() => {
     getScheduleList();
@@ -47,76 +79,49 @@ const MerchantScheduleList = () => {
 
             <div className="flex-col bg-[#C2D7FF] rounded-2xl p-3 mb-2 shadow-2xl">
               <div>
-                <input type="checkbox" name="" id="" />{" "}
+                <input
+                  onChange={handleChange}
+                  className="mr-4"
+                  type="checkbox"
+                  name="allSelect"
+                  id=""
+                  checked={
+                    paymentScheduleList.filter(
+                      (merchant) => merchant?.isChecked !== true
+                    ).length < 1
+                  }
+                />{" "}
                 <strong>Check All</strong>
               </div>
               <hr className="relative mt-0 mb-4 h-1 bg-black border-none" />
               <div className="mx-3">
                 <span className="flex justify-between">
-                  <strong>Merchant Name</strong>
+                  <strong className="ml-4">Merchant Name</strong>
                   <strong>Amount</strong>
                 </span>
               </div>
               <hr className="mt-0 h-1 bg-black" />
               {/* List  */}
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
+              {paymentScheduleList.map((merchant, id) => (
+                <div key={id} className="flex justify-between mb-2">
+                  <span>
+                    <input
+                      className="mr-5"
+                      type="checkbox"
+                      name={merchant.business_name}
+                      id=""
+                      onChange={handleChange}
+                      checked={merchant.isChecked || false}
+                    />
+                    <label htmlFor="">{merchant.business_name}</label>
+                  </span>
+                  <span className="mr-6">{merchant.amount}</span>
+                </div>
+              ))}
             </div>
             <div className="flex justify-center items-center">
               <div
-                onClick={() => setShow(true)}
+                onClick={completeRemittanceConfirmation}
                 className="text-center w-[316px] mb-5 p-2 bg-blue-950 rounded-[12px]"
               >
                 <span className="flex items-center justify-center text-white text-xl font-extrabold font-['Montserrat']">

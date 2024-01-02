@@ -14,6 +14,7 @@ import AppModal from "./Modal";
 import {
   getMerchantRemittanceDetails,
   completeRemittanceConfirmation,
+  getActiveVoucher,
 } from "../services/apiService";
 
 const RemittanceMerchantDetails = () => {
@@ -22,17 +23,36 @@ const RemittanceMerchantDetails = () => {
   const [balance, setBal] = React.useState();
   const [walletBal, setWalletBal] = React.useState();
   const [inputedVal, setInputedVal] = React.useState();
+  const [selectedVoucher, setSelectedVoucher] = React.useState("");
+  const [activeVouchers, setActiveVouchers] = React.useState([]);
 
   const navigate = useNavigate();
   const { merchantId } = useParams();
   const [merchant, setMerchant] = React.useState({});
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSelectedVoucher(value);
+    // setFormValues({ ...formValues, [name]: value });
+  };
+
+  const sendRemittance = () => {};
+
   const getRemittanceMerchantDetails = () => {
     getMerchantRemittanceDetails(merchantId, setMerchant, setWalletBal);
   };
 
+  const getActiveVoucherData = () => {
+    getActiveVoucher(setActiveVouchers);
+  };
+
   const completeRemittance = () => {
-    completeRemittanceConfirmation(setConfirm);
+    console.log(inputedVal, selectedVoucher, merchantId);
+    const reqBody = {};
+    reqBody.voucher_id = selectedVoucher;
+    reqBody.uuid = merchantId;
+    reqBody.amount = inputedVal;
+    completeRemittanceConfirmation(setConfirm, reqBody);
   };
 
   const calculateBal = (e, i) => {
@@ -55,6 +75,7 @@ const RemittanceMerchantDetails = () => {
 
   useEffect(() => {
     getRemittanceMerchantDetails();
+    getActiveVoucherData();
   }, []);
 
   return (
@@ -264,6 +285,40 @@ const RemittanceMerchantDetails = () => {
                     </span>
                   </div>
                 </div>
+                <div className="my-2 ">
+                  <div className="flex items-center my-2">
+                    <span className="text-black mr-3 text-base font-normal font-['Montserrat'] leading-normal">
+                      Select Voucher:
+                    </span>
+                    <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
+                      <select
+                        className="h-[40px] w-[320px] border rounded-lg p-2"
+                        value={selectedVoucher}
+                        onChange={handleChange}
+                        name="id"
+                        id="voucher"
+                      >
+                        <option value="Select a voucher">
+                          Select a Voucher
+                        </option>
+                        {activeVouchers.map((voucher, id) => (
+                          <option value={voucher.id} key={id}>
+                            {voucher.code_no}
+                          </option>
+                        ))}
+                      </select>
+                      <div
+                        style={{
+                          display:
+                            Number(inputedVal) > walletBal ? "block" : "none",
+                        }}
+                        className="text-red-500 font-thin text-sm"
+                      >
+                        Amount exceeds your wallet balance
+                      </div>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -280,16 +335,16 @@ const RemittanceMerchantDetails = () => {
                 </div>
               </div>
 
-              <div className="w-[202.91px] h-[51px]  cursor-pointer">
-                <div className="px-5 py-3 text-center  bg-red-600 rounded-[10px]">
-                  <Link
-                    to="/remittance-mgt"
-                    className=" text-neutral-50 text-base font-bold font-['Montserrat']"
-                  >
+              <Link
+                to="/remittance-mgt"
+                className=" text-neutral-50 text-base font-bold font-['Montserrat']"
+              >
+                <div className="w-[202.91px] h-[51px]  cursor-pointer">
+                  <div className="px-5 py-3 text-center  bg-red-600 rounded-[10px]">
                     Cancel
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -308,7 +363,7 @@ const RemittanceMerchantDetails = () => {
             <div className="w-[277.55px] flex items-center justify-between">
               <div className="w-[134.75px]">
                 <div
-                  onClick={completeRemittanceConfirmation}
+                  onClick={completeRemittance}
                   className="flex items-center justify-center text-center w-[100px] py-2  bg-blue-600 rounded-[10px]"
                 >
                   {" "}
