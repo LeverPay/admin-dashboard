@@ -28,13 +28,14 @@ function getDate() {
 const RemittanceMgt = () => {
   const [merchants, setMerchants] = useState([]);
   const [currentDate, setCurrentDate] = useState(getDate());
+
+  const getRemittanceMerchants = () => {
+    getMerchantForRemittance(setMerchants);
+  };
+
   useEffect(() => {
     getRemittanceMerchants();
   }, []);
-
-  const getRemittanceMerchants = () => {
-    getMerchantForRemittance(merchants, setMerchants);
-  };
 
   return (
     <SidebarLayout>
@@ -162,8 +163,10 @@ const RemittanceMgt = () => {
                 </div>
                 <div className="users__tab__padding border-top">
                   <div className="flex justify-between text-decoration-underline my-[10px]">
-                    <Link to="/merchant-schedule-list">List</Link>
-                    <Link>Scheduled for Payment</Link>
+                    <Link>List</Link>
+                    <Link to="/merchant-schedule-list">
+                      Scheduled for Payment
+                    </Link>
                   </div>
                   <table className="table table-borderless">
                     <thead className="border border-black ">
@@ -182,7 +185,7 @@ const RemittanceMgt = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {merchants.map((merchant, i) => (
+                      {merchants?.map((merchant, i) => (
                         <tr key={merchant.uuid}>
                           <td>{currentDate}</td>
                           <td>{merchant.business_name}</td>

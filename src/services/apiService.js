@@ -8,11 +8,12 @@ const httpClient = axios.create({
 });
 console.log(process.env.REACT_APP_LEVERPAY_API_URL);
 
-export const getMerchantForRemittance = async (merchants, setMerchants) => {
+export const getMerchantForRemittance = async (setMerchants) => {
   httpClient
     .get("v1/admin/get-merchants-for-remittance")
     .then((response) => {
       setMerchants(response.data.data);
+      console.log(typeof response.data.data);
       localStorage.setItem("Merchants", JSON.stringify(response.data.data));
       console.log("Merchant found successfully", response);
     })
@@ -39,12 +40,36 @@ export const getMerchantRemittanceDetails = async (
     });
 };
 
-export const completeRemittanceConfirmation = async (setConfirm) => {
+export const add = async (setPaymentScheduleList, codeno) => {
   httpClient
-    .post(`v1/admin/complete-remittance/`)
+    .get(`/v1/admin/get-payment-schedule-list/${codeno}`)
     .then((response) => {
       console.log("Remittance Completed successfully", response);
-      // setConfirm(true);
+      setPaymentScheduleList(response);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const getAllVoucher = async (setActiveVouchers) => {
+  httpClient
+    .get(`/v1/admin/get-all-vouchers`)
+    .then((response) => {
+      console.log("Active vouchers gotten successfully", response);
+      setActiveVouchers(response.data.data);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const completeRemittanceConfirmation = async (setConfirm, reqBody) => {
+  httpClient
+    .post(`/v1/admin/schedule-merchant-for-payment`, reqBody)
+    .then((response) => {
+      console.log("Remittance Completed successfully", response);
+      setConfirm(true);
     })
     .catch((err) => {
       console.log(`${err}`);
@@ -58,20 +83,35 @@ export const getPaymentScheduleList = async (
   httpClient
     .get(`/v1/admin/get-payment-schedule-list/${codeno}`)
     .then((response) => {
-      console.log("Remittance Completed successfully", response);
-      setPaymentScheduleList(response);
+      console.log("Remittance Completed successfully", response.data.data);
+      setPaymentScheduleList(response.data.data);
     })
     .catch((err) => {
       console.log(`${err}`);
     });
 };
 
-export const add = async (setPaymentScheduleList, codeno) => {
+export const completeRemittance = async (reqBody, setConfirm) => {
   httpClient
-    .get(`/v1/admin/get-payment-schedule-list/${codeno}`)
+    .post(`/v1/admin/complete-remittance`, reqBody)
     .then((response) => {
-      console.log("Remittance Completed successfully", response);
-      setPaymentScheduleList(response);
+      console.log("Complete Remittance Sucessful", response.data.data);
+      setConfirm(true);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const getRegisteredMerchantsForRelevantVoucher = async (
+  id,
+  setRegisteredMerchants
+) => {
+  httpClient
+    .get(`/v1/admin/get-payment-schedule-list/${id}`)
+    .then((response) => {
+      console.log("Sucessful", response.data.data);
+      setRegisteredMerchants(response.data.data);
     })
     .catch((err) => {
       console.log(`${err}`);

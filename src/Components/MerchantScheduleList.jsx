@@ -1,30 +1,89 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SidebarLayout from "../Layouts/SidebarLayout";
 import { DashboardView } from "../css/DashboardPageStyles";
 import close from "../assets/close.svg";
 import minilogo from "../assets/mini-logo.svg";
 import { useNavigate } from "react-router-dom";
-import { getPaymentScheduleList } from "../services/apiService";
+import { Link } from "react-router-dom";
+import {
+  completeRemittance,
+  getPaymentScheduleList,
+  getAllVoucher,
+  getRegisteredMerchantsForRelevantVoucher,
+} from "../services/apiService";
 import phoneLock from "../assets/ph_lock-simple-fill.svg";
-
 import AppModal from "./Modal";
 
 const MerchantScheduleList = () => {
   const [show, setShow] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
+  const [selectedVoucher, setSelectedVoucher] = React.useState("");
 
-  const [paymentScheduleList, setPaymentScheduleList] = React.useState([]);
-  const [codeNo, setCodeNo] = React.useState(12345);
+  const [activeVouchers, setActiveVouchers] = React.useState([]);
+  const [registeredMerchants, setRegisteredMerchants] = React.useState([]);
+
+  const [inputedVal, setInputedVal] = React.useState();
+  const [walletBal, setWalletBal] = React.useState();
+
+  const [codeNo, setCodeNo] = React.useState(1);
   const navigate = useNavigate();
 
   const getScheduleList = () => {
-    getPaymentScheduleList(setPaymentScheduleList, codeNo);
+    getPaymentScheduleList(setRegisteredMerchants, codeNo);
   };
 
-  const completeRemittanceConfirmation = () => {};
+  const getAllVoucherData = () => {
+    getAllVoucher(setActiveVouchers);
+  };
+
+  const getRegisteredMerchants = (selectedVoucher, setRegisteredMerchants) => {
+    getRegisteredMerchantsForRelevantVoucher(
+      selectedVoucher,
+      setRegisteredMerchants
+    );
+  };
+
+  const completeRemittanceConfirmation = () => {
+    let uuids = [];
+    let body = {};
+    registeredMerchants.forEach((merchant) => {
+      if (merchant.isChecked === true) {
+        uuids.push(merchant.uuid);
+      }
+    });
+    body.uuid = uuids;
+    body.voucher_id = registeredMerchants[0].voucher_id;
+    console.log(body);
+    completeRemittance(body, setConfirm);
+  };
+
+  const handleChange = (e) => {
+    const { name, checked } = e.target;
+    if (name === "allSelect") {
+      let tempList = registeredMerchants.map((merchant) => {
+        return { ...merchant, isChecked: checked };
+      });
+      setRegisteredMerchants(tempList);
+    } else {
+      let tempList = registeredMerchants.map((merchant) =>
+        merchant.created_at === name
+          ? { ...merchant, isChecked: checked }
+          : merchant
+      );
+      setRegisteredMerchants(tempList);
+    }
+  };
+
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setSelectedVoucher(value);
+    getRegisteredMerchants(value, setRegisteredMerchants);
+  };
 
   useEffect(() => {
     getScheduleList();
+    getAllVoucherData();
   }, []);
 
   return (
@@ -47,79 +106,53 @@ const MerchantScheduleList = () => {
 
             <div className="flex-col bg-[#C2D7FF] rounded-2xl p-3 mb-2 shadow-2xl">
               <div>
-                <input type="checkbox" name="" id="" />{" "}
+                <input
+                  onChange={handleChange}
+                  className="mr-4"
+                  type="checkbox"
+                  name="allSelect"
+                  id=""
+                  checked={
+                    registeredMerchants?.filter(
+                      (merchant) => merchant?.isChecked !== true
+                    ).length < 1
+                  }
+                />{" "}
                 <strong>Check All</strong>
               </div>
               <hr className="relative mt-0 mb-4 h-1 bg-black border-none" />
               <div className="mx-3">
                 <span className="flex justify-between">
-                  <strong>Merchant Name</strong>
+                  <strong className="ml-4">Merchant Name</strong>
                   <strong>Amount</strong>
                 </span>
               </div>
               <hr className="mt-0 h-1 bg-black" />
               {/* List  */}
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
-              <div className="flex justify-between mb-2">
-                <span>
-                  <input type="checkbox" name="" id="" /> Emerald Shopping Mall
-                </span>
-                <span>#15,000</span>
-              </div>
+              {registeredMerchants.map((merchant, id) => (
+                <div key={id} className="flex justify-between mb-2">
+                  <span>
+                    <input
+                      className="mr-5"
+                      type="checkbox"
+                      name={merchant.created_at}
+                      id=""
+                      onChange={handleChange}
+                      checked={merchant.isChecked || false}
+                    />
+                    <label htmlFor="">{merchant.business_name}</label>
+                  </span>
+                  <span className="mr-6">{merchant.amount}</span>
+                </div>
+              ))}
             </div>
             <div className="flex justify-center items-center">
               <div
                 onClick={() => setShow(true)}
                 className="text-center w-[316px] mb-5 p-2 bg-blue-950 rounded-[12px]"
+                disabled
               >
-                <span className="flex items-center justify-center text-white text-xl font-extrabold font-['Montserrat']">
+                <span className="flex cursor-pointer items-center justify-center text-white text-xl font-extrabold font-['Montserrat']">
                   Payment Completed
                 </span>
               </div>
@@ -138,6 +171,60 @@ const MerchantScheduleList = () => {
           </div>
         </div>
 
+        <div className="flex items-center justify-center my-2 mb-6">
+          <div className="flex items-center my-2">
+            <span className="text-black mr-3 text-base font-normal font-['Montserrat'] leading-normal">
+              Select Voucher:
+            </span>
+            <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
+              <select
+                className="h-[40px] w-[320px] border rounded-lg p-2"
+                value={selectedVoucher}
+                onChange={handleSelectChange}
+                name="id"
+                id="voucher"
+              >
+                <div value="Select a voucher">Select a Voucher</div>
+                {activeVouchers.map((voucher, id) => (
+                  <option name={voucher.code_no} value={voucher.id} key={id}>
+                    {voucher.code_no}
+                  </option>
+                ))}
+              </select>
+              <div
+                style={{
+                  display: Number(inputedVal) > walletBal ? "block" : "none",
+                }}
+                className="text-red-500 font-thin text-sm"
+              >
+                Amount exceeds your wallet balance
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center flex-col my-2">
+          <h3>Merchants Under Selected Voucher</h3>
+          <table className="table table-borderless">
+            <thead className="border border-black ">
+              <tr>
+                <th scope="col">Merchants</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {registeredMerchants?.map((merchant, id) => (
+                <tr key={id}>
+                  <td>{merchant.business_name}</td>
+                  <td>{merchant.email}</td>
+                  <td>{merchant.contact_person_phone}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <AppModal
           visible={show}
           closable={true}
@@ -151,8 +238,8 @@ const MerchantScheduleList = () => {
             <div className="w-[277.55px] flex items-center justify-between">
               <div className="w-[134.75px]">
                 <div
-                  onClick={() => setConfirm(true)}
-                  className="flex items-center justify-center text-center w-[100px] py-2  bg-blue-600 rounded-[10px]"
+                  onClick={completeRemittanceConfirmation}
+                  className="flex cursor-pointer items-center justify-center text-center w-[100px] py-2  bg-blue-600 rounded-[10px]"
                 >
                   {" "}
                   <div className="text-neutral-50 text-base font-bold font-['Montserrat']">
@@ -161,7 +248,7 @@ const MerchantScheduleList = () => {
                 </div>
               </div>
               <div onClick={() => setShow(false)} className="w-[134.75px]">
-                <div className="flex items-center justify-center text-center w-[100px] py-2 bg-red-600 rounded-[10px]">
+                <div className="flex cursor-pointer items-center justify-center text-center w-[100px] py-2 bg-red-600 rounded-[10px]">
                   {" "}
                   <div className="  text-neutral-50 text-base font-bold font-['Montserrat']">
                     No
