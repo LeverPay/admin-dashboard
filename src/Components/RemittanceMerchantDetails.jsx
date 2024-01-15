@@ -14,7 +14,7 @@ import AppModal from "./Modal";
 import {
   getMerchantRemittanceDetails,
   completeRemittanceConfirmation,
-  getActiveVoucher,
+  getAllVoucher,
 } from "../services/apiService";
 
 const RemittanceMerchantDetails = () => {
@@ -36,14 +36,14 @@ const RemittanceMerchantDetails = () => {
     // setFormValues({ ...formValues, [name]: value });
   };
 
+  const getActiveVoucherData = () => {
+    getAllVoucher(setActiveVouchers);
+  };
+
   const sendRemittance = () => {};
 
   const getRemittanceMerchantDetails = () => {
     getMerchantRemittanceDetails(merchantId, setMerchant, setWalletBal);
-  };
-
-  const getActiveVoucherData = () => {
-    getActiveVoucher(setActiveVouchers);
   };
 
   const completeRemittance = () => {
@@ -273,40 +273,6 @@ const RemittanceMerchantDetails = () => {
                         onKeyUp={calculateBal}
                         type="number"
                       />
-                      <div
-                        style={{
-                          display:
-                            Number(inputedVal) > walletBal ? "block" : "none",
-                        }}
-                        className="text-red-500 font-thin text-sm"
-                      >
-                        Amount exceeds your wallet balance
-                      </div>
-                    </span>
-                  </div>
-                </div>
-                <div className="my-2 ">
-                  <div className="flex items-center my-2">
-                    <span className="text-black mr-3 text-base font-normal font-['Montserrat'] leading-normal">
-                      Select Voucher:
-                    </span>
-                    <span className="text-black text-base font-bold font-['Montserrat'] leading-normal">
-                      <select
-                        className="h-[40px] w-[320px] border rounded-lg p-2"
-                        value={selectedVoucher}
-                        onChange={handleChange}
-                        name="id"
-                        id="voucher"
-                      >
-                        <option value="Select a voucher">
-                          Select a Voucher
-                        </option>
-                        {activeVouchers.map((voucher, id) => (
-                          <option value={voucher.id} key={id}>
-                            {voucher.code_no}
-                          </option>
-                        ))}
-                      </select>
                       <div
                         style={{
                           display:

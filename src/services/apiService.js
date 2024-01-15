@@ -8,11 +8,12 @@ const httpClient = axios.create({
 });
 console.log(process.env.REACT_APP_LEVERPAY_API_URL);
 
-export const getMerchantForRemittance = async (merchants, setMerchants) => {
+export const getMerchantForRemittance = async (setMerchants) => {
   httpClient
     .get("v1/admin/get-merchants-for-remittance")
     .then((response) => {
       setMerchants(response.data.data);
+      console.log(typeof response.data.data);
       localStorage.setItem("Merchants", JSON.stringify(response.data.data));
       console.log("Merchant found successfully", response);
     })
@@ -51,9 +52,9 @@ export const add = async (setPaymentScheduleList, codeno) => {
     });
 };
 
-export const getActiveVoucher = async (setActiveVouchers) => {
+export const getAllVoucher = async (setActiveVouchers) => {
   httpClient
-    .get(`/v1/admin/get-active-voucher`)
+    .get(`/v1/admin/get-all-vouchers`)
     .then((response) => {
       console.log("Active vouchers gotten successfully", response);
       setActiveVouchers(response.data.data);
@@ -96,6 +97,21 @@ export const completeRemittance = async (reqBody, setConfirm) => {
     .then((response) => {
       console.log("Complete Remittance Sucessful", response.data.data);
       setConfirm(true);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+};
+
+export const getRegisteredMerchantsForRelevantVoucher = async (
+  id,
+  setRegisteredMerchants
+) => {
+  httpClient
+    .get(`/v1/admin/get-payment-schedule-list/${id}`)
+    .then((response) => {
+      console.log("Sucessful", response.data.data);
+      setRegisteredMerchants(response.data.data);
     })
     .catch((err) => {
       console.log(`${err}`);

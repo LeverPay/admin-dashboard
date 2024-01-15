@@ -28,13 +28,14 @@ function getDate() {
 const RemittanceMgt = () => {
   const [merchants, setMerchants] = useState([]);
   const [currentDate, setCurrentDate] = useState(getDate());
+
+  const getRemittanceMerchants = () => {
+    getMerchantForRemittance(setMerchants);
+  };
+
   useEffect(() => {
     getRemittanceMerchants();
   }, []);
-
-  const getRemittanceMerchants = () => {
-    getMerchantForRemittance(merchants, setMerchants);
-  };
 
   return (
     <SidebarLayout>
@@ -184,7 +185,7 @@ const RemittanceMgt = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {merchants.map((merchant, i) => (
+                      {merchants?.map((merchant, i) => (
                         <tr key={merchant.uuid}>
                           <td>{currentDate}</td>
                           <td>{merchant.business_name}</td>
