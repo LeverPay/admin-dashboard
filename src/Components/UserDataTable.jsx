@@ -11,7 +11,7 @@ import { baseUrl } from '../utils/constants';
 
 const PAGE_SIZE = 12;
 
-function UserDataTable() {
+function UserDataTable({filterType}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [userData, setUserData] = useState([]);
 
@@ -30,11 +30,43 @@ function UserDataTable() {
         }
       )
       .then((response) => {
-        setUserData(response.data.data)
+        getFilteredData(filterType,response.data.data)
         console.log(response.data)
       })
       .catch((err) => console.log(err));
   }, [authToken]);
+
+  const getFilteredData=(filterType,data)=>{
+    let allData = data;
+    let filteredData =[];
+
+    for (let i = 0; i < allData.length; i++) {
+      const element = allData[i];
+      if (filterType==="all") {
+        filteredData = data
+      }
+      else if (filterType==="active"){
+        if (element.status===1){
+          filteredData.push(element)
+        }
+      }
+      else if (filterType==="pending"){
+
+      }
+      else if (filterType==="inactive"){
+
+      }
+      else if (filterType==="suspended"){
+        if (element.status===0){
+          filteredData.push(element)
+        }
+      }
+     
+    }
+
+    setUserData(filteredData);
+ 
+  }
 
   // const currentTableData = useMemo(() => {
   //   const firstPageIndex = (currentPage - 1) * PAGE_SIZE;

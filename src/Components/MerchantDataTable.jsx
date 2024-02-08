@@ -10,7 +10,7 @@ import { baseUrl } from '../utils/constants';
 
 const PAGE_SIZE = 12;
 
-function MerchantDataTable(){
+function MerchantDataTable({filterType}){
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -30,15 +30,46 @@ function MerchantDataTable(){
     axios
       .get(apiUrl, { headers })
       .then((response) => {
-        setData(response.data.data);
-        setTotalCount(response.data.data.length);
-        console.log(response.data.data)
+     getFilteredData(filterType,response.data.data)
       })
       .catch((error) => {
         // Handle errors here
         console.error('Error:', error);
       });
-  }, []);
+  },[]);
+
+  const getFilteredData=(filterType,data)=>{
+    let allData = data;
+    let filteredData =[];
+
+    for (let i = 0; i < allData.length; i++) {
+      const element = allData[i];
+      if (filterType==="all") {
+        filteredData = data
+      }
+      else if (filterType==="active"){
+        if (element.status===1){
+          filteredData.push(element)
+        }
+      }
+      else if (filterType==="pending"){
+
+      }
+      else if (filterType==="inactive"){
+
+      }
+      else if (filterType==="suspended"){
+        if (element.status===0){
+          filteredData.push(element)
+        }
+      }
+     
+    }
+
+    setData(filteredData);
+    setTotalCount(filteredData.length);
+  }
+
 
   // const currentTableData = useMemo(() => {
   //   const firstPageIndex = (currentPage - 1) * PAGE_SIZE;

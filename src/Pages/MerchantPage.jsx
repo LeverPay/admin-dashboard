@@ -57,27 +57,27 @@ const MerchantPage = () => {
           <Tabs defaultActiveKey="first">
             <Tab eventKey="first" title={'All Merchant'}>
               <div className="users__tab__padding">
-                <MerchantDataTable />
+                <MerchantDataTable  filterType="all"/>
               </div>
             </Tab>
             <Tab eventKey="second" title={'Active Merchants - ' + count}>
               <div className="users__tab__padding">
-                <MerchantDataTable />
+                <MerchantDataTable filterType="active" />
               </div>
             </Tab>
             <Tab eventKey="third" title="Inactive Merchants">
               <div className="users__tab__padding">
-                <MerchantDataTable />
+                <MerchantDataTable filterType="inactive" />
               </div>
             </Tab>
             <Tab eventKey="fourth" title="Pending">
               <div className="users__tab__padding">
-                <MerchantDataTable />
+                <MerchantDataTable filterType="pending" />
               </div>
             </Tab>
             <Tab eventKey="fifth" title="Suspended">
               <div className="users__tab__padding">
-                <MerchantDataTable />
+                <MerchantDataTable filterType="suspended" />
               </div>
             </Tab>
           </Tabs>

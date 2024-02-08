@@ -1,7 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import chart from '../assets/dashboard-chart.svg';
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { baseUrl } from '../utils/constants';
 const DashboardStat = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+   
+  const [totalUserCount, setUserTotalCount] = useState(0);
+  const [totalMerchantCount, setMerchantTotalCount] = useState(0);
+  const [totalTransactionCount, setTransactionTotalCount] = useState(0);
+  useEffect(() => {
+
+    const authToken = Cookies.get('authToken');
+    // Define your API URL and headers
+    const apiUrl = `${baseUrl}/v1/admin/get-all-merchants`;
+    const headers = {
+      accept: '*/*',
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': '0JOsbnxa95Uu5iRjosgcbTRJs0QphDZKY3PqfYP9',
+    };
+
+    // Fetch data from the API
+    axios
+      .get(apiUrl, { headers })
+      .then((response) => {
+     setMerchantTotalCount(response.data.data.length)
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error('Error:', error);
+      });
+
+      axios
+      .get(
+        'https://leverpay-api.azurewebsites.net/api/v1/admin/get-all-users',
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      )
+      .then((response) => {
+        setUserTotalCount(response.data.data.length)
+        console.log(response.data)
+      })
+      .catch((err) => console.log(err));
+
+  // Fetch data from the API
+    axios
+      .get(`https://leverpay-api.azurewebsites.net/api/v1/admin/get-transactions`, {
+       headers: {
+          accept: '*/*',
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': 'CJEOHpMfVRB3DRtzLhzwJFqNqWGkIKP0nU6XfUEV',
+        }
+      })
+      .then((response) => {
+        console.log(response,'transaction.....her');
+     setTransactionTotalCount(response.data.data.length)
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error('Error:', error);
+      });
+
+  },[]);
+  
   return (
     <div className="dashboard-stats gap-4 lg:gap-2 flex-wrap">
       <div className="dashboard-stat rounded shadow-sm w-full lg:w-[259px] h-[97px]">
@@ -9,7 +77,8 @@ const DashboardStat = () => {
           <h2 className="w-full  text-slate-400 text-sm font-normal ">
             Total Transactions
           </h2>{' '}
-          <h2 className="text-blue-950 text-2xl font-bold ">0000000</h2>{' '}
+          <h2 className="text-blue-950 text-2xl font-bold ">{totalTransactionCount}</h2>{' '}
+
         </div>
         <div className="svg-chart-container">
           <svg
@@ -49,7 +118,8 @@ const DashboardStat = () => {
         <div className="transaction-dashboard ">
           <h2 className="text-slate-400 text-base font-bold leading-7">
             Total Users
-          </h2>{' '}
+          </h2>{' ' }
+          <h2 className="text-blue-950 text-2xl font-bold ml-2 ">{totalUserCount}</h2>
           <div className="flex items-start space-x-2 text-slate-400">
             <small>active </small>
             <small>inactive </small>
@@ -79,6 +149,7 @@ const DashboardStat = () => {
           <h2 className="text-slate-400 text-base font-bold leading-7">
             Total Merchants
           </h2>
+          <h2 className="text-blue-950 text-2xl font-bold ml-2 ">    {totalMerchantCount}</h2>
           <div className="flex items-start space-x-2 text-slate-400">
             <small>active </small>
             <small>inactive </small>

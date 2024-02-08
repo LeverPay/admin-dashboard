@@ -56,27 +56,27 @@ const UsersPage = () => {
               <Tabs defaultActiveKey="first">
                 <Tab eventKey="first" title={"All Users"}>
                    <div className='users__tab__padding'>
-                     <UserDataTable />
+                     <UserDataTable filterType="all" />
                    </div>
                 </Tab>
                  <Tab eventKey="second" title={"Active Users - " + count}>
                   <div className='users__tab__padding'>
-                     <UserDataTable />
+                     <UserDataTable filterType="active"/>
                    </div>
                 </Tab>
                 <Tab eventKey="third" title="Inactive Users">
                       <div className='users__tab__padding'>
-                       <UserDataTable />
+                       <UserDataTable filterType="inactive" />
                       </div>
                 </Tab>
                 <Tab eventKey="fourth" title="Pending">
                       <div className='users__tab__padding'>
-                        <UserDataTable />
+                        <UserDataTable filterType="pending" />
                       </div>
                 </Tab>
                 <Tab eventKey="fifth" title="Suspended">
                       <div className='users__tab__padding'>
-                        <UserDataTable />
+                        <UserDataTable filterType="suspended" />
                       </div>
                 </Tab>
               </Tabs>
