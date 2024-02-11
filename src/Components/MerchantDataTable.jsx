@@ -53,13 +53,17 @@ function MerchantDataTable({filterType}){
         }
       }
       else if (filterType==="pending"){
-
+        if (element.status===0){
+          filteredData.push(element)
+        }
       }
       else if (filterType==="inactive"){
-
+        if (element.status===2){
+          filteredData.push(element)
+        }
       }
       else if (filterType==="suspended"){
-        if (element.status===0){
+        if (element.status===2){
           filteredData.push(element)
         }
       }

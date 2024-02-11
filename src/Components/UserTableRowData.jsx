@@ -14,7 +14,7 @@ const UserTableRowData = ({ item, index }) => {
       <td>{item?.email}</td> 
       <td>
         {item?.status === 0 ? (
-          <span className="suspended-user">Suspended</span>
+          <span className="suspended-user">Pending</span>
         ) : (
           <span className="active-user">Active</span>
         )}
