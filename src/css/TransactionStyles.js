@@ -104,7 +104,7 @@ export const TableContainer = styled.section`
   }
 
   table {
-    height: 500px;
+    height: 750px;
     border-collapse: collapse;
     position: relative;
     /* padding: 30px; */

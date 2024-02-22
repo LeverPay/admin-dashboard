@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import Pagination from './Pagination';
 import TableHeaderCell from './TableHeaderCell';
-import details from '../data/TransactionData';
 import { TableContainer } from '../css/TransactionStyles';
 import MerchantTableRowData from './MerchantTableRowData';
 import axios from 'axios';
@@ -12,78 +11,53 @@ const PAGE_SIZE = 12;
 
 function MerchantDataTable({filterType}){
   const [currentPage, setCurrentPage] = useState(1);
-  const [data, setData] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
+  const [userData, setUserData] = useState([]);
   const authToken = Cookies.get('authToken');
 
   useEffect(() => {
     // Define your API URL and headers
-    const apiUrl = `${baseUrl}/v1/admin/get-all-merchants`;
-    const headers = {
-      accept: '*/*',
-      Authorization: `Bearer ${authToken}`,
-      'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': '0JOsbnxa95Uu5iRjosgcbTRJs0QphDZKY3PqfYP9',
-    };
+    getFilteredData()
+  
+  },[currentPage]);
 
-    // Fetch data from the API
-    axios
-      .get(apiUrl, { headers })
-      .then((response) => {
-     getFilteredData(filterType,response.data.data)
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error('Error:', error);
-      });
-  },[]);
-
-  const getFilteredData=(filterType,data)=>{
-    let allData = data;
-    let filteredData =[];
-
-    for (let i = 0; i < allData.length; i++) {
-      const element = allData[i];
+  const getFilteredData=( )=>{
+    let uri
       if (filterType==="all") {
-        filteredData = data
+        uri = `${baseUrl}/v1/admin/get-all-merchants?status=all&page=${currentPage}`
       }
       else if (filterType==="active"){
-        if (element.status===1){
-          filteredData.push(element)
-        }
+        uri = `${baseUrl}/v1/admin/get-all-merchants?status=1&page=${currentPage}`
       }
       else if (filterType==="pending"){
-        if (element.status===0){
-          filteredData.push(element)
-        }
+        uri = `${baseUrl}/v1/admin/get-all-merchants?status=0&mode=0&page=${currentPage}`
       }
       else if (filterType==="inactive"){
-        if (element.status===2){
-          filteredData.push(element)
-        }
+        uri = `${baseUrl}/v1/admin/get-all-merchants?status=2&page=${currentPage}`
       }
       else if (filterType==="suspended"){
-        if (element.status===2){
-          filteredData.push(element)
-        }
+        uri = `${baseUrl}/v1/admin/get-all-merchants?status=2&page=${currentPage}`
       }
-     
-    }
 
-    setData(filteredData);
-    setTotalCount(filteredData.length);
+      const headers = {
+        accept: '*/*',
+        Authorization: `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': '0JOsbnxa95Uu5iRjosgcbTRJs0QphDZKY3PqfYP9',
+      };
+      axios.get(uri, { headers }).then((response) => {
+          setUserData(response.data.data);
+        })
+        .catch((error) => {
+          // Handle errors here
+          console.error('Error:', error);
+        });
+
+    
   }
 
-
-  // const currentTableData = useMemo(() => {
-  //   const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
-  //   const lastPageIndex = firstPageIndex + PAGE_SIZE;
-  //   return details.slice(firstPageIndex, lastPageIndex);
-  // }, [currentPage, details]);
-
-  const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
-  const lastPageIndex = firstPageIndex + PAGE_SIZE;
-  const currentTableData = data.slice(firstPageIndex, lastPageIndex);
+  const firstPageIndex = currentPage;
+  const lastPageIndex = userData?.last_page;
+  const currentTableData = userData?.data;
 
   return (
     <TableContainer className="table_container">
@@ -97,7 +71,7 @@ function MerchantDataTable({filterType}){
           </tr>
         </thead>
         <tbody>
-          {currentTableData.map((item, index) => (
+          {currentTableData?.map((item, index) => (
             <MerchantTableRowData key={item.uuid} item={item} index={index} />
           ))}
         </tbody>
@@ -106,7 +80,7 @@ function MerchantDataTable({filterType}){
         <Pagination
           className="pagination-bar"
           currentPage={currentPage}
-          totalCount={totalCount}
+          totalCount={userData.total}
           pageSize={PAGE_SIZE}
           onPageChange={(page) => setCurrentPage(page)}
         />
