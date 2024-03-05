@@ -73,7 +73,7 @@ const UserApprove = ({uuid}) => {
                 fontWeight:'600',
                 backgroundColor: 'green'
             }}
-            onClick={approve}
+            onClick={disapprove}
             >Suspend</button>
             <button style={{
                 border: '1px solid',
@@ -83,7 +83,7 @@ const UserApprove = ({uuid}) => {
                 fontWeight:'600',
                 backgroundColor: 'red'
             }}
-            onClick={disapprove}
+            onClick={approve}
             >Unsuspend</button>
         </div>
         <div style={{

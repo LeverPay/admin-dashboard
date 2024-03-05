@@ -30,6 +30,7 @@ const Daashboard = () => {
         });
 
         if (response.status === 200) {
+          console.log(response.data[0],'......admins dashboard');
           setData(response.data[0]);
         } else {
           console.error('Error:', response.data);

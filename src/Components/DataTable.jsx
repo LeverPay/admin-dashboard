@@ -9,7 +9,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie';
 
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 20;
 
 function DataTable({ isShown }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,15 +19,25 @@ function DataTable({ isShown }) {
 
   // const currentTableData = useMemo(() => { 
     useEffect(()=>{
-    axios.get('https://leverpay-api.azurewebsites.net/api/v1/admin/get-transactions', 
+ 
+  getAllTransactions()
+  }, [currentPage]);
+
+  const getAllTransactions= () =>{
+    let uri =''
+    if (currentPage==1) {
+      uri = 'https://leverpay-api.azurewebsites.net/api/v1/admin/get-transactions'
+    }else{
+      uri =`https://leverpay-api.azurewebsites.net/api/v1/admin/get-transactions?page=${currentPage}`
+    }
+    axios.get(uri, 
     {
-      headers: {
+      headers: {  
         Authorization : `Bearer ${authToken}`
       }
     }
     )
     .then(res=>{
-      console.log(res.data.data)
       setTransactionData(res.data.data)
       setTnxFetched(true)
     })
@@ -35,12 +45,11 @@ function DataTable({ isShown }) {
       console.log(err)
       setTnxFetched(false)
     })
-
-  }, []);
+  }
   
   const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
   const lastPageIndex = firstPageIndex + PAGE_SIZE;
-  const currentTableData = transactionData.slice(firstPageIndex, lastPageIndex);
+  const currentTableData = transactionData.data;
 
   return (
     <>
@@ -83,9 +92,9 @@ function DataTable({ isShown }) {
       <Pagination
           className="pagination-bar"
           currentPage={currentPage}
-          totalCount={transactionData.length}
+          totalCount={transactionData.total}
           pageSize={PAGE_SIZE}
-          onPageChange={(page) => setCurrentPage(page)}
+          onPageChange={(page) =>setCurrentPage(page)  }
         />
       </div>
     </TableContainer>

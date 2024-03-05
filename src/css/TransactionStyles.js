@@ -104,12 +104,12 @@ export const TableContainer = styled.section`
   }
 
   table {
-    height: 1000px;
+    height: 750px;
     border-collapse: collapse;
     position: relative;
     /* padding: 30px; */
     overflow: visible;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 100%;
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
