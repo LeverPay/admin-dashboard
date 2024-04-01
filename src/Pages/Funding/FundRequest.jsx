@@ -16,6 +16,9 @@ function FundRequest() {
   const [fundRequestData, setFundRequestData] = useState(null);
   const [pending, setPending] = useState('pending')
   const authToken = Cookies.get('authToken');
+  const [pendingRequest,setPendingRequest] =useState(null)
+const [approvedRequest,setApprovedRequest] =useState(null)
+const [declinedRequest,setDeclinedRequest] =useState(null)
 
   // Define a function to format the transactionDate
   const formatDate = (dateString) => {
@@ -39,9 +42,22 @@ function FundRequest() {
     axios
       .get(apiUrl, { headers })
       .then((response) => {
-        // Add a unique ID to each row
+        if (response.data) {
+                  // Add a unique ID to each row
         console.log(response.data.data)
         setFundRequestData(response.data.data);
+        const request = response.data.data
+        let pending =request.filter(item => item.status === 0)
+        let approved = request.filter(item => item.status === 1)
+        let denied = request.filter(item => item.status === 2)
+
+        setPendingRequest(pending)
+        setApprovedRequest(approved)
+        setDeclinedRequest(denied)
+
+
+        }
+
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -52,9 +68,11 @@ function FundRequest() {
     const amt = parseFloat(request_amt).toFixed(2)
     return amt
 }
-const pendingRequest = fundRequestData && fundRequestData.filter(item => item.status === 0)
-const approvedRequest = fundRequestData && fundRequestData.filter(item => item.status === 1)
-const declinedRequest = fundRequestData && fundRequestData.filter(item => item.status === 2)
+ 
+
+// const pendingRequest = fundRequestData && fundRequestData?.filter(item => item.status === 0)
+// const approvedRequest = fundRequestData && fundRequestData?.filter(item => item.status === 1)
+// const declinedRequest = fundRequestData && fundRequestData?.filter(item => item.status === 2)
 
   return (
     <SidebarLayout>
@@ -213,9 +231,9 @@ const declinedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     {
                       pending==='pending' && <>
                           {
-                      fundRequestData && <>
+                 pendingRequest && <>
                         {
-                          pendingRequest.map(item => {
+                          pendingRequest?.map(item => {
                             return <ul key={item.created_at}>
                               <li>
                                 {item.user.first_name} {item.user.last_name}
@@ -253,9 +271,9 @@ const declinedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     {
                       pending==='approved' && <>
                         {
-                      fundRequestData && <>
+                      approvedRequest && <>
                         {
-                          approvedRequest.map(item => {
+                          approvedRequest?.map(item => {
                             return <ul key={item.created_at}>
                               <li>
                                 {item.user.first_name} {item.user.last_name}
@@ -293,9 +311,9 @@ const declinedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     {
                       pending==='declined' && <>
                         {
-                      fundRequestData && <>
+                     declinedRequest&& <>
                         {
-                          declinedRequest.map(item => {
+                          declinedRequest?.map(item => {
                             return <ul key={item.created_at}>
                               <li>
                                 {item.user.first_name} {item.user.last_name}
