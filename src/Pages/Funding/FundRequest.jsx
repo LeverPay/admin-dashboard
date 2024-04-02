@@ -11,11 +11,15 @@ import Loading from '../../Components/loading';
 import Cookies from 'js-cookie';
 import { baseUrl } from '../../utils/constants';
 import { format } from 'date-fns';
+import Pagination from '../../Components/Pagination';
 
 function FundRequest() {
   const [fundRequestData, setFundRequestData] = useState(null);
   const [pending, setPending] = useState('pending')
   const authToken = Cookies.get('authToken');
+  const [pendingRequest,setPendingRequest] =useState(null)
+const [approvedRequest,setApprovedRequest] =useState(null)
+const [declinedRequest,setDeclinedRequest] =useState(null)
 
   // Define a function to format the transactionDate
   const formatDate = (dateString) => {
@@ -28,7 +32,12 @@ function FundRequest() {
   }, []);
 
   useEffect(() => {
-    const apiUrl = `${baseUrl}/v1/admin/get-topup-requests`;
+    getCurrentFundRequestData()
+ 
+  }, []);
+
+  const getCurrentFundRequestData=(page=1)=>{
+    const apiUrl = `${baseUrl}/v1/admin/get-topup-requests?page=${page}`;
     const headers = {
       accept: '*/*',
       Authorization: `Bearer ${authToken}`,
@@ -39,22 +48,32 @@ function FundRequest() {
     axios
       .get(apiUrl, { headers })
       .then((response) => {
-        // Add a unique ID to each row
-        console.log(response.data.data)
+        if (response.data) {
+                  // Add a unique ID to each row
         setFundRequestData(response.data.data);
+        const request = response.data.data.data
+        let pending =request.filter(item => item.status === 0)
+        let approved = request.filter(item => item.status === 1)
+        let denied = request.filter(item => item.status === 2)
+
+        setPendingRequest(pending)
+        setApprovedRequest(approved)
+        setDeclinedRequest(denied)
+
+
+        }
+
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }
 
   const amountformat = (request_amt) =>{
     const amt = parseFloat(request_amt).toFixed(2)
     return amt
 }
-const pendingRequest = fundRequestData && fundRequestData.filter(item => item.status === 0)
-const approvedRequest = fundRequestData && fundRequestData.filter(item => item.status === 1)
-const declinedRequest = fundRequestData && fundRequestData.filter(item => item.status === 2)
+ 
 
   return (
     <SidebarLayout>
@@ -213,9 +232,9 @@ const declinedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     {
                       pending==='pending' && <>
                           {
-                      fundRequestData && <>
+                 pendingRequest && <>
                         {
-                          pendingRequest.map(item => {
+                          pendingRequest?.map(item => {
                             return <ul key={item.created_at}>
                               <li>
                                 {item.user.first_name} {item.user.last_name}
@@ -253,9 +272,9 @@ const declinedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     {
                       pending==='approved' && <>
                         {
-                      fundRequestData && <>
+                      approvedRequest && <>
                         {
-                          approvedRequest.map(item => {
+                          approvedRequest?.map(item => {
                             return <ul key={item.created_at}>
                               <li>
                                 {item.user.first_name} {item.user.last_name}
@@ -293,9 +312,9 @@ const declinedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     {
                       pending==='declined' && <>
                         {
-                      fundRequestData && <>
+                     declinedRequest&& <>
                         {
-                          declinedRequest.map(item => {
+                          declinedRequest?.map(item => {
                             return <ul key={item.created_at}>
                               <li>
                                 {item.user.first_name} {item.user.last_name}
@@ -332,12 +351,25 @@ const declinedRequest = fundRequestData && fundRequestData.filter(item => item.s
                     }
                    
                   </div>
+                  <div className="pagination__container">
+                  <Pagination
+                      className="pagination-bar"
+                      currentPage={fundRequestData?.current_page}
+                      totalCount={fundRequestData?.total}
+                      pageSize={12}
+                      onPageChange={(page) =>getCurrentFundRequestData(page)  }
+                    />
+                  </div>
                 </div>
 
               </div>
             </div>
+      
+
           </div>
+   
         </FundRequestStyle>
+    
       </DashboardView>
     </SidebarLayout>
   );
