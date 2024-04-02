@@ -11,6 +11,7 @@ import Loading from '../../Components/loading';
 import Cookies from 'js-cookie';
 import { baseUrl } from '../../utils/constants';
 import { format } from 'date-fns';
+import Pagination from '../../Components/Pagination';
 
 function FundRequest() {
   const [fundRequestData, setFundRequestData] = useState(null);
@@ -31,7 +32,12 @@ const [declinedRequest,setDeclinedRequest] =useState(null)
   }, []);
 
   useEffect(() => {
-    const apiUrl = `${baseUrl}/v1/admin/get-topup-requests`;
+    getCurrentFundRequestData()
+ 
+  }, []);
+
+  const getCurrentFundRequestData=(page=1)=>{
+    const apiUrl = `${baseUrl}/v1/admin/get-topup-requests?page=${page}`;
     const headers = {
       accept: '*/*',
       Authorization: `Bearer ${authToken}`,
@@ -44,9 +50,8 @@ const [declinedRequest,setDeclinedRequest] =useState(null)
       .then((response) => {
         if (response.data) {
                   // Add a unique ID to each row
-        console.log(response.data.data)
         setFundRequestData(response.data.data);
-        const request = response.data.data
+        const request = response.data.data.data
         let pending =request.filter(item => item.status === 0)
         let approved = request.filter(item => item.status === 1)
         let denied = request.filter(item => item.status === 2)
@@ -62,17 +67,13 @@ const [declinedRequest,setDeclinedRequest] =useState(null)
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }
 
   const amountformat = (request_amt) =>{
     const amt = parseFloat(request_amt).toFixed(2)
     return amt
 }
  
-
-// const pendingRequest = fundRequestData && fundRequestData?.filter(item => item.status === 0)
-// const approvedRequest = fundRequestData && fundRequestData?.filter(item => item.status === 1)
-// const declinedRequest = fundRequestData && fundRequestData?.filter(item => item.status === 2)
 
   return (
     <SidebarLayout>
@@ -350,12 +351,25 @@ const [declinedRequest,setDeclinedRequest] =useState(null)
                     }
                    
                   </div>
+                  <div className="pagination__container">
+                  <Pagination
+                      className="pagination-bar"
+                      currentPage={fundRequestData?.current_page}
+                      totalCount={fundRequestData?.total}
+                      pageSize={12}
+                      onPageChange={(page) =>getCurrentFundRequestData(page)  }
+                    />
+                  </div>
                 </div>
 
               </div>
             </div>
+      
+
           </div>
+   
         </FundRequestStyle>
+    
       </DashboardView>
     </SidebarLayout>
   );

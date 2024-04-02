@@ -94,3 +94,11 @@
 .view_more span button:nth-child(2){
     background-color: red;
 }
+
+.pagination__container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+
+}
