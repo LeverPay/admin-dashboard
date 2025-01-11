@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IoCloseCircle } from "react-icons/io5";
 import SuccessIcon from "../SuccessIcon/SuccessIcon";
 
-const KYCSuccess = ({ onClose }) => {
+const KYCSuccess = ({ onClose, messageResponse }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -33,7 +33,8 @@ const KYCSuccess = ({ onClose }) => {
         </div>
 
         <div className="text-center text-green-600 font-medium text-xl space-y-4 pt-4">
-          <p>Dollar Card Issued Successfully</p>
+          <p>{messageResponse}</p>
+          {/* <p>Dollar Card Issued Successfully</p> */}
         </div>
       </div>
     </div>

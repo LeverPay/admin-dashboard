@@ -16,7 +16,8 @@ const onChange = (key) => {
 };
 
 const UserViewMore = () => {
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState(null);
+  // const [userData, setUserData] = useState([]);
   const authToken = Cookies.get("authToken");
   const location = useLocation();
   const { state } = location;
@@ -40,6 +41,58 @@ const UserViewMore = () => {
 
   console.log(userData);
 
+  // const items = [
+  //   {
+  //     key: "1",
+  //     label: (
+  //       <h2 className="w-[103px] text-black text-sm font-bold">
+  //         Personal Data
+  //       </h2>
+  //     ),
+  //     children: <ProfileData userData={userData} />,
+  //   },
+  //   {
+  //     key: "2",
+  //     label: (
+  //       <h2 className="w-[155px] text-black text-sm font-bold">
+  //         Upload files & ID Cards
+  //       </h2>
+  //     ),
+  //     children: <UploadFiles userData={userData} />,
+  //   },
+  //   {
+  //     key: "3",
+  //     label: (
+  //       <h2 className="w-[155px] text-blue-900 text-sm font-bold">
+  //         Account Balance ( N )
+  //       </h2>
+  //     ),
+  //     children: <AccountBalance userData={userData} />,
+  //   },
+  //   {
+  //     key: "4",
+  //     label: (
+  //       <h2 className="w-[155px] text-blue-900 text-sm font-bold">Message</h2>
+  //     ),
+  //     children: <UserMessage userData={userData} />,
+  //   },
+  //   {
+  //     key: "5",
+  //     label: (
+  //       <h2 className="w-[155px] text-blue-900 text-sm font-bold">Approve</h2>
+  //     ),
+  //     children: <UserApprove uuid={userData.uuid} />,
+  //   },
+  //   {
+  //     key: "6",
+  //     label: (
+  //       <h2 className="w-[155px] text-blue-900 text-sm font-bold">
+  //         KYC Verification
+  //       </h2>
+  //     ),
+  //     children: <KYCVerification userData={userData} />,
+  //   },
+  // ];
   const items = [
     {
       key: "1",
@@ -48,7 +101,11 @@ const UserViewMore = () => {
           Personal Data
         </h2>
       ),
-      children: <ProfileData userData={userData} />,
+      children: userData ? (
+        <ProfileData userData={userData} />
+      ) : (
+        <p>Loading...</p>
+      ),
     },
     {
       key: "2",
@@ -57,7 +114,11 @@ const UserViewMore = () => {
           Upload files & ID Cards
         </h2>
       ),
-      children: <UploadFiles userData={userData} />,
+      children: userData ? (
+        <UploadFiles userData={userData} />
+      ) : (
+        <p>Loading...</p>
+      ),
     },
     {
       key: "3",
@@ -66,21 +127,33 @@ const UserViewMore = () => {
           Account Balance ( N )
         </h2>
       ),
-      children: <AccountBalance userData={userData} />,
+      children: userData ? (
+        <AccountBalance userData={userData} />
+      ) : (
+        <p>Loading...</p>
+      ),
     },
     {
       key: "4",
       label: (
         <h2 className="w-[155px] text-blue-900 text-sm font-bold">Message</h2>
       ),
-      children: <UserMessage userData={userData} />,
+      children: userData ? (
+        <UserMessage userData={userData} />
+      ) : (
+        <p>Loading...</p>
+      ),
     },
     {
       key: "5",
       label: (
         <h2 className="w-[155px] text-blue-900 text-sm font-bold">Approve</h2>
       ),
-      children: <UserApprove uuid={userData.uuid} />,
+      children: userData ? (
+        <UserApprove uuid={userData.uuid} />
+      ) : (
+        <p>Loading...</p>
+      ),
     },
     {
       key: "6",
@@ -89,10 +162,36 @@ const UserViewMore = () => {
           KYC Verification
         </h2>
       ),
-      children: <KYCVerification userData={userData} />,
+      children: userData ? (
+        <KYCVerification userData={userData} />
+      ) : (
+        <p>Loading...</p>
+      ),
     },
   ];
 
+  // return (
+  //   <div className="p-10">
+  //     <p>
+  //       <Link
+  //         to="/users"
+  //         style={{
+  //           display: "flex",
+  //           gap: "5px",
+  //           alignItems: "center",
+  //           color: "black",
+  //           fontWeight: "600",
+  //         }}
+  //       >
+  //         <img src="/images/back1.png" alt="" width={20} /> Go back
+  //       </Link>
+  //     </p>
+  //     <h2 className="text-neutral-700 text-2xl font-bold leading-normal">
+  //       User Profile
+  //     </h2>
+  //     <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+  //   </div>
+  // );
   return (
     <div className="p-10">
       <p>
@@ -112,7 +211,11 @@ const UserViewMore = () => {
       <h2 className="text-neutral-700 text-2xl font-bold leading-normal">
         User Profile
       </h2>
-      <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+      {userData ? (
+        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+      ) : (
+        <p>Loading user data...</p>
+      )}
     </div>
   );
 };
