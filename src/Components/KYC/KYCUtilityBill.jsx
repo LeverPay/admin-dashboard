@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IoCloseCircle } from "react-icons/io5";
 
-const KYCUtilityBill = ({ onClose, onClickDownload }) => {
+const KYCUtilityBill = ({ onClose, onClickDownload, kycUtility }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const KYCUtilityBill = ({ onClose, onClickDownload }) => {
         </h3>
 
         <div className="flex w-[80%] m-auto items-center justify-center">
-          <img src="" alt="Utility Bill here" className="w-[100%]" />
+          <img src={kycUtility} alt="Utility Bill here" className="w-[100%]" />
         </div>
         <div className="text-right">
           <button

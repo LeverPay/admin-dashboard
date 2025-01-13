@@ -1,17 +1,31 @@
 import { useEffect, useState } from "react";
 import { IoCloseCircle } from "react-icons/io5";
 
-const KYCDeny = ({ onClose, onSendDenialMessage }) => {
+const KYCDeny = ({ onClose, onSendDenialMessage, email }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (!message) {
+      setError("Message cannot be empty!");
+      return;
+    }
+
+    setError("");
+
+    onSendDenialMessage(email, message);
+  };
+
   return (
     <div className="fixed inset-0 bg-black-fade flex items-center justify-center z-50">
       <div
-        className={`bg-white rounded-xl w-[40%] p-4 relative shadow-lg transform transition-all duration-300 ${
+        className={`bg-white rounded-xl w-[320px] md:w-[40%] p-4 relative shadow-lg transform transition-all duration-300 ${
           isVisible ? "scale-100 opacity-100" : "scale-75 opacity-0"
         }`}
       >
@@ -29,7 +43,7 @@ const KYCDeny = ({ onClose, onSendDenialMessage }) => {
           Dollar Card Denial!
         </h3>
 
-        <form className="flex flex-column gap-2 w-[80%]">
+        <form className="flex flex-column gap-2 lg:w-[80%]">
           <label htmlFor="email" className="text-black font-medium">
             Email
           </label>
@@ -37,6 +51,8 @@ const KYCDeny = ({ onClose, onSendDenialMessage }) => {
             type="email"
             name="email"
             id="email"
+            value={email}
+            readOnly
             className="bg-green-opacity outline-0 p-2 py-1 text-white rounded mb-2"
           />
 
@@ -46,11 +62,14 @@ const KYCDeny = ({ onClose, onSendDenialMessage }) => {
             name="message"
             rows={5}
             cols={50}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
           ></textarea>
+          {error && <p className="text-red text-xs mt-1">{error}</p>}
 
           <div className="text-right">
             <button
-              onClick={onSendDenialMessage}
+              onClick={handleSend}
               className="bg-black w-[100px] py-2 text-white rounded-3xl hover:bg-gray-500 transition"
             >
               Send
